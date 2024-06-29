@@ -8,5 +8,7 @@ const BrandSchema = new Schema({
   // Supplier(s)?
 });
 
+// Virtual schema for URL?
+
 // Export model
 module.exports = mongoose.model("Brand", BrandSchema);

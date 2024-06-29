@@ -11,5 +11,7 @@ const PartSchema = new Schema({
   // Supplier?
 });
 
+// Virtual schema for URL?
+
 // Export model
 module.exports = mongoose.model("Part", PartSchema);
