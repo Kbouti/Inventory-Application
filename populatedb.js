@@ -37,6 +37,28 @@ async function main() {
 }
 
 
+//  My attempt at create brand function: 
+async function createBrand(index, name, website, supplier) {
+    const brand = new Brand({ name: name, website: website, supplier: supplier, });
+    await genre.save();
+    brands[index] = brand;
+    console.log(`Added brand: ${name}`);
+  }
+
+//   Attempt at category function
+  async function createCategory(index, name) {
+    const category = new Category({name: name});
+    await category.save();
+    categories[index] = category;
+    console.log(`Added category: ${name}`);
+  }
+
+//   Attempted part function (Incomplete)
+  async function createPart(index, name, description, brand, price, quantity, supplier ) {
+
+  }
+
+
 //  Unedited below this line
 //    ********************************************************************************************************
 
