@@ -107,6 +107,21 @@ async function createBrands() {
 }
 
 // Next up create categories:
+async function createCategories() {
+    console.log(`Adding categories`);
+    await Promise.all([
+        categoryCreate(0, "wheels"),
+        categoryCreate(1, "tires"),
+        categoryCreate(2, "cockpit"),
+        categoryCreate(3, "fork"),
+        categoryCreate(4, "suspension"),
+        categoryCreate(5, "drivetrain"),
+        categoryCreate(6, "saddle"),
+        categoryCreate(7, "pedals"),
+        categoryCreate(8, "accessories"),
+        categoryCreate(9, "rear shock"),
+    ])
+}
 
 
 
