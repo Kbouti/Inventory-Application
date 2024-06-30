@@ -97,38 +97,68 @@ async function supplierCreate(
 }
 
 async function createBrands() {
-    console.log(`Adding brands`);
-    await Promise.all([
-        brandCreate(0, "RockShox", "https://www.sram.com/en/rockshox", false),
-        brandCreate(1, "Trek", "https://www.trekbikes.com/us/en_US/", false),
-        brandCreate(2, "Wolf Tooth", "https://www.wolftoothcomponents.com/", false),
-        brandCreate(3,"Sram", "https://www.sram.com/en/sram", false),
-    ])
+  console.log(`Adding brands`);
+  await Promise.all([
+    brandCreate(0, "RockShox", "https://www.sram.com/en/rockshox", false),
+    brandCreate(1, "Trek", "https://www.trekbikes.com/us/en_US/", false),
+    brandCreate(2, "Wolf Tooth", "https://www.wolftoothcomponents.com/", false),
+    brandCreate(3, "Sram", "https://www.sram.com/en/sram", false),
+  ]);
 }
 
 // Next up create categories:
 async function createCategories() {
-    console.log(`Adding categories`);
-    await Promise.all([
-        categoryCreate(0, "wheels"),
-        categoryCreate(1, "tires"),
-        categoryCreate(2, "cockpit"),
-        categoryCreate(3, "fork"),
-        categoryCreate(4, "suspension"),
-        categoryCreate(5, "drivetrain"),
-        categoryCreate(6, "saddle"),
-        categoryCreate(7, "pedals"),
-        categoryCreate(8, "accessories"),
-        categoryCreate(9, "rear shock"),
-    ])
+  console.log(`Adding categories`);
+  await Promise.all([
+    categoryCreate(0, "wheels"),
+    categoryCreate(1, "tires"),
+    categoryCreate(2, "cockpit"),
+    categoryCreate(3, "fork"),
+    categoryCreate(4, "suspension"),
+    categoryCreate(5, "drivetrain"),
+    categoryCreate(6, "saddle"),
+    categoryCreate(7, "pedals"),
+    categoryCreate(8, "accessories"),
+    categoryCreate(9, "rear shock"),
+  ]);
 }
 
+async function createSuppliers() {
+  console.log(`Adding suppliers`);
+  await Promise.all([
+    supplierCreate(
+      0,
+      "qbp",
+      "https://www.qbp.com/",
+      [brands[0], brands[2], brands[3]],
+      "qbpUsername",
+      "qbpPassword"
+    ),
+    supplierCreate(
+      1,
+      "Amazon",
+      "https://www.amazon.com/",
+      [brands[0], brands[2], brands[3]],
+      "amazonUsername",
+      "amazonPassword123"
+    ),
+    supplierCreate(
+      2,
+      "The Lost Co",
+      "https://thelostco.com/",
+      [brands[0]],
+      false,
+      false
+    ),
+  ]);
+}
+
+// Next up products
 
 
+//  ********************************************************************************************************
 //  Template code below this line
-//    ********************************************************************************************************
-
-
+//  ********************************************************************************************************
 
 async function createGenres() {
   console.log("Adding genres");
