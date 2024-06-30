@@ -78,59 +78,28 @@ async function partCreate(
   console.log(`Added part: ${name}`);
 }
 
+async function supplierCreate(
+  index,
+  name,
+  website,
+  brands,
+  username,
+  password
+) {
+  const supplierDetail = { name: name, website: website };
+  if (brands != false) supplierDetail.brands = brands;
+  if (username != false) supplierDetail.username = username;
+  if (password != false) supplierDetail.password = password;
+  const supplier = new Supplier(supplierDetail);
+  await supplier.save();
+  suppliers[index] = supplier;
+  console.log(`Added supplier: ${name}`);
+}
+
 //  Unedited below this line
 //    ********************************************************************************************************
 
-// We pass the index to the ...Create functions so that, for example,
-// genre[0] will always be the Fantasy genre, regardless of the order
-// in which the elements of promise.all's argument complete.
-async function genreCreate(index, name) {
-  const genre = new Genre({ name: name });
-  await genre.save();
-  genres[index] = genre;
-  console.log(`Added genre: ${name}`);
-}
 
-async function authorCreate(index, first_name, family_name, d_birth, d_death) {
-  const authordetail = { first_name: first_name, family_name: family_name };
-  if (d_birth != false) authordetail.date_of_birth = d_birth;
-  if (d_death != false) authordetail.date_of_death = d_death;
-
-  const author = new Author(authordetail);
-
-  await author.save();
-  authors[index] = author;
-  console.log(`Added author: ${first_name} ${family_name}`);
-}
-
-async function bookCreate(index, title, summary, isbn, author, genre) {
-  const bookdetail = {
-    title: title,
-    summary: summary,
-    author: author,
-    isbn: isbn,
-  };
-  if (genre != false) bookdetail.genre = genre;
-
-  const book = new Book(bookdetail);
-  await book.save();
-  books[index] = book;
-  console.log(`Added book: ${title}`);
-}
-
-async function bookInstanceCreate(index, book, imprint, due_back, status) {
-  const bookinstancedetail = {
-    book: book,
-    imprint: imprint,
-  };
-  if (due_back != false) bookinstancedetail.due_back = due_back;
-  if (status != false) bookinstancedetail.status = status;
-
-  const bookinstance = new BookInstance(bookinstancedetail);
-  await bookinstance.save();
-  bookinstances[index] = bookinstance;
-  console.log(`Added bookinstance: ${imprint}`);
-}
 
 async function createGenres() {
   console.log("Adding genres");
