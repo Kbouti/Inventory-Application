@@ -36,28 +36,47 @@ async function main() {
   mongoose.connection.close();
 }
 
-
-//  My attempt at create brand function: 
-async function createBrand(index, name, website, supplier) {
-    const brand = new Brand({ name: name, website: website, supplier: supplier, });
-    await genre.save();
-    brands[index] = brand;
-    console.log(`Added brand: ${name}`);
-  }
+//  My attempt at create brand function:
+async function brandCreate(index, name, website, supplier) {
+  const brandDetail = { name: name, website: website };
+  if (suppliers != false) brandDetail.suppliers = suppliers;
+  const brand = new Brand(brandDetail);
+  await genre.save();
+  brands[index] = brand;
+  console.log(`Added brand: ${name}`);
+}
 
 //   Attempt at category function
-  async function createCategory(index, name) {
-    const category = new Category({name: name});
-    await category.save();
-    categories[index] = category;
-    console.log(`Added category: ${name}`);
-  }
+async function categoryCreate(index, name) {
+  const category = new Category({ name: name });
+  await category.save();
+  categories[index] = category;
+  console.log(`Added category: ${name}`);
+}
 
-//   Attempted part function (Incomplete)
-  async function createPart(index, name, description, brand, price, quantity, supplier ) {
-
-  }
-
+//   Attempted part function
+async function partCreate(
+  index,
+  name,
+  description,
+  brand,
+  price,
+  quantity,
+  suppliers
+) {
+  const partDetail = {
+    name: name,
+    brand: brand,
+    price: price,
+    quantity: quantity,
+  };
+  if (description != false) partDetail.description = description;
+  if (suppliers != false) partDetail.suppliers = suppliers;
+  const part = new Part(partDetail);
+  await part.save();
+  parts[index] = part;
+  console.log(`Added part: ${name}`);
+}
 
 //  Unedited below this line
 //    ********************************************************************************************************
