@@ -10,7 +10,12 @@ const SupplierSchema = new Schema({
   password: { type: String, required: false },
 });
 
-// Virtual schema for URL?
+
+// Virtual schema for URL
+SupplierSchema.virtual("url").get(function () {
+    return `/catalog/supplier/${this._id}`;
+});
+
 
 // Export model
 module.exports = mongoose.model("Brand", BrandSchema);

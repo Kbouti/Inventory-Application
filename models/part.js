@@ -13,7 +13,10 @@ const PartSchema = new Schema({
   // Supplier?
 });
 
-// Virtual schema for URL?
+// Virtual schema for URL
+PartSchema.virtual("url").get(function () {
+    return `/catalog/part/${this._id}`;
+});
 
 // Export model
 module.exports = mongoose.model("Part", PartSchema);
