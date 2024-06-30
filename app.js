@@ -39,3 +39,14 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+
+
+// Un-altered connection string from mongodb: 
+// mongodb+srv://kevinfboutilier:<password>@locallibrary.o1xynnt.mongodb.net/?retryWrites=true&w=majority&appName=localLibrary
+
+// Production connection string:
+// mongodb+srv://kevinfboutilier:AMRPU6oe0Zv8fCKW@locallibrary.o1xynnt.mongodb.net/inventoryApplication?retryWrites=true&w=majority&appName=localLibrary
+
+// Pa$$W: AMRPU6oe0Zv8fCKW
