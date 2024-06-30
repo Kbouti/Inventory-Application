@@ -96,7 +96,21 @@ async function supplierCreate(
   console.log(`Added supplier: ${name}`);
 }
 
-//  Unedited below this line
+async function createBrands() {
+    console.log(`Adding brands`);
+    await Promise.all([
+        brandCreate(0, "RockShox", "https://www.sram.com/en/rockshox", false),
+        brandCreate(1, "Trek", "https://www.trekbikes.com/us/en_US/", false),
+        brandCreate(2, "Wolf Tooth", "https://www.wolftoothcomponents.com/", false),
+        brandCreate(3,"Sram", "https://www.sram.com/en/sram", false),
+    ])
+}
+
+// Next up create categories:
+
+
+
+//  Template code below this line
 //    ********************************************************************************************************
 
 
