@@ -16,6 +16,9 @@ const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 const mongoDB = "mongodb+srv://kevinfboutilier:bKI3lS10W9aFwvRc@locallibrary.o1xynnt.mongodb.net/inventoryApplication?retryWrites=true&w=majority&appName=localLibrary";
 // New password: bKI3lS10W9aFwvRc
+// Perhaps the <locallibrary> above should be <inventory> as that's the name of the collection?
+// I think I'm getting the data structures messed up.......
+
 
 main().catch((err) => console.log(err));
 async function main() {
