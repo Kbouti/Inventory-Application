@@ -23,6 +23,7 @@ const mongoDB = "mongodb+srv://kevinfboutilier:bKI3lS10W9aFwvRc@locallibrary.o1x
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
+  console.log(`main function has run, should be connected to mongodb`)
 }
 
 
@@ -66,6 +67,6 @@ module.exports = app;
 // mongodb+srv://kevinfboutilier:<password>@locallibrary.o1xynnt.mongodb.net/?retryWrites=true&w=majority&appName=localLibrary
 
 // Production connection string:
-// mongodb+srv://kevinfboutilier:AMRPU6oe0Zv8fCKW@locallibrary.o1xynnt.mongodb.net/inventoryApplication?retryWrites=true&w=majority&appName=localLibrary
+// mongodb+srv://kevinfboutilier:bKI3lS10W9aFwvRc@locallibrary.o1xynnt.mongodb.net/inventoryApplication?retryWrites=true&w=majority&appName=localLibrary
 
-// Pa$$W: AMRPU6oe0Zv8fCKW
+// Pa$$W: bKI3lS10W9aFwvRc
