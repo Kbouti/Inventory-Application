@@ -143,6 +143,7 @@ async function createCategories() {
     categoryCreate(7, "pedals"),
     categoryCreate(8, "accessories"),
     categoryCreate(9, "rear shock"),
+    categoryCreate(10, "complete bike")
   ]);
 }
 
@@ -173,6 +174,19 @@ async function createParts() {
       [suppliers[0], suppliers[1], suppliers[2]],
       [categories[3]],
       "https://www.sram.com/globalassets/image-hierarchy/sram-product-root-images/suspension---forks/suspension---forks/fs-lyrik-ultimate-d2/productassets_fs-lyrk-ult-d2_fg/fs-lyrk-ult-27ub-160-grn-44-d2-c-3q-v02-v.png?w=1712&quality=80&format=webp",
+    ),
+
+
+    partCreate(
+      2,
+      "Slash",
+      "Trek's enduro bike. Long travel for rowdy descents yet pedalable to get you to the top",
+      brands[1],
+      9399.99,
+      1,
+      [],
+      [categories[10]],
+      "https://media.trekbikes.com/image/upload/f_auto,fl_progressive:semi,q_auto,w_1920,h_1440,c_pad/Slash99XOAXS-24-41681-B-Portrait",
     ),
   ]);
 }
