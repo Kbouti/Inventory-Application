@@ -13,6 +13,12 @@ var http = require('http');
  */
 
 var port = normalizePort(process.env.PORT || '3000');
+
+if ((process.env.STATUS === "production")) port = process.env.PROD_PORT;
+console.log(`Using mode: ${process.env.MODE}`);
+console.log(`Setting port: ${port}`);
+
+
 app.set('port', port);
 
 /**

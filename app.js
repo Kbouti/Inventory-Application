@@ -23,7 +23,17 @@ const mode = process.env.MODE;
 console.log(`mode is ${mode}`);
 
 
-const mongoDB = "mongodb+srv://kevinfboutilier:bKI3lS10W9aFwvRc@locallibrary.o1xynnt.mongodb.net/inventoryApplication?retryWrites=true&w=majority&appName=localLibrary";
+let mongoDB;
+if (mode === "development"){
+  mongoDB = process.env.DEV_URI;
+} else if (mode === "production"){
+  mongoDB = process.env.PROD_URI;
+} else {
+  console.err(error);
+}
+console.log(`Using ${mode} database`);
+
+// const mongoDB = "mongodb+srv://kevinfboutilier:bKI3lS10W9aFwvRc@locallibrary.o1xynnt.mongodb.net/inventoryApplication?retryWrites=true&w=majority&appName=localLibrary";
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
