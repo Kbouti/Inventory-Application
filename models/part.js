@@ -8,7 +8,7 @@ const PartSchema = new Schema({
   brand: { type: Schema.Types.ObjectId, ref: "Brand", required: true }, // reference to the associated brand
   price: { type: Number, required: true },
   quantity: { type: Number, required: true },
-  suppliers: [{ type: Schema.Types.ObjectId, ref: "Supplier" }],required: false,
+  suppliers: [{ type: Schema.Types.ObjectId, ref: "Supplier" }]
 
   // Supplier?
 });

@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const SupplierSchema = new Schema({
   name: { type: String, required: true },
   website: { type: String, required: true },
-  brands: [{ type: Schema.Types.ObjectId, ref: "Brand" }],required: false,
+  brands: [{ type: Schema.Types.ObjectId, ref: "Brand" }],
   username: { type: String, required: false },
   password: { type: String, required: false },
 });
@@ -18,4 +18,4 @@ SupplierSchema.virtual("url").get(function () {
 
 
 // Export model
-module.exports = mongoose.model("Brand", BrandSchema);
+module.exports = mongoose.model("Supplier", SupplierSchema);
