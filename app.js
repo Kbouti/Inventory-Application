@@ -19,6 +19,20 @@ const mongoDB = "mongodb+srv://kevinfboutilier:bKI3lS10W9aFwvRc@locallibrary.o1x
 // Perhaps the <locallibrary> above should be <inventory> as that's the name of the collection?
 // I think I'm getting the data structures messed up.......
 
+// ******************************************************************************************************************************************************
+// We have created some models for objects we want in our inventory application.
+// Our current error is likely due to the incorrect connection string, or URI, provided to connect to mongoose. 
+
+// In order to connect to our database and start storing documents we first need to do two things:
+// -Get our updated connection string
+// -Name the database and collections in which we will store this data in mongo
+// -Install any modules required to use a .env file
+// -store our connection string in .env and access it in the project
+
+// ******************************************************************************************************************************************************
+
+
+
 
 main().catch((err) => console.log(err));
 async function main() {
