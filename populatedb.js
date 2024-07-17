@@ -88,6 +88,11 @@ async function partCreate(
     price: price,
     quantity: quantity,
   };
+
+// ************************************************************************************
+// We'll need to revisit this section to ensure error handling for the fields we added
+// ************************************************************************************
+
   if (description != false) partDetail.description = description;
   if (suppliers != false) partDetail.suppliers = suppliers;
   const part = new Part(partDetail);
@@ -156,6 +161,7 @@ async function createParts() {
       4,
       [suppliers[0], suppliers[1], suppliers[2]],
       [categories[3]],
+      "https://www.sram.com/globalassets/image-hierarchy/sram-product-root-images/suspension---forks/suspension---forks/fs-zeb-ultimate-a3/productassets_fs-zeb-ult-a3_fg/fs-zeb-ult-27ub-190-red-44-a3-c-3q-v02-v.png?w=1712&quality=80&format=webp"
     ),
     partCreate(
       1,
@@ -166,6 +172,7 @@ async function createParts() {
       2,
       [suppliers[0], suppliers[1], suppliers[2]],
       [categories[3]],
+      "https://www.sram.com/globalassets/image-hierarchy/sram-product-root-images/suspension---forks/suspension---forks/fs-lyrik-ultimate-d2/productassets_fs-lyrk-ult-d2_fg/fs-lyrk-ult-27ub-160-grn-44-d2-c-3q-v02-v.png?w=1712&quality=80&format=webp",
     ),
   ]);
 }

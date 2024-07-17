@@ -10,7 +10,7 @@ const PartSchema = new Schema({
   quantity: { type: Number, required: true },
   suppliers: [{ type: Schema.Types.ObjectId, ref: "Supplier" }],
   category: { type: Schema.Types.ObjectId, ref: "Category", required: true },
-
+  imageUrl: { type: String, required: true },
   // Need to add image url
 
 });
