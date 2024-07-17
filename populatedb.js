@@ -155,6 +155,7 @@ async function createParts() {
       579,
       4,
       [suppliers[0], suppliers[1], suppliers[2]],
+      [categories[3]],
     ),
     partCreate(
       1,
@@ -164,6 +165,7 @@ async function createParts() {
       549,
       2,
       [suppliers[0], suppliers[1], suppliers[2]],
+      [categories[3]],
     ),
   ]);
 }
