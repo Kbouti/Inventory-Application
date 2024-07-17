@@ -60,12 +60,15 @@ async function categoryCreate(index, name) {
 
 // Need to add to part:
 // -Category
-// -URL
+// -SKU
 // -link
 // -image
+// -**Fix link to suppliers object
 
 // ******************************************************************************************************************************************************************
-// Should we maybe be getting this from an api somehow rather than hard coding our examples?
+// Don't overthink the data generation part. We just need a few parts to achieve the objective. 
+// Image and all that isn't really necessary. 
+
 // ******************************************************************************************************************************************************************
 
 
@@ -140,7 +143,7 @@ async function createCategories() {
 
 async function createParts() {
   // ******************************************************************************************************************************************************************
-  // Just two parts to get started and make sure we're doing things right. 
+  // See notes above
 
   console.log(`Adding parts`);
   await Promise.all([
@@ -156,7 +159,7 @@ async function createParts() {
     partCreate(
       1,
       "Lyrik Ultimate",
-      "38mm chassis Rockshox fork. Suited for enduro and freeride moutain biking. Put this on your big bike that pedals.",
+      "35mm chassis Rockshox fork. Suited for general trail mountain biking. Suitable for bikes in the 140-160 travel range",
       brands[0],
       549,
       2,
