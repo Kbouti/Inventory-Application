@@ -54,6 +54,21 @@ async function categoryCreate(index, name) {
   console.log(`Added category: ${name}`);
 }
 
+
+// ******************************************************************************************************************************************************************
+// NOTE: 
+
+// Need to add to part:
+// -Category
+// -URL
+// -link
+// -image
+
+// ******************************************************************************************************************************************************************
+// Should we maybe be getting this from an api somehow rather than hard coding our examples?
+// ******************************************************************************************************************************************************************
+
+
 //   Attempted part function
 async function partCreate(
   index,
@@ -120,6 +135,33 @@ async function createCategories() {
     categoryCreate(7, "pedals"),
     categoryCreate(8, "accessories"),
     categoryCreate(9, "rear shock"),
+  ]);
+}
+
+async function createParts() {
+  // ******************************************************************************************************************************************************************
+  // Just two parts to get started and make sure we're doing things right. 
+
+  console.log(`Adding parts`);
+  await Promise.all([
+    partCreate(
+      0,
+      "Zeb Ultimate",
+      "38mm chassis Rockshox fork. Suited for enduro and freeride moutain biking. Put this on your big bike that pedals.",
+      brands[0],
+      579,
+      4,
+      [suppliers[0], suppliers[1], suppliers[2]],
+    ),
+    partCreate(
+      1,
+      "Lyrik Ultimate",
+      "38mm chassis Rockshox fork. Suited for enduro and freeride moutain biking. Put this on your big bike that pedals.",
+      brands[0],
+      549,
+      2,
+      [suppliers[0], suppliers[1], suppliers[2]],
+    ),
   ]);
 }
 
