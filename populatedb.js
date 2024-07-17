@@ -41,7 +41,7 @@ async function brandCreate(index, name, website, supplier) {
   const brandDetail = { name: name, website: website };
   if (suppliers != false) brandDetail.suppliers = suppliers;
   const brand = new Brand(brandDetail);
-  await genre.save();
+  await brand.save();
   brands[index] = brand;
   console.log(`Added brand: ${name}`);
 }
