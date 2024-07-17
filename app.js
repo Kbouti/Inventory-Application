@@ -7,6 +7,10 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+
+const dotenv = require("dotenv").config();
+
+
 var app = express();
 
 
@@ -14,10 +18,21 @@ var app = express();
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
+
+const mode = process.env.MODE;
+console.log(`mode is ${mode}`);
+
+
 const mongoDB = "mongodb+srv://kevinfboutilier:bKI3lS10W9aFwvRc@locallibrary.o1xynnt.mongodb.net/inventoryApplication?retryWrites=true&w=majority&appName=localLibrary";
-// New password: bKI3lS10W9aFwvRc
-// Perhaps the <locallibrary> above should be <inventory> as that's the name of the collection?
-// I think I'm getting the data structures messed up.......
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+  console.log(`main function has run, should be connected to mongodb`)
+}
+
+
+
+
 
 // ******************************************************************************************************************************************************
 // We have created some models for objects we want in our inventory application.
@@ -34,11 +49,6 @@ const mongoDB = "mongodb+srv://kevinfboutilier:bKI3lS10W9aFwvRc@locallibrary.o1x
 
 
 
-main().catch((err) => console.log(err));
-async function main() {
-  await mongoose.connect(mongoDB);
-  console.log(`main function has run, should be connected to mongodb`)
-}
 
 
 
