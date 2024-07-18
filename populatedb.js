@@ -159,10 +159,39 @@ async function createCategories() {
   ]);
 }
 
-async function createParts() {
-  // ******************************************************************************************************************************************************************
-  // See notes above
 
+async function createSuppliers() {
+  console.log(`Adding suppliers`);
+  await Promise.all([
+    supplierCreate(
+      0,
+      "qbp",
+      "https://www.qbp.com/",
+      [brands[0], brands[2], brands[3]],
+      "qbpUsername",
+      "qbpPassword"
+    ),
+    supplierCreate(
+      1,
+      "Amazon",
+      "https://www.amazon.com/",
+      [brands[0], brands[2], brands[3]],
+      "amazonUsername",
+      "amazonPassword123"
+    ),
+    supplierCreate(
+      2,
+      "The Lost Co",
+      "https://thelostco.com/",
+      [brands[0]],
+      false,
+      false
+    ),
+  ]);
+}
+
+
+async function createParts() {
   console.log(`Adding parts`);
   await Promise.all([
     partCreate(
@@ -203,35 +232,7 @@ async function createParts() {
   ]);
 }
 
-async function createSuppliers() {
-  console.log(`Adding suppliers`);
-  await Promise.all([
-    supplierCreate(
-      0,
-      "qbp",
-      "https://www.qbp.com/",
-      [brands[0], brands[2], brands[3]],
-      "qbpUsername",
-      "qbpPassword"
-    ),
-    supplierCreate(
-      1,
-      "Amazon",
-      "https://www.amazon.com/",
-      [brands[0], brands[2], brands[3]],
-      "amazonUsername",
-      "amazonPassword123"
-    ),
-    supplierCreate(
-      2,
-      "The Lost Co",
-      "https://thelostco.com/",
-      [brands[0]],
-      false,
-      false
-    ),
-  ]);
-}
+
 
 
 //  ********************************************************************************************************
