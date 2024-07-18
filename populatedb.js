@@ -65,22 +65,21 @@ async function categoryCreate(index, name) {
 // -**Fix link to suppliers object
 
 // ******************************************************************************************************************************************************************
-// Don't overthink the data generation part. We just need a few parts to achieve the objective.
-// Image and all that isn't really necessary.
-
-// ******************************************************************************************************************************************************************
 // ************************************************************************************
 // We've broken something in the process of updating our parts.
 // Getting a message: "Part validation failed"
-// Error occurs when we attempt to assign the first part's category to the existing object "fork"
 
 // The code runs fine at commit titled "Update Objective notes" but errors at "Add category field to parts".
 // That's where we need to look for mistakes
 
 // ********* It's getting an array instead of a category *******
-// It must be confusing suppliers with category? Or just passing category as an array for some reason.
+// It must be confusing suppliers with category? Or just passing category as an array for some reason. I don't think it's looking at suppliers 
 // It seems to be accurately locating category "fork"
-// Perhaps I could change the order of the arguments so that anything not required is at the end?
+// Perhaps I could change the order of the arguments so that anything not required is at the end? It shouldn't matter.....
+
+// But yeah it seems like the problem occurs while running main()
+// It is registering the part's category as an array. It shouldn't be an array. 
+
 // ************************************************************************************
 
 //   Attempted part function
@@ -105,21 +104,16 @@ async function partCreate(
   };
 
   console.log(`Adding a new part: ${name}`);
-  console.log(`part category: ${category}`);
-  // console.log(`partDetail.category: ${partDetail.category}`);
-  // These logs appear normal
+  // console.log(`part category: ${category}`);
+  // console.log(`part suppliers: ${suppliers});
+  // ^^These logs appear normal
 
   if (description != false) {
     partDetail.description = description;
-    // console.log(`description present, adding description: ${description}`);
   }
 
   if (suppliers != false) {
     partDetail.suppliers = suppliers;
-    // console.log(`Suppliers present. Suppliers: ${suppliers}`);
-    // ******************************************************************************************************
-    // AHA! I think we found an issue. Check logs to see suppliers is reported as only a couple commas
-    // ******************************************************************************************************
   }
   const part = new Part(partDetail);
   await part.save();
