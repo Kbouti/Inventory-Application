@@ -30,8 +30,8 @@ async function main() {
   console.log("Debug: Should be connected?");
   await createBrands();
   await createCategories();
-  await createParts();
   await createSuppliers();
+  await createParts();
   console.log("Debug: Closing mongoose");
   mongoose.connection.close();
 }
@@ -104,18 +104,19 @@ async function partCreate(
     imageUrl: imageUrl,
   };
 
-  console.log(`Attempting to add a part`);
+  console.log(`Adding a new part: ${name}`);
   console.log(`part category: ${category}`);
+  // console.log(`partDetail.category: ${partDetail.category}`);
   // These logs appear normal
 
   if (description != false) {
     partDetail.description = description;
-    console.log(`description present, adding description`);
+    // console.log(`description present, adding description: ${description}`);
   }
 
   if (suppliers != false) {
     partDetail.suppliers = suppliers;
-    console.log(`Suppliers present. Suppliers: ${suppliers}`);
+    // console.log(`Suppliers present. Suppliers: ${suppliers}`);
     // ******************************************************************************************************
     // AHA! I think we found an issue. Check logs to see suppliers is reported as only a couple commas
     // ******************************************************************************************************
