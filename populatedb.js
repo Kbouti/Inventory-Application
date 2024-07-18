@@ -54,9 +54,8 @@ async function categoryCreate(index, name) {
   console.log(`Added category: ${name} _id: ${category._id}`);
 }
 
-
 // ******************************************************************************************************************************************************************
-// NOTE: 
+// NOTE:
 
 // Need to add to part:
 // -Category
@@ -66,11 +65,23 @@ async function categoryCreate(index, name) {
 // -**Fix link to suppliers object
 
 // ******************************************************************************************************************************************************************
-// Don't overthink the data generation part. We just need a few parts to achieve the objective. 
-// Image and all that isn't really necessary. 
+// Don't overthink the data generation part. We just need a few parts to achieve the objective.
+// Image and all that isn't really necessary.
 
 // ******************************************************************************************************************************************************************
+// ************************************************************************************
+// We've broken something in the process of updating our parts.
+// Getting a message: "Part validation failed"
+// Error occurs when we attempt to assign the first part's category to the existing object "fork"
 
+// The code runs fine at commit titled "Update Objective notes" but errors at "Add category field to parts".
+// That's where we need to look for mistakes
+
+// ********* It's getting an array instead of a category *******
+// It must be confusing suppliers with category? Or just passing category as an array for some reason.
+// It seems to be accurately locating category "fork"
+// Perhaps I could change the order of the arguments so that anything not required is at the end?
+// ************************************************************************************
 
 //   Attempted part function
 async function partCreate(
@@ -80,7 +91,7 @@ async function partCreate(
   brand,
   price,
   quantity,
-  suppliers, 
+  suppliers,
   category,
   imageUrl
 ) {
@@ -89,24 +100,26 @@ async function partCreate(
     brand: brand,
     price: price,
     quantity: quantity,
-    suppliers: suppliers,
     category: category,
-    imageUrl: imageUrl
+    imageUrl: imageUrl,
   };
 
-// ************************************************************************************
-// We've broken something in the process of updating our parts. 
-// Getting a message: "Part validation failed"
-// Error occurs when we attempt to assign the first part's category to the existing object "fork"
+  console.log(`Attempting to add a part`);
+  console.log(`part category: ${category}`);
+  // These logs appear normal
 
+  if (description != false) {
+    partDetail.description = description;
+    console.log(`description present, adding description`);
+  }
 
-// The code runs fine at commit titled "Update Objective notes" but errors at "Add category field to parts". 
-// That's where we need to look for mistakes
-
-// ************************************************************************************
-
-  if (description != false) partDetail.description = description;
-  if (suppliers != false) partDetail.suppliers = suppliers;
+  if (suppliers != false) {
+    partDetail.suppliers = suppliers;
+    console.log(`Suppliers present. Suppliers: ${suppliers}`);
+    // ******************************************************************************************************
+    // AHA! I think we found an issue. Check logs to see suppliers is reported as only a couple commas
+    // ******************************************************************************************************
+  }
   const part = new Part(partDetail);
   await part.save();
   parts[index] = part;
@@ -155,10 +168,9 @@ async function createCategories() {
     categoryCreate(7, "pedals"),
     categoryCreate(8, "accessories"),
     categoryCreate(9, "rear shock"),
-    categoryCreate(10, "complete bike")
+    categoryCreate(10, "complete bike"),
   ]);
 }
-
 
 async function createSuppliers() {
   console.log(`Adding suppliers`);
@@ -190,7 +202,6 @@ async function createSuppliers() {
   ]);
 }
 
-
 async function createParts() {
   console.log(`Adding parts`);
   await Promise.all([
@@ -214,9 +225,8 @@ async function createParts() {
       2,
       [suppliers[0], suppliers[1], suppliers[2]],
       [categories[3]],
-      "https://www.sram.com/globalassets/image-hierarchy/sram-product-root-images/suspension---forks/suspension---forks/fs-lyrik-ultimate-d2/productassets_fs-lyrk-ult-d2_fg/fs-lyrk-ult-27ub-160-grn-44-d2-c-3q-v02-v.png?w=1712&quality=80&format=webp",
+      "https://www.sram.com/globalassets/image-hierarchy/sram-product-root-images/suspension---forks/suspension---forks/fs-lyrik-ultimate-d2/productassets_fs-lyrk-ult-d2_fg/fs-lyrk-ult-27ub-160-grn-44-d2-c-3q-v02-v.png?w=1712&quality=80&format=webp"
     ),
-
 
     partCreate(
       2,
@@ -227,13 +237,10 @@ async function createParts() {
       1,
       [],
       [categories[10]],
-      "https://media.trekbikes.com/image/upload/f_auto,fl_progressive:semi,q_auto,w_1920,h_1440,c_pad/Slash99XOAXS-24-41681-B-Portrait",
+      "https://media.trekbikes.com/image/upload/f_auto,fl_progressive:semi,q_auto,w_1920,h_1440,c_pad/Slash99XOAXS-24-41681-B-Portrait"
     ),
   ]);
 }
-
-
-
 
 //  ********************************************************************************************************
 //  Template code below this line
