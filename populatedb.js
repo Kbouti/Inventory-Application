@@ -51,7 +51,7 @@ async function categoryCreate(index, name) {
   const category = new Category({ name: name });
   await category.save();
   categories[index] = category;
-  console.log(`Added category: ${name}`);
+  console.log(`Added category: ${name} _id: ${category._id}`);
 }
 
 
@@ -98,9 +98,6 @@ async function partCreate(
 // We've broken something in the process of updating our parts. 
 // Getting a message: "Part validation failed"
 // Error occurs when we attempt to assign the first part's category to the existing object "fork"
-
-
-
 // ************************************************************************************
 
   if (description != false) partDetail.description = description;
