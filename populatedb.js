@@ -98,6 +98,11 @@ async function partCreate(
 // We've broken something in the process of updating our parts. 
 // Getting a message: "Part validation failed"
 // Error occurs when we attempt to assign the first part's category to the existing object "fork"
+
+
+// The code runs fine at commit titled "Update Objective notes" but errors at "Add category field to parts". 
+// That's where we need to look for mistakes
+
 // ************************************************************************************
 
   if (description != false) partDetail.description = description;
@@ -228,10 +233,6 @@ async function createSuppliers() {
   ]);
 }
 
-// Next up products
-
-// Before getting too deep into data creation...... I commentted the below and ran node populatedb.js, we got an error.
-// I'm thinking about starting over...
 
 //  ********************************************************************************************************
 //  Template code below this line
