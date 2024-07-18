@@ -80,17 +80,27 @@ async function partCreate(
   brand,
   price,
   quantity,
-  suppliers
+  suppliers, 
+  category,
+  imageUrl
 ) {
   const partDetail = {
     name: name,
     brand: brand,
     price: price,
     quantity: quantity,
+    suppliers: suppliers,
+    category: category,
+    imageUrl: imageUrl
   };
 
 // ************************************************************************************
-// We'll need to revisit this section to ensure error handling for the fields we added
+// We've broken something in the process of updating our parts. 
+// Getting a message: "Part validation failed"
+// Error occurs when we attempt to assign the first part's category to the existing object "fork"
+
+
+
 // ************************************************************************************
 
   if (description != false) partDetail.description = description;
