@@ -208,7 +208,7 @@ async function createParts() {
       579,
       4,
       [suppliers[0], suppliers[1], suppliers[2]],
-      [categories[3]],
+      categories[3],
       "https://www.sram.com/globalassets/image-hierarchy/sram-product-root-images/suspension---forks/suspension---forks/fs-zeb-ultimate-a3/productassets_fs-zeb-ult-a3_fg/fs-zeb-ult-27ub-190-red-44-a3-c-3q-v02-v.png?w=1712&quality=80&format=webp"
     ),
     partCreate(
@@ -219,7 +219,7 @@ async function createParts() {
       549,
       2,
       [suppliers[0], suppliers[1], suppliers[2]],
-      [categories[3]],
+      categories[3],
       "https://www.sram.com/globalassets/image-hierarchy/sram-product-root-images/suspension---forks/suspension---forks/fs-lyrik-ultimate-d2/productassets_fs-lyrk-ult-d2_fg/fs-lyrk-ult-27ub-160-grn-44-d2-c-3q-v02-v.png?w=1712&quality=80&format=webp"
     ),
 
@@ -231,7 +231,7 @@ async function createParts() {
       9399.99,
       1,
       [],
-      [categories[10]],
+      categories[10],
       "https://media.trekbikes.com/image/upload/f_auto,fl_progressive:semi,q_auto,w_1920,h_1440,c_pad/Slash99XOAXS-24-41681-B-Portrait"
     ),
   ]);
