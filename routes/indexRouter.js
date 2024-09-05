@@ -18,6 +18,16 @@ indexRouter.get("/", async (req, res) => {
   res.render("../views/index", { links, title: "Inventory Application" });
 });
 
+indexRouter.get("/new", async (req, res) => {
+    // Here we would likely first want to access our database to get our inventory data, then we'd pass it to the view to render it.
+    res.render("../views/createCategory", { links, title: "New Category" });
+  });
+
+  indexRouter.post("/new", async (req, res) => {
+    // Here we would likely first want to access our database to get our inventory data, then we'd pass it to the view to render it.
+    res.send("You've sent the form");
+  });
+
 
 
 
