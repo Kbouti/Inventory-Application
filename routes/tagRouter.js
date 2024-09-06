@@ -14,4 +14,20 @@ tagRouter.get("/", async (req, res) => {
       });
 });
 
+
+tagRouter.post("/new", async (req, res) => {
+  const tagName = req.body.tag;
+  console.log(`You submitted a new tag named: ${tagName}`);
+
+// *************************************************************************************
+// Here we would add the new tag to the database
+// *************************************************************************************
+
+  // res.redirect("/");
+  // Rather than use redirect, this should just refresh the current page:
+  res.redirect(req.get('referer'));
+});
+
+
+
 module.exports = tagRouter;
