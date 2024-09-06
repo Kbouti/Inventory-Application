@@ -5,3 +5,6 @@ https://www.theodinproject.com/lessons/node-path-nodejs-inventory-application
 
 run app with the command: 
 node --watch app.js
+
+Or use script: 
+npm run start
