@@ -8,7 +8,16 @@
     <% }); %>
   </select>
 
-  <!-- Next we need an option to select and possibly create tags -->
+  <ul class="tagOptions">
+    <li class="tagOption">
+        <% tags.forEach((tag) => { %>
+            <label for=<%= tag %>><%= tag %></label>
+            <input name= <%= tag %> type="checkbox">
+        <%  }) %>
+    </li>
+  </ul>
 
+<!-- Next we can create and import a form to create a new tag -->
+ 
   <button type="submit">Submit</button>
 </form>

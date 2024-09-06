@@ -8,4 +8,6 @@ const title = "Inventory Application";
 
 const categories = ["bikes", "tools", "cars"];
 
-module.exports = { links, title, categories };
+const tags = ["seatpost", "mtb", "allenWrench"];
+
+module.exports = { links, title, categories, tags };

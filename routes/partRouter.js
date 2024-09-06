@@ -5,6 +5,8 @@ const staticResources = require("../staticResources");
 let links = staticResources.links;
 let title = staticResources.title;
 let categories = staticResources.categories;
+let tags = staticResources.tags;
+
 
 
 partRouter.get("/", async (req, res) => {
@@ -17,6 +19,7 @@ partRouter.get("/", async (req, res) => {
         links,
         title,
         categories,
+        tags,
         subTitle: "Parts",
       });
 });
