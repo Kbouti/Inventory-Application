@@ -9,15 +9,15 @@
   </select>
 
   <ul class="tagOptions">
-    <li class="tagOption">
         <% tags.forEach((tag) => { %>
-            <label for=<%= tag %>><%= tag %></label>
-            <input name= <%= tag %> type="checkbox">
+            <li class="tagOption">
+                <label for=<%= tag %>><%= tag %></label>
+                <input name= "tag" value = <%= tag %> type="checkbox">
+            </li>
         <%  }) %>
-    </li>
   </ul>
 
 <!-- Next we can create and import a form to create a new tag -->
- 
+
   <button type="submit">Submit</button>
 </form>
