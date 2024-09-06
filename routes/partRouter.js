@@ -8,7 +8,7 @@ let title = staticResources.title;
 
 
 partRouter.get("/", async (req, res) => {
-    res.render("../views/index", {
+    res.render("../views/parts", {
         links,
         title,
         subTitle: "Parts",

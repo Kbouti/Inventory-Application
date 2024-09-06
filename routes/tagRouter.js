@@ -7,7 +7,7 @@ let title = staticResources.title;
 
 
 tagRouter.get("/", async (req, res) => {
-    res.render("../views/index", {
+    res.render("../views/tags", {
         links,
         title,
         subTitle: "Tags",
