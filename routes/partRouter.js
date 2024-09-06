@@ -1,12 +1,18 @@
 const { Router } = require("express");
 
 const partRouter = Router();
+const staticResources = require("../staticResources");
+let links = staticResources.links;
+let title = staticResources.title;
+
 
 
 partRouter.get("/", async (req, res) => {
-
-    console.log(`part router reached`);
-    res.send("part router reached");
+    res.render("../views/index", {
+        links,
+        title,
+        subTitle: "Parts",
+      });
 });
 
 module.exports = partRouter;

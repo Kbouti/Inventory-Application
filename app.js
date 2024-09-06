@@ -26,10 +26,9 @@ app.set("view engine", "ejs");
 
 
 app.use("/category", categoryRouter);
-
+app.use("/part", partRouter);
+app.use("/tag", tagRouter);
 app.use("/", indexRouter);
-// app.use("/part", partRouter);
-// app.use("/tag", tagRouter);
 
 app.listen(PORT, () =>
   console.log(`My first Express app - listening mode ${MODE} on port ${PORT}!`)

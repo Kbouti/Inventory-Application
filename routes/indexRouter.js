@@ -5,17 +5,10 @@ const indexRouter = Router();
 const indexController = require("../controllers/indexController");
 const categoryRouter = require("./categoryRouter");
 
-
-const links = [
-  { href: "/", text: "Home" },
-  { href: "/category", text: "Category" },
-];
-const title = "Inventory Application";
-
-// ************************************************************************************
-
-
-
+const staticResources = require("../staticResources");
+// Now importing these from a dedicated file
+let links = staticResources.links;
+let title = staticResources.title;
 
 
 
@@ -28,19 +21,21 @@ indexRouter.get("/", async (req, res) => {
   });
 });
 
-indexRouter.get("/new", async (req, res) => {
-  // Here we would likely first want to access our database to get our inventory data, then we'd pass it to the view to render it.
-  res.render("../views/createCategory", {
-    links,
-    title,
-    subTitle: "New Category",
-  });
-});
+// indexRouter.get("/new", async (req, res) => {
+//   // Here we would likely first want to access our database to get our inventory data, then we'd pass it to the view to render it.
+//   res.render("../views/createCategory", {
+//     links,
+//     title,
+//     subTitle: "New Category",
+//   });
+// });
 
 indexRouter.post("/new", async (req, res) => {
   // Here we would likely first want to access our database to get our inventory data, then we'd pass it to the view to render it.
-
   const userInput = req.body.category;
+
+  // ******************************************************************************************************
+// This no longer works because we've gotten rid of the routes surrounding this form. 
 
   // ******************************************************************************************************
   // Ok! Here is where we need middleware functions to handle the user's input.
