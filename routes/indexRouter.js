@@ -3,17 +3,21 @@ const { Router } = require("express");
 const indexRouter = Router();
 
 const indexController = require("../controllers/indexController");
+const categoryRouter = require("./categoryRouter");
 
-// ************************************************************************************
-// These declarations might be best in app.js, not sure
 
 const links = [
   { href: "/", text: "Home" },
-  { href: "new", text: "New Category" },
+  { href: "/category", text: "Category" },
 ];
 const title = "Inventory Application";
 
 // ************************************************************************************
+
+
+
+
+
 
 indexRouter.get("/", async (req, res) => {
   // Here we would likely first want to access our database to get our inventory data, then we'd pass it to the view to render it.
