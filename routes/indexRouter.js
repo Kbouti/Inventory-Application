@@ -9,6 +9,8 @@ const staticResources = require("../staticResources");
 // Now importing these from a dedicated file
 let links = staticResources.links;
 let title = staticResources.title;
+let categories = staticResources.categories;
+let tags = staticResources.tags;
 
 
 
@@ -17,6 +19,8 @@ indexRouter.get("/", async (req, res) => {
   res.render("../views/index", {
     links,
     title,
+    categories,
+    tags,
     subTitle: "Home",
   });
 });

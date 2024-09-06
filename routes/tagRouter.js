@@ -4,12 +4,17 @@ const tagRouter = Router();
 const staticResources = require("../staticResources");
 let links = staticResources.links;
 let title = staticResources.title;
+let categories = staticResources.categories;
+let tags = staticResources.tags;
+
 
 
 tagRouter.get("/", async (req, res) => {
     res.render("../views/tags", {
         links,
         title,
+        categories,
+        tags,   
         subTitle: "Tags",
       });
 });
