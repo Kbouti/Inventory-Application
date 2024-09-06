@@ -1,8 +1,14 @@
 <form action="/part/new" method="post">
+  <label for="part">Create a Part:</label>
+  <input type="text" name="part" />
 
-    <label for="part">Create a Part:</label>
-    <input type="text" name="part">
-          <button type="submit">Submit</button>
-    
+  <select name="category" id="categorySelect">
+    <% categories.forEach((category) => {%>
+    <option><%= category %></option>
+    <% }); %>
+  </select>
 
+  <!-- Next we need an option to select and possibly create tags -->
+
+  <button type="submit">Submit</button>
 </form>

@@ -6,4 +6,6 @@ const links = [
 ];
 const title = "Inventory Application";
 
-module.exports = { links, title };
+const categories = ["bikes", "tools", "cars"];
+
+module.exports = { links, title, categories };
