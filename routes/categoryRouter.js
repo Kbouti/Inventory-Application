@@ -8,10 +8,9 @@ let links = staticResources.links;
 let title = staticResources.title;
 let tags = staticResources.tags;
 
-const categories = indexController.getCategories();
-
-
 categoryRouter.get("/", async (req, res) => {
+  const categories = await indexController.getCategories();
+
   res.render("../views/categories", {
     links,
     title,

@@ -3,8 +3,11 @@
 // ****************************************************************************************************************
 // This works!!!!!
 // We can now create a database on command and add a couple categories. 
-// Next we need to use the categories we fetch from the database to render in our views. 
 
+// And BOOOOM We're fetching categories from the database before we're rending our views. 
+// Next up we need to write queries to create and remove categories
+// We could also do the same with tags
+// parts we'll do last as the part will need to reference both a category and potentially tags
 // ****************************************************************************************************************
 
 
@@ -41,7 +44,7 @@ CREATE TABLE IF NOT EXISTS tags (
 INSERT INTO categories (name) 
 VALUES
   ('Bikes'),
-  ('tOOls'),
+  ('tools'),
   ('cars');
 `;
 

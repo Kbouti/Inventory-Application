@@ -1,25 +1,23 @@
 const { Router } = require("express");
 
 const partRouter = Router();
+const indexController = require("../controllers/indexController");
 const staticResources = require("../staticResources");
+
 let links = staticResources.links;
 let title = staticResources.title;
-let categories = staticResources.categories;
 let tags = staticResources.tags;
 
-
-
 partRouter.get("/", async (req, res) => {
-// The form to create a new part needs the current list of categories and tags for the drop down. 
-// Instead, importing static arrays for development
+  const categories = await indexController.getCategories();
 
-    res.render("../views/parts", {
-        links,
-        title,
-        categories,
-        tags,
-        subTitle: "Parts",
-      });
+  res.render("../views/parts", {
+    links,
+    title,
+    categories,
+    tags,
+    subTitle: "Parts",
+  });
 });
 
 partRouter.post("/new", async (req, res) => {
@@ -32,7 +30,9 @@ partRouter.post("/new", async (req, res) => {
   // Need to validate and sanitize input
   // ******************************************************************************************************
 
-  console.log(`You've submitted the following part name: ${partName}, category: ${category}, with the following tags: ${tags}`);
+  console.log(
+    `You've submitted the following part name: ${partName}, category: ${category}, with the following tags: ${tags}`
+  );
   res.redirect("/");
 });
 
