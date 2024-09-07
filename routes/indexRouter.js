@@ -9,20 +9,18 @@ const staticResources = require("../staticResources");
 // Now importing these from a dedicated file
 let links = staticResources.links;
 let title = staticResources.title;
-let categories = staticResources.categories;
 let tags = staticResources.tags;
 
-
+// Now pulling categories from index controller => which gets from a db query
+// let categories = staticResources.categories;
 
 indexRouter.get("/", async (req, res) => {
+    const categories = await indexController.getCategories();
+    console.log("Fetched categories");
+    // console.log(`categories: ${categories}`);
+    categories.forEach((category) => console.log(category.name));
 
-    indexController.getCategories();
-// This failed because categories isn't yet a table in our database....
-// Next step:
-// Run node populatedb to create the table
 
-
-  // Here we would likely first want to access our database to get our inventory data, then we'd pass it to the view to render it.
   res.render("../views/index", {
     links,
     title,
@@ -32,9 +30,8 @@ indexRouter.get("/", async (req, res) => {
   });
 });
 
-
 // *****************************************************************
-// Not sure about this part
+// Not sure if we'll need this part
 indexRouter.get("/:category", async (req, res) => {
   // Here we will eventually render all the parts in this category, as well as any forms to alter this category
   res.render("../views/index/category", {

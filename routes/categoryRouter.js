@@ -1,12 +1,14 @@
 const { Router } = require("express");
 
 const categoryRouter = Router();
-
+const indexController = require("../controllers/indexController");
 const staticResources = require("../staticResources");
+
 let links = staticResources.links;
 let title = staticResources.title;
-let categories = staticResources.categories;
 let tags = staticResources.tags;
+
+const categories = indexController.getCategories();
 
 
 categoryRouter.get("/", async (req, res) => {
