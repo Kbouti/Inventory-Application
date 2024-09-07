@@ -1,6 +1,19 @@
-#! /usr/bin/env node
+
+
+// ****************************************************************************************************************
+// This works!!!!!
+// We can now create a database on command and add a couple categories. 
+// Next we need to use the categories we fetch from the database to render in our views. 
+
+// ****************************************************************************************************************
+
+
+
+
 
 const { Client } = require("pg");
+
+require("dotenv").config();
 
 const mode = process.env.MODE;
 const user = process.env.USER;
@@ -10,9 +23,9 @@ if (mode == "PRODUCTION") {
   database = process.env.PROD_DB;
 } else {
   database = process.env.DEV_DB;
-};
+}
 
-const connectionString = `postgresql://${user}:${password}@localhost:5432/${database}`
+const connectionString = `postgresql://${user}:${password}@localhost:5432/${database}`;
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS categories (
