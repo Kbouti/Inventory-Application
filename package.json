@@ -2,8 +2,10 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
-    "express": "^4.19.2"
-  }, "scripts": {
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  },
+  "scripts": {
     "start": "node --watch app.js"
   }
 }
