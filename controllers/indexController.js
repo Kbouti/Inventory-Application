@@ -5,7 +5,12 @@ async function getCategories () {
     return categories;
 }
 
+async function getTags () {
+    const tags = await queries.getAllTags();
+    return tags;
+}
+
 
 module.exports = {
-    getCategories
+    getCategories, getTags
 }

@@ -6,8 +6,8 @@ const links = [
 ];
 const title = "Inventory Application";
 
-const categories = ["bikes", "tools", "cars"];
+// No longer need these:
+// const categories = ["bikes", "tools", "cars"];
+// const tags = ["seatpost", "mtb", "allenWrench"];
 
-const tags = ["seatpost", "mtb", "allenWrench"];
-
-module.exports = { links, title, categories, tags };
+module.exports = { links, title};

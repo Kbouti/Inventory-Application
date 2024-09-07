@@ -6,10 +6,10 @@ const staticResources = require("../staticResources");
 
 let links = staticResources.links;
 let title = staticResources.title;
-let tags = staticResources.tags;
 
 tagRouter.get("/", async (req, res) => {
   const categories = await indexController.getCategories();
+  const tags = await indexController.getTags();
 
   res.render("../views/tags", {
     links,

@@ -10,6 +10,7 @@ let tags = staticResources.tags;
 
 partRouter.get("/", async (req, res) => {
   const categories = await indexController.getCategories();
+  const tags = await indexController.getTags();
 
   res.render("../views/parts", {
     links,

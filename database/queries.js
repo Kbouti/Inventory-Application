@@ -5,7 +5,12 @@ async function getAllCategories() {
 return rows;
 }
 
+async function getAllTags() {
+    const {rows} = await pool.query("select * from tags;")
+return rows;
+}
+
 
 module.exports = {
-    getAllCategories
+    getAllCategories, getAllTags
 }

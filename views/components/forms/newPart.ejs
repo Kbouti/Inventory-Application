@@ -11,7 +11,7 @@
   <ul class="tagOptions">
         <% tags.forEach((tag) => { %>
             <li class="tagOption">
-                <label for=<%= tag %>><%= tag %></label>
+                <label for=<%= tag %>><%= tag.name %></label>
                 <input name= "tag" value = <%= tag %> type="checkbox">
             </li>
         <%  }) %>

@@ -9,16 +9,16 @@ const staticResources = require("../staticResources");
 // Now importing these from a dedicated file
 let links = staticResources.links;
 let title = staticResources.title;
-let tags = staticResources.tags;
 
 // Now pulling categories from index controller => which gets from a db query
 // let categories = staticResources.categories;
 
 indexRouter.get("/", async (req, res) => {
     const categories = await indexController.getCategories();
-    console.log("Fetched categories");
+    const tags = await indexController.getTags();
+      console.log("Fetched categories and tags");
     // console.log(`categories: ${categories}`);
-    categories.forEach((category) => console.log(category.name));
+    // categories.forEach((category) => console.log(category.name));
 
 
   res.render("../views/index", {

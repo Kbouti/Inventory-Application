@@ -46,6 +46,13 @@ VALUES
   ('Bikes'),
   ('tools'),
   ('cars');
+
+INSERT INTO tags (name) 
+VALUES
+  ('wrench'),
+  ('seatpost'),
+  ('tire'),
+  ('suspension'); 
 `;
 
 async function main() {
