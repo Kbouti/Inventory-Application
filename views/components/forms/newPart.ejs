@@ -1,12 +1,16 @@
 <form action="/part/new" method="post">
   <label for="part">Create a Part:</label>
-  <input type="text" name="part" />
+  <input type="text" name="part" required autocomplete="off" maxlength="30"/>
 
+  <label for="category">Category:</label>
   <select name="category" id="categorySelect">
     <% categories.forEach((category) => {%>
     <option><%= category.name %></option>
     <% }); %>
   </select>
+
+  <label for="description">Description:</label>
+  <textarea name="description" id="descriptionField" placeholder="Optional description here"></textarea>
 
   <ul class="tagOptions">
         <% tags.forEach((tag) => { %>
@@ -17,7 +21,6 @@
         <%  }) %>
   </ul>
 
-<!-- Next we can create and import a form to create a new tag -->
 <%- include ('./newTag') %>
 
 
