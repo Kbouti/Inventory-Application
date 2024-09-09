@@ -1,18 +1,15 @@
 
 
 // ****************************************************************************************************************
-// This works!!!!!
-// We can now create a database on command and add a couple categories. 
 
-// And BOOOOM We're fetching categories from the database before we're rending our views. 
-// Next up we need to write queries to create and remove categories
-// We could also do the same with tags
-// parts we'll do last as the part will need to reference both a category and potentially tags
+// We're now creating tags and categories in the database. 
+// We need to: 
+//  -Prevent duplicates from being submitted
+//  -Create functions to delete categories and tags (Maybe do that last..)
+//  -Create parts in database
+//  -Clean up UI with CSS
 
 
-// Good next step:
-
-// Render category names in index and category view templates
 // ****************************************************************************************************************
 
 
