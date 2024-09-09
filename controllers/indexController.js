@@ -22,34 +22,3 @@ exports.indexGet = async (req, res) => {
 };
 
 
-
-
-exports.getCategories = async () => {
-  const categories = await queries.getAllCategories();
-  return categories;
-};
-
-exports.getTags = async () => {
-  const tags = await queries.getAllTags();
-  return tags;
-};
-
-exports.createCategory = async () => {
-  const response = queries.newCategory(name);
-  console.log(`Created new category: ${name}`);
-  return;
-};
-
-exports.createTag = async () => {
-  const response = queries.newTag(name);
-  console.log(`new tag ${name} created`);
-  return;
-};
-
-// module.exports = {
-//   getCategories,
-//   getTags,
-//   createTag,
-//   createCategory,
-//   indexGet,
-// };
