@@ -8,6 +8,11 @@
 // Next up we need to write queries to create and remove categories
 // We could also do the same with tags
 // parts we'll do last as the part will need to reference both a category and potentially tags
+
+
+// Good next step:
+
+// Render category names in index and category view templates
 // ****************************************************************************************************************
 
 
