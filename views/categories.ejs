@@ -11,5 +11,8 @@
     <%- include ('./components/header', {links: links}) %>
     <h2><%= subTitle %></h2>
     <%- include ('./components/forms/newCategory') %>
+    <%- include ('./components/displayModules/displayCategories', {categories}) %>
+    <!-- How do we pass categories to the above module? -->
+
   </body>
 </html>
