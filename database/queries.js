@@ -11,6 +11,15 @@ return rows;
 }
 
 
+async function newCategory(name) {
+
+    const sql = `insert into categories (name) values ('${name}');`;
+    const response = await pool.query(sql);
+    return response
+}
+
+
+
 module.exports = {
-    getAllCategories, getAllTags
+    getAllCategories, getAllTags, newCategory
 }
