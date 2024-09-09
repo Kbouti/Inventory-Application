@@ -26,8 +26,7 @@ tagRouter.post("/new", async (req, res) => {
   const tagName = req.body.tag;
   console.log(`You submitted a new tag named: ${tagName}`);
 
-
-  const response = queries.newTag(tagName);
+  const response = await indexController.createTag(tagName);
   // *************************************************************************************
   // Here we would add the new tag to the database
   // *************************************************************************************
