@@ -1,5 +1,10 @@
 const queries = require("../database/queries");
 
+const { body, validationResult } = require("express-validator");
+// Still unsure of how to use this to validate
+
+
+
 async function getCategories() {
   const categories = await queries.getAllCategories();
   return categories;
@@ -26,4 +31,5 @@ module.exports = {
   getCategories,
   getTags,
   createTag,
+  createCategory
 };
