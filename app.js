@@ -25,18 +25,6 @@ app.set("view engine", "ejs");
 // Needed to support ejs view engine
 
 
-
-// *********************************************************************************
-// Next up DATABASE
-
-// We need to initiate and access our database and tables
-// We've created two databases, one for development, one for production. They're both defined in .env and database/pool determines which one to use. 
-
-
-// *********************************************************************************
-
-
-
 app.use("/category", categoryRouter);
 app.use("/part", partRouter);
 app.use("/tag", tagRouter);
