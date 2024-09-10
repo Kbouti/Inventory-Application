@@ -7,6 +7,16 @@ const staticResources = require("../staticResources");
 let links = staticResources.links;
 let title = staticResources.title;
 
+// ******************************************************************************************************
+
+const validateCategory = [
+  body("category").trim().isAlpha().withMessage("Must contain only letters"),
+];
+
+// Our validation isn't working.... Still able to submit categories with numbers and spaces
+
+// ******************************************************************************************************
+
 exports.categoryGet = async (req, res) => {
   const categories = await queries.getAllCategories();
   const tags = await queries.getAllTags();
@@ -20,9 +30,11 @@ exports.categoryGet = async (req, res) => {
   });
 };
 
-
-exports.categoryNewPost = async (req, res) => {
+exports.categoryNewPost = [
+  validateCategory,
+  async (req, res) => {
     const userInput = req.body.category;
     const response = await queries.newCategory(userInput);
     res.redirect("/category");
-}
+  },
+];
