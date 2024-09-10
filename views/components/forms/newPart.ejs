@@ -1,30 +1,51 @@
 <form class="newForm" action="/part/new" method="post">
-  <label for="part">Create a Part:</label>
-  <input type="text" name="part" required autocomplete="off" maxlength="30"/>
+  <ul class="formInputs">
+    <li>
+      <label for="part">Create a Part:</label>
+      <input
+        type="text"
+        name="part"
+        required
+        autocomplete="off"
+        maxlength="30"
+      />
+    </li>
 
-  <label for="category">Category:</label>
-  <select name="category" id="categorySelect">
-    <% categories.forEach((category) => {%>
-    <option><%= category.name %></option>
-    <% }); %>
-  </select>
+    <li>
+      <label for="category">Category:</label>
+      <select name="category" id="categorySelect">
+        <% categories.forEach((category) => { %>
+        <option><%= category.name %></option>
+        <% }); %>
+      </select>
+    </li>
 
-  <label for="quantity">Quantity:</label>
-  <input type="number" name="quantity">
+    <li>
+      <label for="quantity">Quantity:</label>
+      <input type="number" name="quantity" />
+    </li>
 
-  <label for="description">Description:</label>
-  <textarea name="description" id="descriptionField" placeholder="Optional description here"></textarea>
+    <li>
+      <label for="description">Description:</label>
+      <textarea
+        name="description"
+        id="descriptionField"
+        placeholder="Optional description here"
+      ></textarea>
+    </li>
 
-  <ul class="tagOptions">
+
+    <li>
+      <ul class="tagOptions">
         <% tags.forEach((tag) => { %>
-            <li class="tagOption">
-                <label for=<%= tag %>><%= tag.name %></label>
-                <input name= "tag" value = <%= tag %> type="checkbox">
-            </li>
-        <%  }) %>
+        <li class="tagOption">
+          <label for= <% tag %>><%= tag.name %></label>
+          <input name="tag" value=<%=tag %> type="checkbox" >
+        </li>
+        <% }) %>
+      </ul>
+    </li>
   </ul>
-
-
 
   <button type="submit">Submit</button>
 </form>

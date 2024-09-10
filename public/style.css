@@ -19,6 +19,7 @@ h1, h2 {
 ul {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: flex-start;
   list-style: none;
   gap: 1rem;
@@ -26,6 +27,11 @@ ul {
   padding: none;
 }
 
+.formInputs li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
 .newForm {
 margin: 1rem;
