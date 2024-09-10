@@ -9,6 +9,7 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 h1, h2 {
@@ -20,15 +21,17 @@ ul {
   flex-direction: row;
   align-items: flex-start;
   list-style: none;
-  gap: 2rem;
-  /* background-color: blueviolet; */
+  gap: 1rem;
   margin: none;
   padding: none;
 }
 
 
-form {
-  width: 100%;
+.newForm {
+margin: 1rem;
+padding: 1rem;  
+border: 3px solid aqua;
+  border-radius: 10px;
 }
 
 .tagOptions li {
