@@ -1,12 +1,12 @@
 const pool = require("./pool");
 
 async function getAllCategories() {
-  const { rows } = await pool.query("select * from categories;");
+  const { rows } = await pool.query("select * from categories order by name;");
   return rows;
 }
 
 async function getAllTags() {
-  const { rows } = await pool.query("select * from tags;");
+  const { rows } = await pool.query("select * from tags order by name;");
   return rows;
 }
 
