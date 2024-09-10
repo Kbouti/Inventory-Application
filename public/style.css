@@ -25,3 +25,14 @@ ul {
   margin: none;
   padding: none;
 }
+
+
+form {
+  width: 100%;
+}
+
+.displayModule, .displayModule ul {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
