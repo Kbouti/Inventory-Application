@@ -12,7 +12,7 @@ exports.indexGet = async (req, res) => {
   const categories = await queries.getAllCategories();
   const tags = await queries.getAllTags();
   console.log("Fetched categories and tags");
-  res.render("../views/index", {
+  res.render("../views/pages/index", {
     links,
     title,
     categories,

@@ -21,7 +21,7 @@ exports.categoryGet = async (req, res) => {
   const categories = await queries.getAllCategories();
   const tags = await queries.getAllTags();
 
-  res.render("../views/categories", {
+  res.render("../views/pages/categories", {
     links,
     title,
     categories,

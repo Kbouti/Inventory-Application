@@ -10,7 +10,7 @@ exports.tagGet = async (req, res) => {
     const categories = await queries.getAllCategories();
     const tags = await queries.getAllTags();
   
-    res.render("../views/tags", {
+    res.render("../views/pages/tags", {
       links,
       title,
       categories,
