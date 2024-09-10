@@ -23,7 +23,7 @@ exports.tagNewPost = async (req, res) => {
     const tagName = req.body.tag;
     console.log(`You submitted a new tag named: ${tagName}`);
   
-    const response = await queries.createTag(tagName);
+    const response = await queries.newTag(tagName);
     // *************************************************************************************
     // Here we would add the new tag to the database
     // *************************************************************************************
