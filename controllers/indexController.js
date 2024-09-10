@@ -3,7 +3,7 @@ const queries = require("../database/queries");
 // const { body, validationResult } = require("express-validator");
 // Still unsure of how to use this to validate
 
-const staticResources = require("../staticResources");
+const staticResources = require("../public/staticResources");
 
 let links = staticResources.links;
 let title = staticResources.title;
@@ -20,5 +20,3 @@ exports.indexGet = async (req, res) => {
     subTitle: "Home",
   });
 };
-
-
