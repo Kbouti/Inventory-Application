@@ -1,20 +1,13 @@
-
-
 // ****************************************************************************************************************
 
-// We're now creating tags and categories in the database. 
-// We need to: 
+// We're now creating tags and categories in the database.
+// We need to:
 //  -Prevent duplicates from being submitted
 //  -Create functions to delete categories and tags (Maybe do that last..)
 //  -Create parts in database
 //  -Clean up UI with CSS
 
-
 // ****************************************************************************************************************
-
-
-
-
 
 const { Client } = require("pg");
 
@@ -44,34 +37,22 @@ CREATE TABLE IF NOT EXISTS tags (
 );
 
 
-**************************************************************************************************************
-
 CREATE TABLE IF NOT EXISTS parts (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR ( 30 ),
   category int,
   quantity int,
   description varchar ( 800 ),
-  tags array,
-  foreign key (category) references categories(id),
-  foreign key (tags) references tags(id)
+  foreign key (category) references categories(id)
 );
 
-
-**************************************************************************************************************
-This^^ is close but we have an issue
-We can't use array as a data type. Instead, we need need to create a join table to represent this many to many relationship
-
-This video:
-https://www.youtube.com/watch?v=4q-keGvUnag
-The good stuff starts at 6mins
-
-https://www.youtube.com/watch?v=urTwxelK-Xc
-https://help.claris.com/en/pro-help/content/many-to-many-relationships.html
-
-**************************************************************************************************************
-
-
+CREATE TABLE IF NOT EXISTS partsTags (
+  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  part int,
+  tag int,
+  foreign key (part) references parts(id),
+  foreign key (tag) references tags(id)
+);
 
 INSERT INTO categories (name) 
 VALUES
@@ -84,7 +65,24 @@ VALUES
   ('wrench'),
   ('seatpost'),
   ('tire'),
-  ('suspension'); 
+  ('suspension'),
+  ('tire lever'),
+  ('hardware'),
+  ('wrench'); 
+
+  INSERT INTO parts (name, category, quantity, description) 
+  VALUES
+    ('Rockshox Zeb', 1, 1, 'Rockshox enduro fork'),
+    ('265mm spoke', 1, 8, 'Spokes for 27.5 rear wheel'),
+    ('Spoke wrench', 2, 1, 'spoke wrench for bicycle wheels');
+
+    insert into partsTags (part, tag)
+    values 
+    (1, 4),
+    (2, 7),
+    (3, 1),
+    (3, 7);
+
 `;
 
 async function main() {
@@ -97,5 +95,16 @@ async function main() {
   await client.end();
   console.log("done");
 }
+
+// **************************************************************************************************************
+// BOOOOM We've created our partstags table and populated it with our stock data. 
+
+// Next we need to modify the appropriate tables when creating a part and assigning tags.
+
+// This video explains many to many relationships well:
+// https://www.youtube.com/watch?v=4q-keGvUnag
+// The good stuff starts at 6mins
+
+// **************************************************************************************************************
 
 main();
