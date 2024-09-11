@@ -20,20 +20,34 @@ exports.partGet = async (req, res) => {
   });
 };
 
+// Need a function that takes a part id and all the associated tag ids and adds the relationships to the database
+
+async function addPartsTags(partId, tagIds) {
+  tagIds.forEach((id) => {
+    queries.newPartTag(partId, id);
+  });
+  console.log(`done adding partTag relations`);
+}
+
 exports.partNewPost = async (req, res) => {
   // This is what happens when we submit new part form
   const partName = req.body.name;
   const category = req.body.category;
   const quantity = req.body.quantity;
-  const allTags = await queries.getAllTags();
-
 
   const tags = req.body.tags;
   console.log(`tags: ${tags}`);
 
-// Ok I think we might actually be getting the ids of the tags we want here ^^^
-// Needed to fix how I was using the checkbox elements. 
-// Name indicates the category, id is the specific checkbox.
+  // ******************************************************************************************************
+  // ******************************************************************************************************
+  // First we need to get the id of the part we just created, then with that and the array obtained above, invoke the following function:
+  // addPartsTags()
+  // ******************************************************************************************************
+  // ******************************************************************************************************
+
+  // Ok I think we might actually be getting the ids of the tags we want here ^^^
+  // Needed to fix how I was using the checkbox elements.
+  // Name indicates the category, id is the specific checkbox.
 
   // ******************************************************************************************************
   // Need to validate and sanitise unput.... But first I want to get it operational, worry about that later
@@ -43,7 +57,7 @@ exports.partNewPost = async (req, res) => {
   // ******************************************************************************************************
 
   console.log(
-    `You've submitted the following part name: ${partName}, category: ${category}, quantity: ${quantity}, with the following tags: `
+    `You've submitted the following part name: ${partName}, category: ${category}, quantity: ${quantity}, with the following tags: ....`
   );
   res.redirect("/");
 };
