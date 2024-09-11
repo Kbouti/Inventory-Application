@@ -36,6 +36,8 @@ exports.partNewPost = async (req, res) => {
   const categoryName = req.body.category;
   const quantity = req.body.quantity;
   const description = req.body.description;
+  const tags = req.body.tags;
+  console.log(`tags: ${tags}`);
 
   console.log(
     `partName: ${partName}, categoryName: ${categoryName}, quantity: ${quantity}, description: ${description}`
@@ -44,19 +46,30 @@ exports.partNewPost = async (req, res) => {
   const categoryId = await queries.findCategoryId(categoryName);
   console.log(`categoryId: ${categoryId}`);
 
-  const tags = req.body.tags;
-  console.log(`tags: ${tags}`);
-
-  // ************************************************************************************************************************************************
-  // Ok we need to get the id number of the category, not the name, to pass to the following function
-  // ************************************************************************************************************************************************
-
   const response = await queries.newPart(
     partName,
     categoryId,
     quantity,
     description
   );
+console.log(`done making part, proceeding to find new part id`);
+  const partId = await queries.findPartId(partName);
+  // First we needed the category id to make the part, now we need to get the part id to make the partTag relations
+console.log(`received partId: ${partId}`);
+
+// ****************************************************************************************************************************************
+// ****************************************************************************************************************************************
+  // Now for each tag we'll create a reference in the table
+
+  // Here be our error. If doesn't like our for each loop. Is it because tags isn't an array? Perhaps if we only select one tag it's not an array?
+  // Idk. Pick up here next. 
+  
+  tags.forEach((tag) => {
+    queries.newPartTag(partId, tag);
+  });
+
+// ****************************************************************************************************************************************
+// ****************************************************************************************************************************************
 
   // const partId = queries.findPartId(partName);
   // Now at this point we should have part id and tag ids array, we can use those to populate partsTags table

@@ -32,32 +32,25 @@ exports.newPart = async (name, category, quantity, description) => {
   const response = await pool.query(sql);
   // console.log(`response: ${response}`);
   // Now we want to get the id of the part we just created and return that. We can use it to create tag associations
-
+console.log(`done making part`);
   return response;
 };
 
 exports.findCategoryId = async (categoryName) => {
   console.log(`Seeking id for category name: ${categoryName}`);
   const idQuery = `select id from categories where name = '${categoryName}';`;
-  const targetId = await pool.query(idQuery);
-
+  const {rows } = await pool.query(idQuery);
+  const targetId = rows[0].id;
   console.log(`targetId: ${targetId}`);
-
-  // ************************************************************************************
-  // This ^^ is coming out as [object Object]....
-  // When stringified we get a shole table object it seems. So we're not getting what we're asking for from our query. At least not in the format we want.
-  // ************************************************************************************
-  const targetIdStringd = JSON.stringify(targetId);
-
-  console.log(`targetIdStringd: ${targetIdStringd}`);
-
   return targetId;
 };
 
 // We need to make part names unique for this to work
 exports.findPartId = async (partName) => {
+  console.log(`Seeking id for part name: ${partName}`);
   const idQuery = `select id from parts where name = '${partName}';`;
-  const targetId = await pool.query(idQuery);
+  const {rows} = await pool.query(idQuery);
+  const targetId = rows[0].id;
   console.log(`targetId: ${targetId}`);
   return targetId;
 };
