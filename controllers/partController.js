@@ -33,25 +33,33 @@ exports.partNewPost = async (req, res) => {
   console.log(`part/new post route activated`);
 
   const partName = req.body.name;
-  const category = req.body.category;
+  const categoryName = req.body.category;
   const quantity = req.body.quantity;
   const description = req.body.description;
 
-  console.log(`partName: ${partName}, category: ${category}, quantity: ${quantity}, description: ${description}`);
+  console.log(
+    `partName: ${partName}, categoryName: ${categoryName}, quantity: ${quantity}, description: ${description}`
+  );
+
+  const categoryId = await queries.findCategoryId(categoryName);
+  console.log(`categoryId: ${categoryId}`);
 
   const tags = req.body.tags;
   console.log(`tags: ${tags}`);
 
   // ************************************************************************************************************************************************
   // Ok we need to get the id number of the category, not the name, to pass to the following function
-// ************************************************************************************************************************************************
+  // ************************************************************************************************************************************************
 
+  const response = await queries.newPart(
+    partName,
+    categoryId,
+    quantity,
+    description
+  );
 
-const response = queries.newPart(partName, category, quantity, description)
-
-
-// const partId = queries.findId(partName);
-// Now at this point we should have part id and tag ids array, we can use those to populate partsTags table
+  // const partId = queries.findPartId(partName);
+  // Now at this point we should have part id and tag ids array, we can use those to populate partsTags table
 
   res.redirect("/");
 };

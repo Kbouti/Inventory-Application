@@ -36,8 +36,26 @@ exports.newPart = async (name, category, quantity, description) => {
   return response;
 };
 
+exports.findCategoryId = async (categoryName) => {
+  console.log(`Seeking id for category name: ${categoryName}`);
+  const idQuery = `select id from categories where name = '${categoryName}';`;
+  const targetId = await pool.query(idQuery);
+
+  console.log(`targetId: ${targetId}`);
+
+  // ************************************************************************************
+  // This ^^ is coming out as [object Object]....
+  // When stringified we get a shole table object it seems. So we're not getting what we're asking for from our query. At least not in the format we want.
+  // ************************************************************************************
+  const targetIdStringd = JSON.stringify(targetId);
+
+  console.log(`targetIdStringd: ${targetIdStringd}`);
+
+  return targetId;
+};
+
 // We need to make part names unique for this to work
-exports.findId = async (partName) => {
+exports.findPartId = async (partName) => {
   const idQuery = `select id from parts where name = '${partName}';`;
   const targetId = await pool.query(idQuery);
   console.log(`targetId: ${targetId}`);
