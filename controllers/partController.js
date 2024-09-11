@@ -30,34 +30,28 @@ async function addPartsTags(partId, tagIds) {
 }
 
 exports.partNewPost = async (req, res) => {
-  // This is what happens when we submit new part form
+  console.log(`part/new post route activated`);
+
   const partName = req.body.name;
   const category = req.body.category;
   const quantity = req.body.quantity;
+  const description = req.body.description;
+
+  console.log(`partName: ${partName}, category: ${category}, quantity: ${quantity}, description: ${description}`);
 
   const tags = req.body.tags;
   console.log(`tags: ${tags}`);
 
-  // ******************************************************************************************************
-  // ******************************************************************************************************
-  // First we need to get the id of the part we just created, then with that and the array obtained above, invoke the following function:
-  // addPartsTags()
-  // ******************************************************************************************************
-  // ******************************************************************************************************
+  // ************************************************************************************************************************************************
+  // Ok we need to get the id number of the category, not the name, to pass to the following function
+// ************************************************************************************************************************************************
 
-  // Ok I think we might actually be getting the ids of the tags we want here ^^^
-  // Needed to fix how I was using the checkbox elements.
-  // Name indicates the category, id is the specific checkbox.
 
-  // ******************************************************************************************************
-  // Need to validate and sanitise unput.... But first I want to get it operational, worry about that later
-  // Need to engage multiple queries in database:
-  // Add part to database
-  // Add a new line in the partsTags database for every part-tag relationship
-  // ******************************************************************************************************
+const response = queries.newPart(partName, category, quantity, description)
 
-  console.log(
-    `You've submitted the following part name: ${partName}, category: ${category}, quantity: ${quantity}, with the following tags: ....`
-  );
+
+// const partId = queries.findId(partName);
+// Now at this point we should have part id and tag ids array, we can use those to populate partsTags table
+
   res.redirect("/");
 };
