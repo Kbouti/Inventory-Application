@@ -8,6 +8,8 @@
     "validator": "^13.12.0"
   },
   "scripts": {
-    "start": "node --watch app.js"
+    "start": "node --watch app.js",
+    "populate": "node database/populatedb",
+    "dropTables": "node database/dropTables"
   }
 }
