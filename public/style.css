@@ -10,6 +10,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: aliceblue;
 }
 
 h1, h2 {
@@ -36,8 +37,8 @@ ul {
 .newForm {
 margin: 1rem;
 padding: 1rem;  
-border: 3px solid aqua;
-  border-radius: 10px;
+background-color: white;
+border-radius: 10px;
 }
 
 .tagOptions li {
@@ -52,6 +53,11 @@ border: 3px solid aqua;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.tagOptions > * {
+  flex: 1;
 }
 
 .displayModule {
@@ -70,11 +76,20 @@ border: 3px solid aqua;
 }
 
 .part {
-  border: 2px solid aqua;
   border-radius: 10px;
+  background-color: white;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: row;
   width: 100%;
+  flex-wrap: wrap;
+  /* gap: 0rem 1rem; */
+}
+
+.partComponent{
+  background-color: coral;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
 }

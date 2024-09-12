@@ -1,17 +1,24 @@
 <section class="displayModule">
-    <ul class="partsContainer">
-        <% parts.forEach((part) => { %>
-            <li class="part">
-                <!-- I'd like this to be a link to a page displaying all parts in this category. -->
-                 <!-- To do this we first need to setup routes for each individual category. For now we'll just display category name -->
-                  <p><%= part.name %></p>
-                  <p><%= part.category %></p>
-                  <p><%= part.quantity %></p>
-                  <p><%= part.description %></p>
-            </li>
-        <% }); %>
-
-    </ul>
-
-
+  <ul class="partsContainer">
+    <% parts.forEach((part) => { %>
+    <li class="part">
+      <div class="partComponent">
+        <label>Name:</label>
+        <p><%= part.name %></p>
+      </div>
+      <div class="partComponent">
+        <label>Category:</label>
+        <p><%= part.category %></p>
+      </div>
+      <div class="partComponent">
+        <label>Quantity:</label>
+        <p><%= part.quantity %></p>
+      </div>
+      <div class="partComponent">
+        <label>Description:</label>
+        <p><%= part.description %></p>
+      </div>
+    </li>
+    <% }); %>
+  </ul>
 </section>
