@@ -1,7 +1,9 @@
 const pool = require("./pool");
 
 exports.getAllCategories = async () => {
-  const { rows } = await pool.query("select * from categories order by category_name;");
+  const { rows } = await pool.query(
+    "select * from categories order by category_name;"
+  );
   return rows;
 };
 
@@ -53,9 +55,11 @@ exports.newPartTag = async (part, tag) => {
   return response;
 };
 
-
 exports.getAllParts = async () => {
-  const sql = `select * from parts;`
-  const {rows} = await pool.query(sql);
+  // const sql = `select * from parts;`
+  // Below will return all parts and their attributes, with the category name instead of category id
+  const sql = `select parts.part_id, parts.part_name, categories.category_name, parts.quantity, parts.description from categories inner join parts on categories.category_id = parts.category;`;
+  const { rows } = await pool.query(sql);
   return rows;
-}
+};
+
