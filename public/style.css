@@ -54,9 +54,27 @@ border: 3px solid aqua;
   flex-wrap: wrap;
 }
 
+.displayModule {
+  margin: 1rem;
+  padding: 1rem;
+}
 
+
+.partsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+}
 
 .part {
   border: 2px solid aqua;
   border-radius: 10px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
