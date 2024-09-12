@@ -2,9 +2,8 @@
 
 // We're now creating tags and categories in the database.
 // We need to:
-//  -Prevent duplicates from being submitted
+//  -Prevent duplicates from being submitted AKA sanitize and validate forms
 //  -Create functions to delete categories and tags (Maybe do that last..)
-//  -Create parts in database
 //  -Clean up UI with CSS
 
 // ****************************************************************************************************************
@@ -95,16 +94,5 @@ async function main() {
   await client.end();
   console.log("done");
 }
-
-// **************************************************************************************************************
-// BOOOOM We've created our partstags table and populated it with our stock data. 
-
-// Next we need to modify the appropriate tables when creating a part and assigning tags.
-
-// This video explains many to many relationships well:
-// https://www.youtube.com/watch?v=4q-keGvUnag
-// The good stuff starts at 6mins
-
-// **************************************************************************************************************
 
 main();
