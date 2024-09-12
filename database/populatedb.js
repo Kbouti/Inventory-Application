@@ -26,40 +26,40 @@ const connectionString = `postgresql://${user}:${password}@localhost:5432/${data
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS categories (
-  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  name VARCHAR ( 20 )
+  category_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  category_name VARCHAR ( 20 )
 );
 
 CREATE TABLE IF NOT EXISTS tags (
-  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  name VARCHAR ( 20 )
+  tag_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  tag_name VARCHAR ( 20 )
 );
 
 
 CREATE TABLE IF NOT EXISTS parts (
-  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  name VARCHAR ( 30 ),
+  part_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  part_name VARCHAR ( 30 ),
   category int,
   quantity int,
   description varchar ( 800 ),
-  foreign key (category) references categories(id)
+  foreign key (category) references categories(category_id)
 );
 
 CREATE TABLE IF NOT EXISTS partsTags (
-  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  partsTagsId INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   part int,
   tag int,
-  foreign key (part) references parts(id),
-  foreign key (tag) references tags(id)
+  foreign key (part) references parts(part_id),
+  foreign key (tag) references tags(tag_id)
 );
 
-INSERT INTO categories (name) 
+INSERT INTO categories (category_name) 
 VALUES
   ('Bikes'),
   ('tools'),
   ('cars');
 
-INSERT INTO tags (name) 
+INSERT INTO tags (tag_name) 
 VALUES
   ('wrench'),
   ('seatpost'),
@@ -69,7 +69,7 @@ VALUES
   ('hardware'),
   ('wrench'); 
 
-  INSERT INTO parts (name, category, quantity, description) 
+  INSERT INTO parts (part_name, category, quantity, description) 
   VALUES
     ('Rockshox Zeb', 1, 1, 'Rockshox enduro fork'),
     ('265mm spoke', 1, 8, 'Spokes for 27.5 rear wheel'),
