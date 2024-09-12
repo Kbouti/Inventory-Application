@@ -31,7 +31,7 @@ app.use("/tag", tagRouter);
 app.use("/", indexRouter);
 
 app.listen(PORT, () =>
-  console.log(`My first Express app - listening mode ${MODE} on port ${PORT}!`)
+  console.log(`Inventory App listening in mode ${MODE} on port ${PORT}. May the force be with you.`)
 );
 
 // app.get("/", (req, res) => res.send("Hello, world!"));

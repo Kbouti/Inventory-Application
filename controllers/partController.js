@@ -7,15 +7,18 @@ const staticResources = require("../public/staticResources");
 let links = staticResources.links;
 let title = staticResources.title;
 
+
 exports.partGet = async (req, res) => {
   const categories = await queries.getAllCategories();
   const tags = await queries.getAllTags();
+  const parts = await queries.getAllParts();
 
   res.render("../views/pages/parts", {
     links,
     title,
     categories,
     tags,
+    parts,
     subTitle: "Parts",
   });
 };

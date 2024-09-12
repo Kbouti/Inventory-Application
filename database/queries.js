@@ -52,3 +52,10 @@ exports.newPartTag = async (part, tag) => {
   const response = await pool.query(sql);
   return response;
 };
+
+
+exports.getAllParts = async () => {
+  const sql = `select * from parts;`
+  const {rows} = await pool.query(sql);
+  return rows;
+}
