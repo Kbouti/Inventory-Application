@@ -30,6 +30,19 @@ exports.categoryGet = async (req, res) => {
   });
 };
 
+// ******************************************************************************************************
+
+exports.category_name = async (req, res) => {
+  console.log(`req.params.category_name: ${req.params.category_name}`);
+  // BOOM, we've accessed the request parameters. 
+
+  // We can now search our database for a category with this name, and then display all it's associated parts. 
+  // On the category main page we'll want to have links to all the categories. 
+}
+// ******************************************************************************************************
+
+
+
 exports.categoryNewPost = [
   validateCategory,
   async (req, res) => {
