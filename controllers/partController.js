@@ -7,16 +7,22 @@ const staticResources = require("../public/staticResources");
 let links = staticResources.links;
 let title = staticResources.title;
 
-
 exports.partGet = async (req, res) => {
   const categories = await queries.getAllCategories();
   const tags = await queries.getAllTags();
   const parts = await queries.getAllParts();
 
-// *******************************************************************************************
-// Perhaps here is where we need to run logic to fetch our tag names?? It doesn't seem to make sense where we're trying to get it. 
-// So we need to create a partsTags object or array or something to pass it to the view engines. 
-// *******************************************************************************************
+
+
+  // ****************************************************************************************************
+  // We're now getting partsTags and passing it to our views. With this we SHOULD be able to render tag names with corresponding parts. 
+  const partsTags = await queries.getPartTags();
+  console.log(`partsTags: ${partsTags}`);
+  partsTags.forEach((row) => {
+    console.log(`row.tag: ${row.tag}`);
+  });
+
+// ****************************************************************************************************
 
   res.render("../views/pages/parts", {
     links,
@@ -24,6 +30,7 @@ exports.partGet = async (req, res) => {
     categories,
     tags,
     parts,
+    partsTags,
     subTitle: "Parts",
   });
 };
