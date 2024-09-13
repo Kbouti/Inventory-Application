@@ -13,7 +13,7 @@ exports.partGet = async (req, res) => {
   const parts = await queries.getAllParts();
   const partsTags = await queries.getPartTags();
 
-  res.render("../views/pages/allParts", {
+  res.render("../views/pages/parts", {
     links,
     title,
     categories,

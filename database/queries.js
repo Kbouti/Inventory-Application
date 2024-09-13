@@ -71,7 +71,7 @@ exports.getPartTags = async () => {
 }
 
 exports.getPartsByCategoryId = async (category_id) => {
-  console.log(`fetching parts by categoryId`);
+  console.log(`fetching parts by categoryId: ${category_id}`);
 
   const sql = `select * from parts where category=${category_id};`;
   const { rows } = await pool.query(sql);

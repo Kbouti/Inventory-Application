@@ -21,30 +21,53 @@ exports.categoryGet = async (req, res) => {
   const categories = await queries.getAllCategories();
   const tags = await queries.getAllTags();
 
-  res.render("../views/pages/allCategories", {
+  res.render("../views/pages/categories", {
     links,
     title,
     categories,
     tags,
+    parts: null,
     subTitle: "Categories",
   });
 };
 
 // ******************************************************************************************************
 
-exports.category_name = async (req, res) => {
-  const category_name = req.params.category_name;
+exports.category_nameGet = async (req, res) => {
 
+
+  // ******************************************************************************************************
+  const category_name = req.params.category_name;
   console.log(`category_name: ${category_name}`);
-  // BOOM, we've accessed the request parameters.
+  // What the FFF this is logging style.css
+  // And then the page loads like it should but with no css?????
+// Something very wrong here
+  // ******************************************************************************************************
+
+  const categories = await queries.getAllCategories();
+  const tags = await queries.getAllTags();
+  const partsTags = await queries.getPartTags();
+console.log(`fetched categories, tags, and parts`);
+
+
+
 
   const category_id = await queries.findCategoryId(category_name);
   console.log(`category_id: ${category_id}`);
 
   const parts = await queries.getPartsByCategoryId(category_id);
 
-  parts.forEach((part) => {
-    console.log(`part.part_name: ${part.part_name}`);
+
+
+
+  res.render("../views/pages/categories", {
+    links,
+    title,
+    categories,
+    tags,
+    parts: parts,
+    partsTags,
+    subTitle: "Categories",
   });
 // Ok, we've gotten parts. Now we need a way to render them. We can reuse our parts display module, but we need to put it into our categories template
 // We might need a new view to handle this, idk gotta think about it
