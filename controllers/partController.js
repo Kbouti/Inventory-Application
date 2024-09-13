@@ -11,18 +11,7 @@ exports.partGet = async (req, res) => {
   const categories = await queries.getAllCategories();
   const tags = await queries.getAllTags();
   const parts = await queries.getAllParts();
-
-
-
-  // ****************************************************************************************************
-  // We're now getting partsTags and passing it to our views. With this we SHOULD be able to render tag names with corresponding parts. 
   const partsTags = await queries.getPartTags();
-  console.log(`partsTags: ${partsTags}`);
-  partsTags.forEach((row) => {
-    console.log(`row.tag: ${row.tag}`);
-  });
-
-// ****************************************************************************************************
 
   res.render("../views/pages/parts", {
     links,

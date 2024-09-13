@@ -18,6 +18,18 @@
         <label>Description:</label>
         <p><%= part.description %></p>
       </div>
+      <div class="partComponent">
+        <label>tags:</label>
+        <ul>
+            <% partsTags.forEach((row) => { %>
+                <% if (row.part == part.part_id) { %>
+                    <li>
+                        <p><%= row.tag_name %></p>
+                    </li>
+             <%   } %>
+            <% }) %>
+        </ul>
+      </div>
     </li>
     <% }); %>
   </ul>
