@@ -30,3 +30,16 @@ exports.tagNewPost = async (req, res) => {
   // Rather than use redirect, this should just refresh the current page:
   res.redirect(req.get("referer"));
 };
+
+
+
+// ******************************************************************************************************
+
+exports.tag_name = async (req, res) => {
+  console.log(`req.params.tag_name: ${req.params.tag_name}`);
+  // BOOM, we've accessed the request parameters. 
+
+  // We can now search our database for a tags with this name, and then display all it's associated parts. 
+  // On the category main page we'll want to have links to all the categories. 
+}
+// ******************************************************************************************************

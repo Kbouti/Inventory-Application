@@ -2,14 +2,9 @@
     <ul>
         <% tags.forEach((tag) => { %>
             <% const linkRef = `/tag/${tag.tag_name}`; %>
-
             <li>
                  <a href=<%=linkRef %>><%= tag.tag_name %></a> 
-
             </li>
         <% }); %>
-
     </ul>
-
-
 </section>

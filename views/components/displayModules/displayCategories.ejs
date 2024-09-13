@@ -3,13 +3,8 @@
         <% categories.forEach((category) => { %>
             <% const linkRef = `/category/${category.category_name}`; %>
             <li>
-                <!-- I'd like this to be a link to a page displaying all parts in this category. -->
-                 <!-- To do this we first need to setup routes for each individual category. For now we'll just display category name -->
                  <a href=<%=linkRef %>><%= category.category_name %></a> 
             </li>
         <% }); %>
-
     </ul>
-
-
 </section>
