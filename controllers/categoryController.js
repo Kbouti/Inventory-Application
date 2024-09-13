@@ -33,15 +33,23 @@ exports.categoryGet = async (req, res) => {
 // ******************************************************************************************************
 
 exports.category_name = async (req, res) => {
-  console.log(`req.params.category_name: ${req.params.category_name}`);
-  // BOOM, we've accessed the request parameters. 
+  const category_name = req.params.category_name;
 
-  // We can now search our database for a category with this name, and then display all it's associated parts. 
-  // On the category main page we'll want to have links to all the categories. 
-}
+  console.log(`category_name: ${category_name}`);
+  // BOOM, we've accessed the request parameters.
+
+  const category_id = await queries.findCategoryId(category_name);
+  console.log(`category_id: ${category_id}`);
+
+  const parts = await queries.getPartsByCategoryId(category_id);
+
+  parts.forEach((part) => {
+    console.log(`part.part_name: ${part.part_name}`);
+  });
+// Ok, we've gotten parts. Now we need a way to render them. We can reuse our parts display module, but we need to put it into our categories template
+// We might need a new view to handle this, idk gotta think about it
+};
 // ******************************************************************************************************
-
-
 
 exports.categoryNewPost = [
   validateCategory,

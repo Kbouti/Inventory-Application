@@ -70,6 +70,18 @@ exports.getPartTags = async () => {
   return rows;
 }
 
+exports.getPartsByCategoryId = async (category_id) => {
+  console.log(`fetching parts by categoryId`);
+
+  const sql = `select * from parts where category=${category_id};`;
+  const { rows } = await pool.query(sql);
+  return rows;
+}
+
+
+
+
+
 
 // select tag_name from tags inner join partsTags on tags.tag_id = partsTags.tag where partstags.part = 3;
 
