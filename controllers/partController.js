@@ -59,10 +59,11 @@ exports.partNewPost = async (req, res) => {
 
   console.log(`req.body resources obtained`);
 
-// So we're getting categoryName correctly, but our function is failing to return the id
 
   const categoryId = await queries.findCategoryId(categoryName);
   console.log(`categoryID obtained: ${categoryId}`);
+
+// Now we're getting categoryId but error'ng on newPart
 
   const partId = await queries.newPart(
     partName,

@@ -26,16 +26,20 @@ exports.newTag = async (name) => {
 
 // We need to make part names unique for this to work
 exports.findPartId = async (partName) => {
-  const idQuery = `select id from parts where part_name = '${partName}';`;
+  console.log(`findPartId activated`)
+  const idQuery = `select part_id from parts where part_name = '${partName}';`;
+  console.log(`idQuery: ${idQuery}`);
   const { rows } = await pool.query(idQuery);
-  const targetId = rows[0].id;
+  const targetId = rows[0].part_id;
   console.log(`Found targetId: ${targetId} for part name: ${partName}`);
   return targetId;
 };
 
 exports.newPart = async (name, category, quantity, description) => {
   const sql = `insert into parts (part_name, category, quantity, description) values ('${name}', ${category}, ${quantity}, '${description}');`;
+  console.log(`sql: ${sql}`);
   const response = await pool.query(sql);
+  console.log(`response: ${response}`);
   const partId = await this.findPartId(name);
   console.log(`done making part, new part ID: ${partId}`);
   return partId;
@@ -44,7 +48,7 @@ exports.newPart = async (name, category, quantity, description) => {
 exports.findCategoryId = async (categoryName) => {
   const idQuery = `select category_id from categories where category_name = '${categoryName}';`;
   const { rows } = await pool.query(idQuery);
-  const targetId = rows[0].id;
+  const targetId = rows[0].category_id;
   console.log(`Found targetId: ${targetId} for category name: ${categoryName}`);
   return targetId;
 };
