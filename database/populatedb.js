@@ -66,8 +66,7 @@ VALUES
   ('tire'),
   ('suspension'),
   ('tire lever'),
-  ('hardware'),
-  ('wrench'); 
+  ('hardware'); 
 
   INSERT INTO parts (part_name, category, quantity, description) 
   VALUES
@@ -78,9 +77,9 @@ VALUES
     insert into partsTags (part, tag)
     values 
     (1, 4),
-    (2, 7),
+    (2, 1),
     (3, 1),
-    (3, 7);
+    (3, 1);
 
 `;
 
