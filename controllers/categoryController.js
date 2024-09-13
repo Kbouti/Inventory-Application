@@ -21,7 +21,7 @@ exports.categoryGet = async (req, res) => {
   const categories = await queries.getAllCategories();
   const tags = await queries.getAllTags();
 
-  res.render("../views/pages/categories", {
+  res.render("../views/pages/allCategories", {
     links,
     title,
     categories,
@@ -48,6 +48,10 @@ exports.category_name = async (req, res) => {
   });
 // Ok, we've gotten parts. Now we need a way to render them. We can reuse our parts display module, but we need to put it into our categories template
 // We might need a new view to handle this, idk gotta think about it
+
+// We need a view for specific category
+
+
 };
 // ******************************************************************************************************
 
