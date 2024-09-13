@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node --watch app.js",
     "populate": "node database/populatedb",
-    "dropTables": "node database/dropTables"
+    "dropTables": "node database/dropTables",
+    "reset": "npm run dropTables && npm run populate && npm run start"
   }
 }
