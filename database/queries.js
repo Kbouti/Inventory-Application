@@ -42,7 +42,7 @@ exports.newPart = async (name, category, quantity, description) => {
 };
 
 exports.findCategoryId = async (categoryName) => {
-  const idQuery = `select id from categories where category_name = '${categoryName}';`;
+  const idQuery = `select category_id from categories where category_name = '${categoryName}';`;
   const { rows } = await pool.query(idQuery);
   const targetId = rows[0].id;
   console.log(`Found targetId: ${targetId} for category name: ${categoryName}`);

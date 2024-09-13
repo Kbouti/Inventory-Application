@@ -42,13 +42,27 @@ async function addPartsTags(partId, tagIds) {
 }
 
 exports.partNewPost = async (req, res) => {
+  console.log(`post new part activated`);
   const partName = req.body.name;
+  console.log(`partName: ${partName}`);
+
+
+  
   const categoryName = req.body.category;
+  console.log(`categoryName: ${categoryName}`);
+
   const quantity = req.body.quantity;
+  console.log(`quantity: ${quantity}`);
+
   const description = req.body.description;
   const tags = req.body.tags;
 
+  console.log(`req.body resources obtained`);
+
+// So we're getting categoryName correctly, but our function is failing to return the id
+
   const categoryId = await queries.findCategoryId(categoryName);
+  console.log(`categoryID obtained: ${categoryId}`);
 
   const partId = await queries.newPart(
     partName,
@@ -56,6 +70,8 @@ exports.partNewPost = async (req, res) => {
     quantity,
     description
   );
+
+  console.log(`partId obtained`);
 
   addPartsTags(partId, tags);
 
