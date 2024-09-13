@@ -13,6 +13,11 @@ exports.partGet = async (req, res) => {
   const tags = await queries.getAllTags();
   const parts = await queries.getAllParts();
 
+// *******************************************************************************************
+// Perhaps here is where we need to run logic to fetch our tag names?? It doesn't seem to make sense where we're trying to get it. 
+// So we need to create a partsTags object or array or something to pass it to the view engines. 
+// *******************************************************************************************
+
   res.render("../views/pages/parts", {
     links,
     title,

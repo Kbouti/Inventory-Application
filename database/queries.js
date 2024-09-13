@@ -63,3 +63,18 @@ exports.getAllParts = async () => {
   return rows;
 };
 
+// Now we need a way to get tagnames as well.... 
+// So that will have to be a separate query for each part. 
+
+exports.getPartTags = async () => {
+  // This returns a table which we can use to determine which tags (with names) apply to any given part(just the id at the moment)
+  const sql = `select * from partstags inner join tags on tags.tag_id=partstags.tag;`
+  const { rows } = await pool.query(sql);
+  return rows;
+}
+
+
+// select tag_name from tags inner join partsTags on tags.tag_id = partsTags.tag where partstags.part = 3;
+
+// select * from partstags inner join tags on tags.tag_id=partstags.tag;
+// We'd need to add an extra join with parts to get the part name in there^^
