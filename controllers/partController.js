@@ -24,8 +24,6 @@ exports.partGet = async (req, res) => {
   });
 };
 
-// Need a function that takes a part id and all the associated tag ids and adds the relationships to the database
-
 async function addPartsTags(partId, tagIds) {
   console.log(`adding part tag relations`);
   if (tagIds.length > 1) {
@@ -37,44 +35,23 @@ async function addPartsTags(partId, tagIds) {
     // Assigning one tag
     queries.newPartTag(partId, tags);
   }
-
   console.log(`done adding partTag relations`);
 }
 
 exports.partNewPost = async (req, res) => {
-  console.log(`post new part activated`);
   const partName = req.body.name;
-  console.log(`partName: ${partName}`);
-
-
-  
   const categoryName = req.body.category;
-  console.log(`categoryName: ${categoryName}`);
-
   const quantity = req.body.quantity;
-  console.log(`quantity: ${quantity}`);
-
   const description = req.body.description;
   const tags = req.body.tags;
-
-  console.log(`req.body resources obtained`);
-
-
   const categoryId = await queries.findCategoryId(categoryName);
-  console.log(`categoryID obtained: ${categoryId}`);
-
-// Now we're getting categoryId but error'ng on newPart
-
   const partId = await queries.newPart(
     partName,
     categoryId,
     quantity,
     description
   );
-
-  console.log(`partId obtained`);
-
   addPartsTags(partId, tags);
-
-  res.redirect("/");
+  // Remember, this only works if all parts have unique names^^
+  res.redirect("/part");
 };
