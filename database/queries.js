@@ -92,7 +92,7 @@ exports.getPartsByTagId = async (tagId) => {
   console.log(`fetching parts by tagId: ${tagId}`);
   const sql = `select * from partstags where tag=${tagId};`;
   const { rows } = await pool.query(sql);
-
+// Now we have a table of rows containing: partstagsid, part, and tag.
   // ************************************************************************************************************
   console.log(`obtained relavant parts ids`);
   let parts = [];
@@ -100,8 +100,11 @@ exports.getPartsByTagId = async (tagId) => {
     parts.push(row.part);
   });
   console.log(`parts: ${parts}`);
-  // We need more work here. At this point we've gotten a list of partID's, so now we need to get the parts.
-  // MAybe an inner join??
+  // Now we have an array of part ID's.  What we WANT is a table of parts.
+  // CAn we perform a sql query that takes an array??
+  
+  // select * from partstags where tag=1;
+  
   // ************************************************************************************************************
 
   return rows;
