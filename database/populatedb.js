@@ -65,7 +65,7 @@ VALUES
   ('seatpost'),
   ('tire'),
   ('suspension'),
-  ('tire lever'),
+  ('tire_lever'),
   ('hardware'); 
 
   INSERT INTO parts (part_name, category, quantity, description) 

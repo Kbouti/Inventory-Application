@@ -88,27 +88,51 @@ exports.getPartsByCategoryId = async (category_id) => {
   return rows;
 };
 
+
+
+// ************************************************************************************************************
+// ************************************************************************************************************
 exports.getPartsByTagId = async (tagId) => {
   console.log(`fetching parts by tagId: ${tagId}`);
   const sql = `select * from partstags where tag=${tagId};`;
   const { rows } = await pool.query(sql);
-// Now we have a table of rows containing: partstagsid, part, and tag.
-  // ************************************************************************************************************
-  console.log(`obtained relavant parts ids`);
-  let parts = [];
-  rows.forEach((row) => {
-    parts.push(row.part);
-  });
-  console.log(`parts: ${parts}`);
-  // Now we have an array of part ID's.  What we WANT is a table of parts.
-  // CAn we perform a sql query that takes an array??
-  
-  // select * from partstags where tag=1;
-  
-  // ************************************************************************************************************
+  // Now we have a table of rows containing: partstagsid, part, and tag.
 
-  return rows;
+  console.log(`obtained relavant parts ids`);
+  let partIds = [];
+  rows.forEach((row) => {
+    partIds.push(row.part);
+  });
+  // This might not work, we're passing the array in to sql.
+  // We might need to do more formatting.
+  let arrayString = "";
+  if (partIds.length > 0) {
+    console.log(`partsId.length is greater than zero`);
+    for (let i = 0; i < partIds.length; i++) {
+      if (i == 0) {
+        arrayString += partIds[i];
+      } else {
+        arrayString += `, ${partIds[i]}`;
+      }
+    }
+  } else if (partIds.length == 0) {
+    console.log(`partsId.length equal to zero`);
+    console.log(`returning null`);
+    return null;
+  }
+  console.log(`arrayString: ${arrayString}`);
+
+  const partsRequest =
+    "select * from parts where part_id in (" + arrayString + ");";
+  console.log(`partsRequest: ${partsRequest}`);
+  const { partRows } = await pool.query(partsRequest);
+  // This SHOULD be the rows we want
+  console.log(`obtained partsRows: ${partRows}`);
+  // WHY IS THIS UNDEFINED??????
+  return partRows;
 };
+// ************************************************************************************************************
+// ************************************************************************************************************
 
 // select tag_name from tags inner join partsTags on tags.tag_id = partsTags.tag where partstags.part = 3;
 

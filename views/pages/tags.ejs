@@ -13,7 +13,13 @@
     <%- include ('../components/forms/newTag') %>
     <%- include ('../components/displayModules/displayTags') %>
 
+    <% if (parts == null ) { %>
+      <% console.log(`parts is null`) %>
+
+      <% } %>
+
     <% if (parts != null ) { %>
+      <% console.log(`parts detected`) %>
       <%- include ('../components/displayModules/displayParts', {parts, partsTags}) %>
   <% } %>
 
