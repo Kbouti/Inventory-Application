@@ -39,8 +39,6 @@ exports.newPart = async (name, category, quantity, description) => {
   return partId;
 };
 
-
-
 exports.newPartTag = async (part, tag) => {
   const sql = `insert into partstags (part, tag) values ('${part}','${tag}');`;
   const response = await pool.query(sql);
@@ -55,18 +53,15 @@ exports.getAllParts = async () => {
   return rows;
 };
 
-// Now we need a way to get tagnames as well.... 
-// So that will have to be a separate query for each part. 
+// Now we need a way to get tagnames as well....
+// So that will have to be a separate query for each part.
 
 exports.getPartTags = async () => {
   // This returns a table which we can use to determine which tags (with names) apply to any given part(just the id at the moment)
-  const sql = `select * from partstags inner join tags on tags.tag_id=partstags.tag;`
+  const sql = `select * from partstags inner join tags on tags.tag_id=partstags.tag;`;
   const { rows } = await pool.query(sql);
   return rows;
-}
-
-
-
+};
 
 exports.findCategoryId = async (categoryName) => {
   const idQuery = `select category_id from categories where category_name = '${categoryName}';`;
@@ -74,7 +69,6 @@ exports.findCategoryId = async (categoryName) => {
   const targetId = rows[0].category_id;
   return targetId;
 };
-
 
 exports.findTagId = async (tagName) => {
   console.log(`findTagId query activated`);
@@ -84,8 +78,7 @@ exports.findTagId = async (tagName) => {
   const targetId = rows[0].tag_id;
   console.log(`targetId: ${targetId}`);
   return targetId;
-
-}
+};
 
 exports.getPartsByCategoryId = async (category_id) => {
   console.log(`fetching parts by categoryId: ${category_id}`);
@@ -93,23 +86,26 @@ exports.getPartsByCategoryId = async (category_id) => {
   const sql = `select * from parts where category=${category_id};`;
   const { rows } = await pool.query(sql);
   return rows;
-}
+};
 
 exports.getPartsByTagId = async (tagId) => {
   console.log(`fetching parts by tagId: ${tagId}`);
   const sql = `select * from partstags where tag=${tagId};`;
   const { rows } = await pool.query(sql);
 
-console.log(`obtained relavant parts ids`)
-
-// We need more work here. At this point we've gotten a list of partID's, so now we need to get the parts. 
-
-
+  // ************************************************************************************************************
+  console.log(`obtained relavant parts ids`);
+  let parts = [];
+  rows.forEach((row) => {
+    parts.push(row.part);
+  });
+  console.log(`parts: ${parts}`);
+  // We need more work here. At this point we've gotten a list of partID's, so now we need to get the parts.
+  // MAybe an inner join??
+  // ************************************************************************************************************
 
   return rows;
-}
-
-
+};
 
 // select tag_name from tags inner join partsTags on tags.tag_id = partsTags.tag where partstags.part = 3;
 
