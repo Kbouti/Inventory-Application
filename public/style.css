@@ -75,6 +75,13 @@ border-radius: 10px;
 
 }
 
+
+.purple {
+  color: purple;
+  background-color: red;
+}
+
+
 .part {
   border-radius: 10px;
   background-color: white;
