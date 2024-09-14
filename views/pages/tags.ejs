@@ -13,5 +13,10 @@
     <%- include ('../components/forms/newTag') %>
     <%- include ('../components/displayModules/displayTags') %>
 
+    <% if (parts != null ) { %>
+      <%- include ('../components/displayModules/displayParts', {parts, partsTags}) %>
+  <% } %>
+
+
   </body>
 </html>

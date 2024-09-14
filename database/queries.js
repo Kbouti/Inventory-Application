@@ -39,12 +39,7 @@ exports.newPart = async (name, category, quantity, description) => {
   return partId;
 };
 
-exports.findCategoryId = async (categoryName) => {
-  const idQuery = `select category_id from categories where category_name = '${categoryName}';`;
-  const { rows } = await pool.query(idQuery);
-  const targetId = rows[0].category_id;
-  return targetId;
-};
+
 
 exports.newPartTag = async (part, tag) => {
   const sql = `insert into partstags (part, tag) values ('${part}','${tag}');`;
@@ -70,6 +65,28 @@ exports.getPartTags = async () => {
   return rows;
 }
 
+
+
+
+exports.findCategoryId = async (categoryName) => {
+  const idQuery = `select category_id from categories where category_name = '${categoryName}';`;
+  const { rows } = await pool.query(idQuery);
+  const targetId = rows[0].category_id;
+  return targetId;
+};
+
+
+exports.findTagId = async (tagName) => {
+  console.log(`findTagId query activated`);
+  const idQuery = `select * from tags where tag_name = '${tagName}';`;
+  console.log(`idQuery: ${idQuery}`);
+  const { rows } = await pool.query(idQuery);
+  const targetId = rows[0].tag_id;
+  console.log(`targetId: ${targetId}`);
+  return targetId;
+
+}
+
 exports.getPartsByCategoryId = async (category_id) => {
   console.log(`fetching parts by categoryId: ${category_id}`);
 
@@ -78,8 +95,19 @@ exports.getPartsByCategoryId = async (category_id) => {
   return rows;
 }
 
+exports.getPartsByTagId = async (tagId) => {
+  console.log(`fetching parts by tagId: ${tagId}`);
+  const sql = `select * from partstags where tag=${tagId};`;
+  const { rows } = await pool.query(sql);
+
+console.log(`obtained relavant parts ids`)
+
+// We need more work here. At this point we've gotten a list of partID's, so now we need to get the parts. 
 
 
+
+  return rows;
+}
 
 
 

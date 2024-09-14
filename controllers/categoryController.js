@@ -41,9 +41,9 @@ exports.category_nameGet = async (req, res) => {
     title,
     categories,
     tags,
-    parts: parts,
+    parts,
     partsTags,
-    subTitle: "Categories",
+    subTitle: category_name,
   });
 };
 // ******************************************************************************************************

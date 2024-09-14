@@ -13,6 +13,7 @@ exports.tagGet = async (req, res) => {
     title,
     categories,
     tags,
+    parts: null,
     subTitle: "Tags",
   });
 };
@@ -37,6 +38,29 @@ exports.tagNewPost = async (req, res) => {
 
 exports.tag_name = async (req, res) => {
   console.log(`req.params.tag_name: ${req.params.tag_name}`);
+
+  const tagName = req.params.tag_name;
+  const categories = await queries.getAllCategories();
+  const tags = await queries.getAllTags();
+  const partsTags = await queries.getPartTags();
+
+  const tagId = await queries.findTagId(tagName);
+  const parts = await queries.getPartsByTagId(tagId);
+
+
+
+
+  res.render("../views/pages/tags", {
+    links,
+    title,
+    categories,
+    tags,
+    parts,
+    partsTags,
+    subTitle: tagName,
+  });
+
+
   // BOOM, we've accessed the request parameters. 
 
   // We can now search our database for a tags with this name, and then display all it's associated parts. 
