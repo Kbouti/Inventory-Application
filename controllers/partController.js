@@ -33,7 +33,7 @@ async function addPartsTags(partId, tagIds) {
     });
   } else if (tagIds.length == 1) {
     // Assigning one tag
-    queries.newPartTag(partId, tags);
+    queries.newPartTag(partId, tagIds[0]);
   }
   console.log(`done adding partTag relations`);
 }
