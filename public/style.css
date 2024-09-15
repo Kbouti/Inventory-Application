@@ -100,3 +100,9 @@ border-radius: 10px;
   flex-direction: column;
   border: 2px solid black;
 }
+
+.tagOption {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;  
+}
