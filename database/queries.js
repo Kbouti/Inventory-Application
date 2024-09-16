@@ -88,10 +88,14 @@ exports.getPartsByCategoryId = async (category_id) => {
   return rows;
 };
 
+// ************************************************************************************************************
+// ************************************************************************************************************
 
+// Perhaps we need to break this into smaaller functions??
 
 // ************************************************************************************************************
 // ************************************************************************************************************
+
 exports.getPartsByTagId = async (tagId) => {
   console.log(`fetching parts by tagId: ${tagId}`);
   const sql = `select * from partstags where tag=${tagId};`;
@@ -122,30 +126,32 @@ exports.getPartsByTagId = async (tagId) => {
   }
   console.log(`arrayString: ${arrayString}`);
 
-
   const partsRequest =
     "select * from parts where part_id in (" + arrayString + ");";
   console.log(`partsRequest: ${partsRequest}`);
-// ************************************************************************************************************
+  // ************************************************************************************************************
 
-
-// const hardCode = 'select * from parts where part_id in (1, 2);'
-// const hardCode = 'select * from parts;'
-// Even when I try these queries it's getting undefined. SO there's definitely something fishy going on. 
+  // const hardCode = 'select * from parts where part_id in (1, 2);'
+  // const hardCode = 'select * from parts;'
+  // Even when I try these queries it's getting undefined. SO there's definitely something fishy going on.
 
   const { partRows } = await pool.query(partsRequest);
   // This SHOULD be the rows we want
   console.log(`obtained partsRows: ${partRows}`);
-  // This is not returning what we want. Why not??
+  // ^^ This is undefined.
   // WHY IS THIS UNDEFINED??????
 
-// Perhaps we need to try iterating it?
+  // This is not returning what we want. Why not??
+  // It works in psql
 
   return partRows;
 };
-// ************************************************************************************************************
-// ************************************************************************************************************
 
+
+
+
+
+// I dont remember what this is about
 // select tag_name from tags inner join partsTags on tags.tag_id = partsTags.tag where partstags.part = 3;
 
 // select * from partstags inner join tags on tags.tag_id=partstags.tag;
