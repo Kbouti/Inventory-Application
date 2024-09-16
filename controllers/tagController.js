@@ -47,11 +47,11 @@ exports.tag_name = async (req, res) => {
   const tagId = await queries.findTagId(tagName);
 
   // Below is the one query that seems to be going wrong. Perhaps we should test the others?
-  // const parts = await queries.getPartsByTagId(tagId);
+  const parts = await queries.getPartsByTagId(tagId);
 
   // const parts = await queries.getAllParts();
 
-const parts = await queries.getSpecificParts(tagId);
+// const parts = await queries.getSpecificParts(tagId);
 
   res.render("../views/pages/tags", {
     links,

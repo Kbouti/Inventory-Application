@@ -146,7 +146,7 @@ exports.getPartsByTagId = async (tagId) => {
   }
 
   const partsRequest =
-    "select * from parts where part_id in (" + arrayString + ");";
+    "select parts.part_id, parts.part_name, categories.category_name, parts.quantity, parts.description from categories inner join parts on categories.category_id = parts.category where part_id in (" + arrayString + ");";
   console.log(`partsRequest: ${partsRequest}`);
   // This seems like a good request...
   // ************************************************************************************************************
@@ -174,7 +174,7 @@ exports.getPartsByTagId = async (tagId) => {
 
 // Starting this function over:
 exports.getSpecificParts = async (tagId) => {
-  const sql = `select parts.part_id, parts.part_name, categories.category_name, parts.quantity, parts.description from categories inner join parts on categories.category_id = parts.category;`;
+  const sql = `select parts.part_id, parts.part_name, categories.category_name, parts.quantity, parts.description from categories inner join parts on categories.category_id = parts.category where parts.part_id in (1, 6);`;
   const { rows } = await pool.query(sql);
   return rows;
 
