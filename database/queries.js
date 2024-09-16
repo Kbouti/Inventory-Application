@@ -96,8 +96,8 @@ exports.getPartsByCategoryId = async (category_id) => {
 // ************************************************************************************************************
 // ************************************************************************************************************
 
-exports.getPartsByTagId = async (tagId) => {
-  console.log(`fetching parts by tagId: ${tagId}`);
+async function getPartIds(tagId) {
+  console.log(`fetching partIds for tagId: ${tagId}`);
   const sql = `select * from partstags where tag=${tagId};`;
   const { rows } = await pool.query(sql);
   // Now we have a table of rows containing: partstagsid, part, and tag.
@@ -107,8 +107,10 @@ exports.getPartsByTagId = async (tagId) => {
   rows.forEach((row) => {
     partIds.push(row.part);
   });
-  // This might not work, we're passing the array in to sql.
-  // We might need to do more formatting.
+  return partIds;
+}
+
+function createPartArrayString(partIds) {
   let arrayString = "";
   if (partIds.length > 0) {
     console.log(`partsId.length is greater than zero`);
@@ -119,25 +121,48 @@ exports.getPartsByTagId = async (tagId) => {
         arrayString += `, ${partIds[i]}`;
       }
     }
+    return arrayString;
   } else if (partIds.length == 0) {
     console.log(`partsId.length equal to zero`);
     console.log(`returning null`);
     return null;
   }
   console.log(`arrayString: ${arrayString}`);
+}
+
+exports.getPartsByTagId = async (tagId) => {
+
+
+
+  const partIds = await getPartIds(tagId);
+  console.log(`partIds: ${partIds}`);
+  const arrayString = createPartArrayString(partIds);
+  console.log(`arrayString: ${arrayString}`);
+
+  if (arrayString == null) {
+    console.log(`array string ${arrayString} is null`);
+    console.log(`returning null`);
+    return null;
+  }
 
   const partsRequest =
     "select * from parts where part_id in (" + arrayString + ");";
   console.log(`partsRequest: ${partsRequest}`);
+  // This seems like a good request...
   // ************************************************************************************************************
 
   // const hardCode = 'select * from parts where part_id in (1, 2);'
   // const hardCode = 'select * from parts;'
+  // const { partRows } = await pool.query(hardCode);
   // Even when I try these queries it's getting undefined. SO there's definitely something fishy going on.
+
+  // I saw to try this on stack overflow
+// const client = await pool.connect();
+// const { partRows } = await client.query(partsRequest);
 
   const { partRows } = await pool.query(partsRequest);
   // This SHOULD be the rows we want
-  console.log(`obtained partsRows: ${partRows}`);
+  console.log(`obtained partRows: ${partRows}`);
   // ^^ This is undefined.
   // WHY IS THIS UNDEFINED??????
 
@@ -147,12 +172,10 @@ exports.getPartsByTagId = async (tagId) => {
   return partRows;
 };
 
+// Starting this function over:
+exports.getSpecificParts = async (tagId) => {
+  const sql = `select parts.part_id, parts.part_name, categories.category_name, parts.quantity, parts.description from categories inner join parts on categories.category_id = parts.category;`;
+  const { rows } = await pool.query(sql);
+  return rows;
 
-
-
-
-// I dont remember what this is about
-// select tag_name from tags inner join partsTags on tags.tag_id = partsTags.tag where partstags.part = 3;
-
-// select * from partstags inner join tags on tags.tag_id=partstags.tag;
-// We'd need to add an extra join with parts to get the part name in there^^
+}
