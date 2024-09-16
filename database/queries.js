@@ -122,13 +122,25 @@ exports.getPartsByTagId = async (tagId) => {
   }
   console.log(`arrayString: ${arrayString}`);
 
+
   const partsRequest =
     "select * from parts where part_id in (" + arrayString + ");";
   console.log(`partsRequest: ${partsRequest}`);
+// ************************************************************************************************************
+
+
+// const hardCode = 'select * from parts where part_id in (1, 2);'
+// const hardCode = 'select * from parts;'
+// Even when I try these queries it's getting undefined. SO there's definitely something fishy going on. 
+
   const { partRows } = await pool.query(partsRequest);
   // This SHOULD be the rows we want
   console.log(`obtained partsRows: ${partRows}`);
+  // This is not returning what we want. Why not??
   // WHY IS THIS UNDEFINED??????
+
+// Perhaps we need to try iterating it?
+
   return partRows;
 };
 // ************************************************************************************************************
