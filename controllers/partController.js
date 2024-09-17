@@ -55,3 +55,11 @@ exports.partNewPost = async (req, res) => {
   // Remember, this only works if all parts have unique names^^
   res.redirect("/part");
 };
+
+
+exports.selectedPartGet = async (req, res) => {
+  const selectedPartId = req.params.part_id;
+  console.log(`selectedPartId: ${selectedPartId}`);
+  res.send("Sup broseph");
+}
+// Now we need to create a link to this route
