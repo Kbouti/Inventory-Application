@@ -11,9 +11,9 @@
     <%- include ('../components/header', {links: links}) %>
     <h2><%= subTitle %></h2>
     <%- include ('../components/forms/newCategory') %>
-    <%- include ('../components/displayModules/displayCategories', {categories}) %>
+    <%- include ('../components/displayModules/allCategories', {categories}) %>
     <% if (parts != null ) { %>
-        <%- include ('../components/displayModules/displayParts', {parts, partsTags}) %>
+        <%- include ('../components/displayModules/allParts', {parts, partsTags}) %>
     <% } %>
 
   </body>

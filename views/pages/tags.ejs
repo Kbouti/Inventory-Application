@@ -11,7 +11,7 @@
     <%- include ('../components/header', {links: links}) %>
     <h2><%= subTitle %></h2>
     <%- include ('../components/forms/newTag') %>
-    <%- include ('../components/displayModules/displayTags') %>
+    <%- include ('../components/displayModules/allTags') %>
 
     <% if (parts == null ) { %>
       <% console.log(`parts is null`) %>
@@ -20,7 +20,7 @@
 
     <% if (parts != null ) { %>
       <% console.log(`parts detected`) %>
-      <%- include ('../components/displayModules/displayParts', {parts, partsTags}) %>
+      <%- include ('../components/displayModules/allParts', {parts, partsTags}) %>
   <% } %>
 
 

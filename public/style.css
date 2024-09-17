@@ -13,8 +13,9 @@ body {
   background-color: aliceblue;
 }
 
-h1, h2 {
-    text-align: center;
+h1,
+h2 {
+  text-align: center;
 }
 
 ul {
@@ -35,10 +36,10 @@ ul {
 }
 
 .newForm {
-margin: 1rem;
-padding: 1rem;  
-background-color: white;
-border-radius: 10px;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .tagOptions li {
@@ -48,8 +49,9 @@ border-radius: 10px;
 /* It would be kinda cool to assign each tag a random color that persists. It'd make finding tags easier. */
 /* Ohhhh you could get to choose a color for each tag..... That could be fun.  */
 
-
-.displayModule, .displayModule ul, form .tagOptions {
+.displayModule,
+.displayModule ul,
+form .tagOptions {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -65,22 +67,18 @@ border-radius: 10px;
   padding: 1rem;
 }
 
-
 .partsContainer {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin: 0;
   padding: 0;
-
 }
-
 
 .purple {
   color: purple;
   background-color: red;
 }
-
 
 .part {
   border-radius: 10px;
@@ -94,7 +92,7 @@ border-radius: 10px;
   /* gap: 0rem 1rem; */
 }
 
-.partComponent{
+.partComponent {
   background-color: coral;
   display: flex;
   flex-direction: column;
@@ -104,5 +102,12 @@ border-radius: 10px;
 .tagOption {
   display: flex;
   flex-direction: row;
-  justify-content: center;  
+  justify-content: center;
+}
+
+.selectedPart {
+  background-color: white;
+  border-radius: 10px;
+  border: 3px solid black;
+  
 }
