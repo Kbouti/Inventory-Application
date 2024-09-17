@@ -53,9 +53,6 @@ exports.getAllParts = async () => {
   return rows;
 };
 
-// Now we need a way to get tagnames as well....
-// So that will have to be a separate query for each part.
-
 exports.getPartTags = async () => {
   // This returns a table which we can use to determine which tags (with names) apply to any given part(just the id at the moment)
   const sql = `select * from partstags inner join tags on tags.tag_id=partstags.tag;`;
@@ -76,18 +73,16 @@ exports.findTagId = async (tagName) => {
   console.log(`idQuery: ${idQuery}`);
   const { rows } = await pool.query(idQuery);
   const targetId = rows[0].tag_id;
-  console.log(`targetId: ${targetId}`);
+  console.log(`targetTagId: ${targetId}`);
   return targetId;
 };
 
 exports.getPartsByCategoryId = async (category_id) => {
   console.log(`fetching parts by categoryId: ${category_id}`);
-
   const sql = `select * from parts where category=${category_id};`;
   const { rows } = await pool.query(sql);
   return rows;
 };
-
 
 exports.getPartsById = async (part_id) => {
   console.log(`getting part by id: ${part_id}`);
@@ -105,28 +100,23 @@ exports.getPartsById = async (part_id) => {
     for (let i = 0; i < part_id.length; i++) {
       if (i == 0) {
         arrayString += part_id[i];
-        console.log(`arrayString: ${arrayString}`);
       } else {
         arrayString += `, ${part_id[i]}`;
-        console.log(`arrayString: ${arrayString}`);
       }
       console.log(`arrayString: ${arrayString}`);
     }
     const sql = `select parts.part_id, parts.part_name, categories.category_name, parts.quantity, parts.description from categories inner join parts on categories.category_id = parts.category where parts.part_id in (${arrayString});`;
-    console.log(`sql: ${sql}`);
+    // console.log(`sql: ${sql}`);
     const { rows } = await pool.query(sql);
     return rows;
   }
-
 };
-
 
 exports.getPartIds = async (tagId) => {
   console.log(`fetching partIds for tagId: ${tagId}`);
   const sql = `select * from partstags where tag=${tagId};`;
   const { rows } = await pool.query(sql);
   // Now we have a table of rows containing: partstagsid, part, and tag.
-
   console.log(`obtained relavant parts ids`);
   let partIds = [];
   rows.forEach((row) => {
@@ -135,4 +125,3 @@ exports.getPartIds = async (tagId) => {
   console.log(`partIds: ${partIds}`);
   return partIds;
 };
-
