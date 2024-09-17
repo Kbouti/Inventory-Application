@@ -13,6 +13,8 @@ exports.partGet = async (req, res) => {
   const parts = await queries.getAllParts();
   const partsTags = await queries.getPartTags();
 
+  const selectedPartId = null;
+
   res.render("../views/pages/parts", {
     links,
     title,
@@ -20,6 +22,7 @@ exports.partGet = async (req, res) => {
     tags,
     parts,
     partsTags,
+    selectedPartId,
     subTitle: "Parts",
   });
 };
@@ -56,10 +59,24 @@ exports.partNewPost = async (req, res) => {
   res.redirect("/part");
 };
 
-
 exports.selectedPartGet = async (req, res) => {
+  const categories = await queries.getAllCategories();
+  const tags = await queries.getAllTags();
+  const parts = await queries.getAllParts();
+  const partsTags = await queries.getPartTags();
+
   const selectedPartId = req.params.part_id;
   console.log(`selectedPartId: ${selectedPartId}`);
-  res.send("Sup broseph");
-}
+
+  res.render("../views/pages/parts", {
+    links,
+    title,
+    categories,
+    tags,
+    parts,
+    partsTags,
+    selectedPartId,
+    subTitle: "Parts",
+  });
+};
 // Now we need to create a link to this route
