@@ -1,2 +1,33 @@
+<section class="selectedPart">
 
-    <section class="selectedPart"> This is the selected part section</section>
+      <div class="partComponent">
+        <label>Name:</label>
+        <p><%= selectedPart.part_name %></p>
+      </div>
+      <div class="partComponent">
+        <label>Category:</label>
+        <p><%= selectedPart.category_name %></p>
+      </div>
+      <div class="partComponent">
+        <label>Quantity:</label>
+        <p><%= selectedPart.quantity %></p>
+      </div>
+      <div class="partComponent">
+        <label>Description:</label>
+        <p><%= selectedPart.description %></p>
+      </div>
+      <div class="partComponent">
+        <label>tags:</label>
+        <ul>
+            <% partsTags.forEach((row) => { %>
+                <% if (row.part == selectedPart.part_id) { %>
+                    <li>
+                        <p><%= row.tag_name %></p>
+                    </li>
+             <%   } %>
+            <% }) %>
+        </ul>
+      </div>
+
+
+</section>

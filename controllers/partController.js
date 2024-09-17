@@ -68,7 +68,12 @@ exports.selectedPartGet = async (req, res) => {
   const selectedPartId = req.params.part_id;
   console.log(`selectedPartId: ${selectedPartId}`);
 
-  res.render("../views/pages/parts", {
+// Maybe we want the whole part object not just the id
+
+const response = await queries.getPartsById(selectedPartId);
+const selectedPart = response[0];
+
+res.render("../views/pages/parts", {
     links,
     title,
     categories,
@@ -76,6 +81,7 @@ exports.selectedPartGet = async (req, res) => {
     parts,
     partsTags,
     selectedPartId,
+    selectedPart,
     subTitle: "Parts",
   });
 };
