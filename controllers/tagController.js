@@ -50,15 +50,11 @@ exports.tag_name = async (req, res) => {
   // Using the tagName from the request we get the tagId for which we want to select all parts.
   const tagId = await queries.findTagId(tagName);
 
-  // *************************************************************************************
-  // This is where we go wrong. We are trying to select only the parts with the identified tagId.
-  // We can successfully retrieve all parts:
-  // const parts = await queries.getAllParts();
-  // But if I try to request only the specific parts I want it goes wrong.
+  // Using the id of the selected tag we now find all relavant parts
+  const partIds = await queries.getPartIds(tagId);
+  console.log(`partIds: ${partIds}`);
 
-  // const parts = await queries.getPartsByTagId(tagId);
-  // Both of these functions are trying to do the same thing, I started over.
-  const parts = await queries.getSpecificParts(tagId);
+  const parts = await queries.getPartsById(partIds);
 
   res.render("../views/pages/tags", {
     links,
