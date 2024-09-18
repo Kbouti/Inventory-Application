@@ -35,7 +35,7 @@ async function addPartsTags(partId, tagIds) {
   if (tagIds.length > 1) {
     // Assigning several tags
     tagIds.forEach((tag) => {
-      queries.partsTagsQueries(partId, tag);
+      partsTagsQueries.newPartTag(partId, tag);
     });
   } else if (tagIds.length == 1) {
     // Assigning one tag
