@@ -72,8 +72,7 @@ ul {
 /* It would be kinda cool to assign each tag a random color that persists. It'd make finding tags easier. */
 /* Ohhhh you could get to choose a color for each tag..... That could be fun.  */
 
-.displayModule,
-.displayModule ul,
+
 form .tagOptions {
   width: 100%;
   display: flex;
@@ -86,8 +85,21 @@ form .tagOptions {
 }
 
 .displayModule {
+  display: flex;
   margin: 1rem;
   padding: 1rem;
+  background-color: white;
+  border-radius: 10px;
+  flex-wrap: wrap;
+}
+
+.displayModule ul {
+  /* background-color: purple; */
+  display: flex;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  gap: 1rem;
 }
 
 .partsContainer {
@@ -98,7 +110,7 @@ form .tagOptions {
   list-style: none;
   width: 100%;
   padding-left: none;
-
+  margin-top: 0;
 }
 
 .partsContainer {
