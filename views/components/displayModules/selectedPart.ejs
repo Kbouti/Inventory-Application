@@ -28,12 +28,15 @@
   </div>
 
   <div class="partComponent">
-    <a href="">
-        <!-- We could wrap these buttons in forms instead of buttons if needed to access the post/get route we want -->
+    <% const editHref = `${selectedPart.part_id}/edit` %>
+    <a href=<%= editHref %>>
       <button class="editPart">Edit</button>
     </a>
-    <a href="">
-      <button class="deletePart">Delete</button>
-    </a>
+    
+    <% const deleteHref = `${selectedPart.part_id}/delete` %>
+    <form action=<%= deleteHref %> method="post">
+      <button type ="submit" class="deletePart">Delete</button>
+    </form>
+    
   </div>
 </section>

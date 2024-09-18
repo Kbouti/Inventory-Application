@@ -68,12 +68,12 @@ exports.selectedPartGet = async (req, res) => {
   const selectedPartId = req.params.part_id;
   console.log(`selectedPartId: ${selectedPartId}`);
 
-// Maybe we want the whole part object not just the id
+  // Maybe we want the whole part object not just the id
 
-const response = await queries.getPartsById(selectedPartId);
-const selectedPart = response[0];
+  const response = await queries.getPartsById(selectedPartId);
+  const selectedPart = response[0];
 
-res.render("../views/pages/parts", {
+  res.render("../views/pages/parts", {
     links,
     title,
     categories,
@@ -85,4 +85,15 @@ res.render("../views/pages/parts", {
     subTitle: "Parts",
   });
 };
-// Now we need to create a link to this route
+
+// ******************************************************************************************************
+
+exports.editPart = async (req, res) => {
+  console.log(`edit part route reached`);
+  res.send(`edit part route reached`);
+};
+
+exports.deletePart = async (req, res) => {
+  console.log(`Delete part post route reached`);
+  res.send(`Delete part post route reached`);
+};
