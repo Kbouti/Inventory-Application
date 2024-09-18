@@ -22,6 +22,29 @@ h2 {
   text-align: center;
 }
 
+.navigation {
+  width: 100%;
+}
+
+.navigation ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.navigationLink {
+  margin: 1rem;
+  padding: 1.5rem;
+  font-size: larger;
+  color: black;
+  border-radius: 5px;
+  background-color:cadetblue;
+  flex-grow: 1;
+  text-align: center;
+  list-style: none;
+}
+
 ul {
   list-style: none;
   margin: none;
