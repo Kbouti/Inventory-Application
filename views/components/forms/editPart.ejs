@@ -1,0 +1,54 @@
+<!-- need to update action route and populate present values.  -->
+
+<form class="editPartForm" action="/part/edit/" method="post">
+    <ul class="formInputs">
+      <li>
+        <label for="name">Create a Part:</label>
+        <input
+          type="text"
+          name="name"
+          required
+          autocomplete="off"
+          maxlength="30"
+        />
+      </li>
+  
+      <li>
+        <label for="category">Category:</label>
+        <select name="category" id="categorySelect">
+          <% categories.forEach((category) => { %>
+          <option><%= category.category_name %></option>
+          <% }); %>
+        </select>
+      </li>
+  
+      <li>
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" required value="1"/>
+      </li>
+  
+      <li>
+        <label for="description">Description:</label>
+        <textarea
+          name="description"
+          id="description"
+          placeholder="Optional description here"
+        ></textarea>
+      </li>
+  
+  
+      <li>
+        <ul class="tagOptions">
+          <% tags.forEach((tag) => { %>
+          <li class="tagOption">
+            <label for= <% tag.tag_id %>><%= tag.tag_name %></label>
+            <input name= "tags" value=<%=tag.tag_id %> id=<%=tag.tag_id %> type="checkbox" >
+          </li>
+          <% }) %>
+        </ul>
+      </li>
+    </ul>
+  
+    <button type="submit">Submit</button>
+  </form>
+  
