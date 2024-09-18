@@ -19,14 +19,10 @@ h2 {
 }
 
 ul {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
+
   list-style: none;
-  gap: 1rem;
-  margin: none;
-  padding: none;
+margin: none;
+padding: none;
 }
 
 .formInputs li {
@@ -70,40 +66,67 @@ form .tagOptions {
 .partsContainer {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  list-style: none;
+  width: 100%;
+  padding-left: none;
+
+  /* display: flex;
+  flex-direction: column;
   width: 100%;
   margin: 0;
   padding: 0;
+  justify-content: center;
+  align-items:center;
+  flex-wrap: wrap; */
 }
 
-.purple {
-  color: purple;
-  background-color: red;
+.partsContainer {
+  width: 100%;
+padding: 1rem;
+gap: 1rem;
+/* background-color: purple;
+border: 2px solid orange; */
+
 }
 
-.part {
-
-
-  margin: 1rem;
-  padding: 1rem;
-
-
-  color: black;
-  border-radius: 10px;
-  background-color: white;
-  /* margin: 0;
-  padding: 0; */
+.partsContainer a {
   display: flex;
   flex-direction: row;
   width: 100%;
+}
+
+.componentContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.part,
+.selectedPart {
+  /* margin: 0.5rem;
+  padding: 0.5rem; */
+  color: black;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
+
+width: 100%;
+
   /* gap: 0rem 1rem; */
+  /* padding: 1rem; */
 }
 
 .partComponent {
   /* background-color: coral; */
   display: flex;
   flex-direction: column;
-  border: 2px solid black;
+  /* border: 2px solid black;
+  padding: 0.5rem;
+  margin: 0.5rem; */
 }
 
 .tagOption {
@@ -113,10 +136,9 @@ form .tagOptions {
 }
 
 .selectedPart {
-  background-color: white;
-  border-radius: 10px;
-  border: 3px solid black;
-
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: row;
 }
 
 a {

@@ -10,11 +10,12 @@
     <h1><%= title %></h1>
     <%- include ('../components/header', {links: links}) %>
     <h2><%= subTitle %></h2>
-    <%- include ('../components/forms/newCategory') %>
-    <%- include ('../components/displayModules/allCategories', {categories}) %>
-    <% if (parts != null ) { %>
-        <%- include ('../components/displayModules/allParts', {parts, partsTags}) %>
-    <% } %>
-
+    <section class="componentContainer">
+      <%- include ('../components/forms/newCategory') %>
+      <%- include ('../components/displayModules/allCategories', {categories}) %>
+      <% if (parts != null ) { %>
+          <%- include ('../components/displayModules/allParts', {parts, partsTags}) %>
+      <% } %>
+  </section>
   </body>
 </html>

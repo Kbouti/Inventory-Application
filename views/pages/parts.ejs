@@ -10,16 +10,15 @@
     <h1><%= title %></h1>
     <%- include ('../components/header', {links: links}) %>
     <h2><%= subTitle %></h2>
-    <%- include ('../components/forms/newPart', {categories}) %>
-    <%- include ('../components/forms/newTag') %>
+    <section class="componentContainer">
+      <%- include ('../components/forms/newPart', {categories}) %>
+      <%- include ('../components/forms/newTag') %>
 
-   <% if (selectedPartId != null) { %>
-    <%- include ('../components/displayModules/selectedPart') %>
-
-    <% } else { %>
-      <%- include ('../components/displayModules/allParts') %>
-    <% } %>
-
-
+      <% if (selectedPartId != null) { %>
+        <%- include ('../components/displayModules/selectedPart') %>
+      <% } else { %>
+        <%- include ('../components/displayModules/allParts') %>
+      <% } %>
+  </section>
   </body>
 </html>
