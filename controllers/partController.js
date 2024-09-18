@@ -86,14 +86,21 @@ exports.selectedPartGet = async (req, res) => {
   });
 };
 
+exports.deletePart = async (req, res) => {
+  const part_id = req.params.part_id;
+  console.log(`Delete part post route reached. part_id: ${part_id}`);
+  // First we have to delete partsTags relations, then delete part.
+  const partsTagsResponse = await queries.deletePartsTags(part_id);
+  const partResponse = await queries.deletePart(part_id);
+  res.redirect("/part");
+};
+
 // ******************************************************************************************************
 
 exports.editPart = async (req, res) => {
-  console.log(`edit part route reached`);
-  res.send(`edit part route reached`);
-};
+  const part_id = req.params.part_id;
 
-exports.deletePart = async (req, res) => {
-  console.log(`Delete part post route reached`);
-  res.send(`Delete part post route reached`);
+  console.log(`edit part route reached. part_id: ${part_id}`);
+
+  res.send(`edit part route reached. part_id: ${part_id}`);
 };

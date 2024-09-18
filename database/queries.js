@@ -125,3 +125,18 @@ exports.getPartIds = async (tagId) => {
   console.log(`partIds: ${partIds}`);
   return partIds;
 };
+
+exports.deletePart = async (part_id) => {
+  console.log(`deleteing part where part_id: ${part_id}`);
+  const sql = `delete from parts where part_id = ${part_id};`;
+  const response = await pool.query(sql);
+  return response;
+}
+
+exports.deletePartsTags = async (part_id) => {
+  console.log(`removing partsTags relation where part_id: ${part_id}`);
+  const sql = `delete from partstags where part = ${part_id};`;
+  const response = await pool.query(sql);
+  return response;
+
+}
