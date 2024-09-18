@@ -8,19 +8,19 @@
     <li class="part">
       <div class="partComponent">
         <label>Name:</label>
-        <p><%= part.part_name %></p>
+        <p class="partValue"><%= part.part_name %></p>
       </div>
       <div class="partComponent">
         <label>Category:</label>
-        <p><%= part.category_name %></p>
+        <p class="partValue"><%= part.category_name %></p>
       </div>
       <div class="partComponent">
         <label>Quantity:</label>
-        <p><%= part.quantity %></p>
+        <p class="partValue"><%= part.quantity %></p>
       </div>
       <div class="partComponent">
         <label>Description:</label>
-        <p><%= part.description %></p>
+        <p class="partValue"><%= part.description %></p>
       </div>
       <div class="partComponent">
         <label>tags:</label>
@@ -28,7 +28,7 @@
             <% partsTags.forEach((row) => { %>
                 <% if (row.part == part.part_id) { %>
                     <li>
-                        <p><%= row.tag_name %></p>
+                        <p class="partValue"><%= row.tag_name %></p>
                     </li>
              <%   } %>
             <% }) %>
