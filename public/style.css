@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
   width: 100%;
   height: 100%;
@@ -71,22 +75,12 @@ form .tagOptions {
   width: 100%;
   padding-left: none;
 
-  /* display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  justify-content: center;
-  align-items:center;
-  flex-wrap: wrap; */
 }
 
 .partsContainer {
   width: 100%;
   padding: 1rem;
   gap: 1rem;
-  /* background-color: purple;
-border: 2px solid orange; */
 }
 
 .partsContainer a {
@@ -113,26 +107,15 @@ border: 2px solid orange; */
 }
 
 .selectedPart {
-  color: black;
-  border-radius: 10px;
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 1rem;
-
   gap: 1rem;
   margin: 1rem;
+  padding: 1rem;
+  width: auto;
 }
 
 .partComponent {
-  /* background-color: coral; */
   display: flex;
   flex-direction: column;
-  /* border: 2px solid black;
-  padding: 0.5rem;
-  margin: 0.5rem; */
 }
 
 .tagOption {
@@ -141,12 +124,3 @@ border: 2px solid orange; */
   justify-content: center;
 }
 
-/* .selectedPart {
-  border: 1px solid blue;
-  display: flex;
-  flex-direction: row;
-} */
-
-a {
-  text-decoration: none;
-}
