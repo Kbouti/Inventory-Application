@@ -141,6 +141,19 @@ form .tagOptions {
   padding: 1rem;
 }
 
+.buttonContainer {
+  grid-column-end: span 5;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+}
+
+button {
+  font-size: large;
+  padding: .2rem;
+}
+
 .selectedPart {
   gap: 1rem;
   margin: 1rem;
