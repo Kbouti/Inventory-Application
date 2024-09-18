@@ -1,4 +1,9 @@
-const queries = require("../database/queries");
+const partQueries = require("../database/queries/partQueries");
+const categoryQueries = require("../database/queries/categoryQueries");
+const partsTagsQueries = require("../database/queries/partsTagsQueries");
+const tagQueries = require("../database/queries/tagQueries");
+
+
 
 const { body, validationResult } = require("express-validator");
 // Still unsure of how to use this to validate
@@ -15,8 +20,8 @@ const validateCategory = [
 // ******************************************************************************************************
 
 exports.categoryGet = async (req, res) => {
-  const categories = await queries.getAllCategories();
-  const tags = await queries.getAllTags();
+  const categories = await categoryQueries.getAllCategories();
+  const tags = await tagQueries.getAllTags();
 
   res.render("../views/pages/categories", {
     links,
@@ -30,11 +35,11 @@ exports.categoryGet = async (req, res) => {
 
 exports.category_nameGet = async (req, res) => {
   const category_name = req.params.category_name;
-  const categories = await queries.getAllCategories();
-  const tags = await queries.getAllTags();
-  const partsTags = await queries.getPartTags();
-  const category_id = await queries.findCategoryId(category_name);
-  const parts = await queries.getPartsByCategoryId(category_id);
+  const categories = await categoryQueries.getAllCategories();
+  const tags = await tagQueries.getAllTags();
+  const partsTags = await partsTagsQueries.getPartTags();
+  const category_id = await categoryQueries.findCategoryId(category_name);
+  const parts = await partQueries.getPartsByCategoryId(category_id);
 
   res.render("../views/pages/categories", {
     links,
@@ -52,7 +57,7 @@ exports.categoryNewPost = [
   validateCategory,
   async (req, res) => {
     const userInput = req.body.category;
-    const response = await queries.newCategory(userInput);
+    const response = await categoryQueries.newCategory(userInput);
     res.redirect("/category");
   },
 ];

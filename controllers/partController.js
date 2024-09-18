@@ -1,4 +1,7 @@
-const queries = require("../database/queries");
+const partQueries = require("../database/queries/partQueries");
+const categoryQueries = require("../database/queries/categoryQueries");
+const partsTagsQueries = require("../database/queries/partsTagsQueries");
+const tagQueries = require("../database/queries/tagQueries");
 
 // const { body, validationResult } = require("express-validator");
 // Still unsure of how to use this to validate
@@ -8,10 +11,10 @@ let links = staticResources.links;
 let title = staticResources.title;
 
 exports.partGet = async (req, res) => {
-  const categories = await queries.getAllCategories();
-  const tags = await queries.getAllTags();
-  const parts = await queries.getAllParts();
-  const partsTags = await queries.getPartTags();
+  const categories = await categoryQueries.getAllCategories();
+  const tags = await tagQueries.getAllTags();
+  const parts = await partQueries.getAllParts();
+  const partsTags = await partsTagsQueries.getPartTags();
 
   const selectedPartId = null;
 
@@ -32,11 +35,11 @@ async function addPartsTags(partId, tagIds) {
   if (tagIds.length > 1) {
     // Assigning several tags
     tagIds.forEach((tag) => {
-      queries.newPartTag(partId, tag);
+      queries.partsTagsQueries(partId, tag);
     });
   } else if (tagIds.length == 1) {
     // Assigning one tag
-    queries.newPartTag(partId, tagIds[0]);
+    partsTagsQueries.newPartTag(partId, tagIds[0]);
   }
   console.log(`done adding partTag relations`);
 }
@@ -47,8 +50,8 @@ exports.partNewPost = async (req, res) => {
   const quantity = req.body.quantity;
   const description = req.body.description;
   const tags = req.body.tags;
-  const categoryId = await queries.findCategoryId(categoryName);
-  const partId = await queries.newPart(
+  const categoryId = await categoryQueries.findCategoryId(categoryName);
+  const partId = await partQueries.newPart(
     partName,
     categoryId,
     quantity,
@@ -60,17 +63,17 @@ exports.partNewPost = async (req, res) => {
 };
 
 exports.selectedPartGet = async (req, res) => {
-  const categories = await queries.getAllCategories();
-  const tags = await queries.getAllTags();
-  const parts = await queries.getAllParts();
-  const partsTags = await queries.getPartTags();
+  const categories = await categoryQueries.getAllCategories();
+  const tags = await tagQueries.getAllTags();
+  const parts = await partQueries.getAllParts();
+  const partsTags = await partsTagsQueries.getPartTags();
 
   const selectedPartId = req.params.part_id;
   console.log(`selectedPartId: ${selectedPartId}`);
 
   // Maybe we want the whole part object not just the id
 
-  const response = await queries.getPartsById(selectedPartId);
+  const response = await partQueries.getPartsById(selectedPartId);
   const selectedPart = response[0];
 
   res.render("../views/pages/parts", {
@@ -90,8 +93,8 @@ exports.deletePart = async (req, res) => {
   const part_id = req.params.part_id;
   console.log(`Delete part post route reached. part_id: ${part_id}`);
   // First we have to delete partsTags relations, then delete part.
-  const partsTagsResponse = await queries.deletePartsTags(part_id);
-  const partResponse = await queries.deletePart(part_id);
+  const partsTagsResponse = await partsTagsQueries.deletePartsTags(part_id);
+  const partResponse = await partQueries.deletePart(part_id);
   res.redirect("/part");
 };
 
