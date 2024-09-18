@@ -19,10 +19,9 @@ h2 {
 }
 
 ul {
-
   list-style: none;
-margin: none;
-padding: none;
+  margin: none;
+  padding: none;
 }
 
 .formInputs li {
@@ -84,11 +83,10 @@ form .tagOptions {
 
 .partsContainer {
   width: 100%;
-padding: 1rem;
-gap: 1rem;
-/* background-color: purple;
+  padding: 1rem;
+  gap: 1rem;
+  /* background-color: purple;
 border: 2px solid orange; */
-
 }
 
 .partsContainer a {
@@ -103,21 +101,29 @@ border: 2px solid orange; */
   flex-direction: column;
 }
 
-.part,
-.selectedPart {
-  /* margin: 0.5rem;
-  padding: 0.5rem; */
+.part {
   color: black;
   border-radius: 10px;
   background-color: white;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  width: 100%;
+  padding: 1rem;
+}
 
-width: 100%;
+.selectedPart {
+  color: black;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 1rem;
 
-  /* gap: 0rem 1rem; */
-  /* padding: 1rem; */
+  gap: 1rem;
+  margin: 1rem;
 }
 
 .partComponent {
@@ -135,11 +141,11 @@ width: 100%;
   justify-content: center;
 }
 
-.selectedPart {
+/* .selectedPart {
   border: 1px solid blue;
   display: flex;
   flex-direction: row;
-}
+} */
 
 a {
   text-decoration: none;
