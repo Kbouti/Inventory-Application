@@ -1,33 +1,39 @@
 <section class="selectedPart">
+  <div class="partComponent">
+    <label>Name:</label>
+    <p><%= selectedPart.part_name %></p>
+  </div>
+  <div class="partComponent">
+    <label>Category:</label>
+    <p><%= selectedPart.category_name %></p>
+  </div>
+  <div class="partComponent">
+    <label>Quantity:</label>
+    <p><%= selectedPart.quantity %></p>
+  </div>
+  <div class="partComponent">
+    <label>Description:</label>
+    <p><%= selectedPart.description %></p>
+  </div>
+  <div class="partComponent">
+    <label>tags:</label>
+    <ul>
+      <% partsTags.forEach((row) => { %> <% if (row.part ==
+      selectedPart.part_id) { %>
+      <li>
+        <p><%= row.tag_name %></p>
+      </li>
+      <% } %> <% }) %>
+    </ul>
+  </div>
 
-      <div class="partComponent">
-        <label>Name:</label>
-        <p><%= selectedPart.part_name %></p>
-      </div>
-      <div class="partComponent">
-        <label>Category:</label>
-        <p><%= selectedPart.category_name %></p>
-      </div>
-      <div class="partComponent">
-        <label>Quantity:</label>
-        <p><%= selectedPart.quantity %></p>
-      </div>
-      <div class="partComponent">
-        <label>Description:</label>
-        <p><%= selectedPart.description %></p>
-      </div>
-      <div class="partComponent">
-        <label>tags:</label>
-        <ul>
-            <% partsTags.forEach((row) => { %>
-                <% if (row.part == selectedPart.part_id) { %>
-                    <li>
-                        <p><%= row.tag_name %></p>
-                    </li>
-             <%   } %>
-            <% }) %>
-        </ul>
-      </div>
-
-
+  <div class="partComponent">
+    <a href="">
+        <!-- We could wrap these buttons in forms instead of buttons if needed to access the post/get route we want -->
+      <button class="editPart">Edit</button>
+    </a>
+    <a href="">
+      <button class="deletePart">Delete</button>
+    </a>
+  </div>
 </section>
