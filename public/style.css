@@ -31,6 +31,7 @@ h2 {
   flex-direction: row;
   justify-content: space-between;
   padding: 0;
+  width: 100%;
 }
 
 .navigationLink {
