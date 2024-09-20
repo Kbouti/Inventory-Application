@@ -20,6 +20,7 @@ const validateCategory = [
 // ******************************************************************************************************
 
 exports.categoryGet = async (req, res) => {
+  console.log(`categoryGet controller function called`);
   const categories = await categoryQueries.getAllCategories();
   const tags = await tagQueries.getAllTags();
 
@@ -34,6 +35,8 @@ exports.categoryGet = async (req, res) => {
 };
 
 exports.category_nameGet = async (req, res) => {
+  console.log(`category_nameGet controller function called`);
+
   const category_name = req.params.category_name;
   const categories = await categoryQueries.getAllCategories();
   const tags = await tagQueries.getAllTags();
@@ -54,6 +57,8 @@ exports.category_nameGet = async (req, res) => {
 // ******************************************************************************************************
 
 exports.categoryNewPost = [
+  // console.log(`categoryNewPost controller function called`),
+
   validateCategory,
   async (req, res) => {
     const userInput = req.body.category;

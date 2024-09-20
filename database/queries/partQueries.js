@@ -2,6 +2,7 @@ const pool = require("../pool");
 
 // We need to make part names unique for this to work
 exports.findPartId = async (partName) => {
+  console.log(`query findPartId triggered`);
     const idQuery = `select part_id from parts where part_name = '${partName}';`;
     const { rows } = await pool.query(idQuery);
     const targetId = rows[0].part_id;
@@ -9,6 +10,8 @@ exports.findPartId = async (partName) => {
   };
 
   exports.newPart = async (name, category, quantity, description) => {
+    console.log(`query newPart triggered`);
+
     const sql = `insert into parts (part_name, category, quantity, description) values ('${name}', ${category}, ${quantity}, '${description}');`;
     const response = await pool.query(sql);
     const partId = await this.findPartId(name);
@@ -16,6 +19,8 @@ exports.findPartId = async (partName) => {
   };
 
   exports.getAllParts = async () => {
+    console.log(`query getAllParts triggered`);
+
     // const sql = `select * from parts;`
     // Below will return all parts and their attributes, with the category name instead of category id
     const sql = `select parts.part_id, parts.part_name, categories.category_name, parts.quantity, parts.description from categories inner join parts on categories.category_id = parts.category;`;
@@ -24,6 +29,8 @@ exports.findPartId = async (partName) => {
   };
 
   exports.getPartsByCategoryId = async (category_id) => {
+    console.log(`query getPartsByCategoryId triggered`);
+
     console.log(`fetching parts by categoryId: ${category_id}`);
     const sql = `select * from parts where category=${category_id};`;
     const { rows } = await pool.query(sql);
@@ -31,6 +38,8 @@ exports.findPartId = async (partName) => {
   };
 
   exports.getPartsById = async (part_id) => {
+    console.log(`query getPartsById triggered`);
+
     console.log(`getting part by id: ${part_id}`);
     if (part_id.length == 0) {
       return null;
@@ -59,6 +68,8 @@ exports.findPartId = async (partName) => {
   };
 
   exports.getPartIds = async (tagId) => {
+    console.log(`query getPartIds triggered`);
+
     console.log(`fetching partIds for tagId: ${tagId}`);
     const sql = `select * from partstags where tag=${tagId};`;
     const { rows } = await pool.query(sql);
@@ -73,6 +84,8 @@ exports.findPartId = async (partName) => {
   };
 
   exports.deletePart = async (part_id) => {
+    console.log(`query deletePart triggered`);
+
     console.log(`deleteing part where part_id: ${part_id}`);
     const sql = `delete from parts where part_id = ${part_id};`;
     const response = await pool.query(sql);

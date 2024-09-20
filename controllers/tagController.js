@@ -8,6 +8,8 @@ let links = staticResources.links;
 let title = staticResources.title;
 
 exports.tagGet = async (req, res) => {
+  console.log(`tagGet controller function called`);
+
   const categories = await categoryQueries.getAllCategories();
   const tags = await tagQueries.getAllTags();
 
@@ -22,6 +24,8 @@ exports.tagGet = async (req, res) => {
 };
 
 exports.tagNewPost = async (req, res) => {
+  console.log(`tagNewPost controller function called`);
+
   const tagName = req.body.tag;
   console.log(`You submitted a new tag named: ${tagName}`);
 
@@ -33,6 +37,8 @@ exports.tagNewPost = async (req, res) => {
 };
 
 exports.tag_name = async (req, res) => {
+  console.log(`tag_name controller function called`);
+
   // This route should display all the parts associated with a specific tag.
   const tagName = req.params.tag_name;
   const categories = await categoryQueries.getAllCategories();

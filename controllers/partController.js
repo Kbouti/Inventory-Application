@@ -11,6 +11,8 @@ let links = staticResources.links;
 let title = staticResources.title;
 
 exports.partGet = async (req, res) => {
+  console.log(`partGet controller function called`);
+
   const categories = await categoryQueries.getAllCategories();
   const tags = await tagQueries.getAllTags();
   const parts = await partQueries.getAllParts();
@@ -31,6 +33,8 @@ exports.partGet = async (req, res) => {
 };
 
 async function addPartsTags(partId, tagIds) {
+  console.log(`addPartsTags controller function called`);
+
   console.log(`adding part tag relations`);
   if (tagIds.length > 1) {
     // Assigning several tags
@@ -45,6 +49,8 @@ async function addPartsTags(partId, tagIds) {
 }
 
 exports.partNewPost = async (req, res) => {
+  console.log(`partNewPost controller function called`);
+
   const partName = req.body.name;
   const categoryName = req.body.category;
   const quantity = req.body.quantity;
@@ -63,12 +69,21 @@ exports.partNewPost = async (req, res) => {
 };
 
 exports.selectedPartGet = async (req, res) => {
+  console.log(`selectedPartGet controller function called`);
+
   const categories = await categoryQueries.getAllCategories();
   const tags = await tagQueries.getAllTags();
   const parts = await partQueries.getAllParts();
   const partsTags = await partsTagsQueries.getPartTags();
 
+  // ************************************************************************
   const selectedPartId = req.params.part_id;
+  // const selectedPartId = req.body.part_id;
+
+  // For some reason this is getting style.css???????
+  // But we also need to figure out why/where this is getting called in the first place. 
+  // ************************************************************************
+
   console.log(`selectedPartId: ${selectedPartId}`);
 
   // Maybe we want the whole part object not just the id
@@ -90,6 +105,8 @@ exports.selectedPartGet = async (req, res) => {
 };
 
 exports.deletePart = async (req, res) => {
+  console.log(`deletePart controller function called`);
+
   const part_id = req.params.part_id;
   console.log(`Delete part post route reached. part_id: ${part_id}`);
   // First we have to delete partsTags relations, then delete part.
@@ -100,7 +117,9 @@ exports.deletePart = async (req, res) => {
 
 // ******************************************************************************************************
 
-exports.editPart = async (req, res) => {
+exports.editPartGet = async (req, res) => {
+  console.log(`editPartGet controller function called`);
+
   const part_id = req.params.part_id;
   console.log(`edit part route reached. part_id: ${part_id}`);
 
@@ -126,3 +145,9 @@ exports.editPart = async (req, res) => {
 
   // res.send(`edit part route reached. part_id: ${part_id}`);
 };
+
+
+exports.editPartPost = async (req, res) => {
+  console.log(`editPartPost controller function called`);
+  res.send(`hello`);
+}

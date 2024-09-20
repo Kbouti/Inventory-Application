@@ -1,6 +1,11 @@
 <!-- need to update action route and populate present values.  -->
 
-<form class="editPartForm" action="/part/edit/" method="post">
+<% const action = `part/${selectedPart.part_id}/edit`; %>
+
+<!-- We're getting the action destination all screwed up.  -->
+
+
+<form class="editPartForm" action=<%= action %> method="post">
     <ul class="formInputs">
       <li>
         <label for="name">Create a Part:</label>

@@ -12,14 +12,15 @@ let links = staticResources.links;
 let title = staticResources.title;
 
 exports.indexGet = async (req, res) => {
-  const categories = await categoryQueries.getAllCategories();
-  const tags = await tagQueries.getAllTags();
-  console.log("Fetched categories and tags");
+  console.log(`indexGet controller function called`);
+
+  // const categories = await categoryQueries.getAllCategories();
+  // const tags = await tagQueries.getAllTags();
   res.render("../views/pages/index", {
     links,
     title,
-    categories,
-    tags,
+    // categories,
+    // tags,
     subTitle: "Home",
   });
 };
