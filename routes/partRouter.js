@@ -9,7 +9,7 @@ partRouter.get("/edit/:part_id", partController.editPartGet);
 
 // POST requests:
 
-partRouter.post("/delete/:part_id", partController.deletePart);
+partRouter.post("/:part_id/delete", partController.deletePart);
 partRouter.post("/new", partController.partNewPost);
 partRouter.post("/edit/:part_id", partController.editPartPost);
 
