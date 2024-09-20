@@ -2,9 +2,9 @@ const pool = require("../pool");
 
 exports.newPartTag = async (part, tag) => {
   console.log(`query newPartTag triggered`);
-    const sql = `insert into partstags (part, tag) values ('${part}','${tag}');`;
-    const response = await pool.query(sql);
-    return response;
+  const sql = `insert into partstags (part, tag) values ('${part}','${tag}');`;
+  const response = await pool.query(sql);
+  return response;
 };
 
 exports.getPartTags = async () => {
@@ -21,5 +21,17 @@ exports.deletePartsTags = async (part_id) => {
   const sql = `delete from partstags where part = ${part_id};`;
   const response = await pool.query(sql);
   return response;
-}
+};
 
+exports.getTagsByPart = async (part_id) => {
+  console.log(`query getTagsByPart triggered`);
+
+  console.log(`getting all tags pertaining to part_id: ${part_id}`);
+
+  const sql = `select tag from partstags where part=${part_id};`;
+  const { rows } = await pool.query(sql);
+  const tags = [];
+  rows.forEach((row) => tags.push(row.tag));
+
+  return tags;
+};

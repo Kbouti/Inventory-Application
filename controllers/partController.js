@@ -130,6 +130,9 @@ exports.editPartGet = async (req, res) => {
   const parts = await partQueries.getAllParts();
   const partsTags = await partsTagsQueries.getPartTags();
 
+  const startingTags = await partsTagsQueries.getTagsByPart(part_id);
+console.log(`startingTags: ${startingTags}`);
+
   const response = await partQueries.getPartsById(part_id);
   const selectedPart = response[0];
 
@@ -142,6 +145,7 @@ exports.editPartGet = async (req, res) => {
     partsTags,
     part_id,
     selectedPart,
+    startingTags,
     subTitle: "Edit Part",
   });
 };
