@@ -1,24 +1,9 @@
-<!-- need to update action route and populate present values.  -->
-
 <% const action = `/part/edit/${selectedPart.part_id}`; %>
+<% const startingName = selectedPart.part_name.toString(); %>
+<% const startingQuantity = selectedPart.quantity; %>
+<% const startingDescription = selectedPart.description; %>
 
 
-<% console.log(`JSON.stringify(selectedPart): ${JSON.stringify(selectedPart)}`); %>
-
-
-<% const startingName = selectedPart.part_name.toString() %>
-<% console.log(`startingName: ${startingName}`); %>
-
-<% console.log(`startingName.length: ${startingName.length}`); %>
-
-<% const startingQuantity = selectedPart.quantity %>
-<% const startingDescription = selectedPart.description %>
-<% console.log(`startingDescription: ${startingDescription}`); %>
-
-
-
-<!-- We have starting tags now. We need to use that to conditionally check the tag boxes.  -->
- 
 <form class="editPartForm" action=<%= action %> method="post">
     <ul class="formInputs">
       <li>
@@ -62,8 +47,12 @@
           <% tags.forEach((tag) => { %>
           <li class="tagOption">
             <label for= <% tag.tag_id %>><%= tag.tag_name %></label>
-            <input name= "tags" value=<%=tag.tag_id %> id=<%=tag.tag_id %> type="checkbox" >
-          </li>
+            <input name= "tags" value=<%=tag.tag_id %> id=<%=tag.tag_id %> type="checkbox" 
+            <% if (startingTags.includes(tag.tag_id)){ %>
+              checked=true
+              <% }; %>
+              >
+            </li>
           <% }) %>
         </ul>
       </li>
