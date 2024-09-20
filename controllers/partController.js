@@ -142,8 +142,6 @@ exports.editPartGet = async (req, res) => {
     selectedPart,
     subTitle: "Edit Part",
   });
-
-  // res.send(`edit part route reached. part_id: ${part_id}`);
 };
 
 
