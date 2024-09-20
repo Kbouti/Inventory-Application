@@ -149,18 +149,32 @@ exports.editPartGet = async (req, res) => {
 exports.editPartPost = async (req, res) => {
   console.log(`editPartPost controller function called`);
 
+  const part_id = req.params.part_id;
   const newName = req.body.name;
   const newQuantity = req.body.quantity;
   const newDescription = req.body.description;
-  const newCategory = req.body.category;
+  const newCategoryName = req.body.category;
   const newTags = req.body.tags;
 
-  console.log(`newName: ${newName}`);
+  const newCategory = await categoryQueries.findCategoryId(newCategoryName);
 
-  // *****************************************************************
-  // Next up we need to invoke a query to update the part in our database
-  // *****************************************************************
+  const newDetails = {
+    newName,
+    newQuantity,
+    newDescription,
+    newCategory,
+    newTags,
+  };
 
-  res.send(`hello`);
-  // It's getting part_id.... but we still gotta figure out how to get form details
+  const response = await partQueries.editPartDetails(part_id, newDetails);
+  // First update part details
+
+  // Then remove old tags
+  const response2 = await partsTagsQueries.deletePartsTags(part_id);
+
+  // Then assign new ones
+  const response3 = await addPartsTags(part_id, newTags);
+
+  res.redirect(`/part/${part_id}`);
+
 };
