@@ -70,10 +70,11 @@
       </ul>
     </li>
   </ul>
-
-  <button type="submit">Save Changes</button>
-  <% const previousPage = `/part/${selectedPart.part_id}` %>
-  <a href=<%=previousPage %>>
-    <button type="cancel">Cancel</button>
-  </a>
+  <div class="buttonContainer">
+    <button type="submit">Save Changes</button>
+    <% const previousPage = `/part/${selectedPart.part_id}` %>
+    <a href=<%=previousPage %>>
+      <button type="cancel">Cancel</button>
+    </a>
+  </div>
 </form>
