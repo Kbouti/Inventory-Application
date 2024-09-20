@@ -82,27 +82,19 @@ exports.selectedPartGet = async (req, res) => {
   const selectedPartId = req.params.part_id;
   // const selectedPartId = req.body.part_id;
 
-  // For some reason this is getting style.css???????
-  // But we also need to figure out why/where this is getting called in the first place.
-  // ************************************************************************
-
   console.log(`selectedPartId: ${selectedPartId}`);
-
-  // Maybe we want the whole part object not just the id
 
   const response = await partQueries.getPartsById(selectedPartId);
   const selectedPart = response[0];
 
-  res.render("../views/pages/parts", {
-    links,
+  res.render("../views/pages/specificPart", {
     title,
+    links,
+    selectedPart,
     categories,
     tags,
     parts,
     partsTags,
-    selectedPartId,
-    selectedPart,
-    subTitle: "Parts",
   });
 };
 
@@ -131,7 +123,7 @@ exports.editPartGet = async (req, res) => {
   const partsTags = await partsTagsQueries.getPartTags();
 
   const startingTags = await partsTagsQueries.getTagsByPart(part_id);
-console.log(`startingTags: ${startingTags}`);
+  console.log(`startingTags: ${startingTags}`);
 
   const response = await partQueries.getPartsById(part_id);
   const selectedPart = response[0];
@@ -180,5 +172,4 @@ exports.editPartPost = async (req, res) => {
   const response3 = await addPartsTags(part_id, newTags);
 
   res.redirect(`/part/${part_id}`);
-
 };
