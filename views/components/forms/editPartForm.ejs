@@ -3,61 +3,77 @@
 <% const startingQuantity = selectedPart.quantity; %>
 <% const startingDescription = selectedPart.description; %>
 
+<form class="editPartForm newForm" action=<%= action %>
+  method="post">
+  <ul class="formInputs">
+    <li>
+      <label for="name">Create a Part:</label>
+      <input
+        type="text"
+        name="name"
+        required
+        autocomplete="off"
+        maxlength="30"
+        value= "<%= startingName %>"
+      />
+    </li>
 
-<form class="editPartForm" action=<%= action %> method="post">
-    <ul class="formInputs">
-      <li>
-        <label for="name">Create a Part:</label>
-        <input
-          type="text"
-          name="name"
-          required
-          autocomplete="off"
-          maxlength="30"
-          value= "<%= startingName %>"
-        />
-      </li>
-  
-      <li>
-        <label for="category">Category:</label>
-        <select name="category" id="categorySelect">
-          <% categories.forEach((category) => { %>
-          <option><%= category.category_name %></option>
-          <% }); %>
-        </select>
-      </li>
-  
-      <li>
-        <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" required value=<%=startingQuantity %> />
-      </li>
-  
-      <li>
-        <label for="description">Description:</label>
-        <textarea
-          name="description"
-          id="description"
-          placeholder="Optional description here"
-        ><%=startingDescription %></textarea>
-      </li>
-  
-  
-      <li>
-        <ul class="tagOptions">
-          <% tags.forEach((tag) => { %>
-          <li class="tagOption">
-            <label for= <% tag.tag_id %>><%= tag.tag_name %></label>
-            <input name= "tags" value=<%=tag.tag_id %> id=<%=tag.tag_id %> type="checkbox" 
+    <li>
+      <label for="category">Category:</label>
+      <select name="category" id="categorySelect">
+        <% categories.forEach((category) => { %>
+        <option><%= category.category_name %></option>
+        <% }); %>
+      </select>
+    </li>
+
+    <li>
+      <label for="quantity">Quantity:</label>
+      <input
+        type="number"
+        name="quantity"
+        required
+        value= <%=startingQuantity %>
+      />
+    </li>
+
+    <li>
+      <label for="description">Description:</label>
+      <textarea
+        name="description"
+        id="description"
+        placeholder="Optional description here"
+      >
+      <%=startingDescription %>
+      </textarea>
+    </li>
+
+    <li>
+      <ul class="tagOptions">
+        <% tags.forEach((tag) => { %>
+        <li class="tagOption">
+          <label 
+            for=<%= tag.tag_id %>>
+            <%= tag.tag_name %>
+          </label>
+          <input 
+            name="tags" 
+            value=<%=tag.tag_id %> 
+            id=<%=tag.tag_id %>
+            type="checkbox" 
             <% if (startingTags.includes(tag.tag_id)){ %>
-              checked=true
-              <% }; %>
-              >
-            </li>
-          <% }) %>
-        </ul>
-      </li>
-    </ul>
-  
-    <button type="submit">Submit</button>
-  </form>
-  
+            checked=true
+            <% }; %>
+          >
+        </li>
+        <% }) %>
+      </ul>
+    </li>
+  </ul>
+
+  <button type="submit">Save Changes</button>
+  <% const previousPage = `/part/${selectedPart.part_id}` %>
+  <a href=<%=previousPage %>>
+    <button type="cancel">Cancel</button>
+  </a>
+</form>

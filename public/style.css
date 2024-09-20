@@ -56,6 +56,7 @@ ul {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin: .5rem 0 .5rem;
 }
 
 .newForm {
@@ -67,6 +68,7 @@ ul {
 
 .tagOptions li {
   background-color: aqua;
+  /* padding: .2rem; */
 }
 
 /* It would be kinda cool to assign each tag a random color that persists. It'd make finding tags easier. */
