@@ -37,8 +37,7 @@ async function addPartsTags(partId, tagIds) {
   console.log(`adding part tag relations`);
   if (tagIds == null) {
     console.log(`no tagIds found`);
-  }
-  else if (tagIds.length > 1) {
+  } else if (tagIds.length > 1) {
     // Assigning several tags
     tagIds.forEach((tag) => {
       partsTagsQueries.newPartTag(partId, tag);
@@ -84,7 +83,7 @@ exports.selectedPartGet = async (req, res) => {
   // const selectedPartId = req.body.part_id;
 
   // For some reason this is getting style.css???????
-  // But we also need to figure out why/where this is getting called in the first place. 
+  // But we also need to figure out why/where this is getting called in the first place.
   // ************************************************************************
 
   console.log(`selectedPartId: ${selectedPartId}`);
@@ -147,8 +146,21 @@ exports.editPartGet = async (req, res) => {
   });
 };
 
-
 exports.editPartPost = async (req, res) => {
   console.log(`editPartPost controller function called`);
+
+  const newName = req.body.name;
+  const newQuantity = req.body.quantity;
+  const newDescription = req.body.description;
+  const newCategory = req.body.category;
+  const newTags = req.body.tags;
+
+  console.log(`newName: ${newName}`);
+
+  // *****************************************************************
+  // Next up we need to invoke a query to update the part in our database
+  // *****************************************************************
+
   res.send(`hello`);
-}
+  // It's getting part_id.... but we still gotta figure out how to get form details
+};
