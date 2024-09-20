@@ -1,11 +1,19 @@
 <!-- need to update action route and populate present values.  -->
 
-<% const action = `part/${selectedPart.part_id}/edit`; %>
+<% const action = `/edit/${selectedPart.part_id}`; %>
 
-<!-- We're getting the action destination all screwed up.  -->
-<% const startingName = selectedPart.part_name %>
+
+<% console.log(`JSON.stringify(selectedPart): ${JSON.stringify(selectedPart)}`); %>
+
+
+<% const startingName = selectedPart.part_name.toString() %>
+<% console.log(`startingName: ${startingName}`); %>
+
+<% console.log(`startingName.length: ${startingName.length}`); %>
+
 <% const startingQuantity = selectedPart.quantity %>
 <% const startingDescription = selectedPart.description %>
+<% console.log(`startingDescription: ${startingDescription}`); %>
 
 
 <form class="editPartForm" action=<%= action %> method="post">
@@ -18,7 +26,7 @@
           required
           autocomplete="off"
           maxlength="30"
-          value=<%=startingName %>
+          value= "<%= startingName %>"
         />
       </li>
   
@@ -42,8 +50,7 @@
           name="description"
           id="description"
           placeholder="Optional description here"
-          value=<%=startingDescription %>
-        ></textarea>
+        ><%=startingDescription %></textarea>
       </li>
   
   
