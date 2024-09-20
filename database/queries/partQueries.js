@@ -36,7 +36,7 @@ exports.findPartId = async (partName) => {
       return null;
     }
     if (part_id.length == 1) {
-      console.log(`part_id.length = 1. patr_id: ${part_id}`);
+      console.log(`part_id.length = 1. part_id: ${part_id}`);
       const sql = `select parts.part_id, parts.part_name, categories.category_name, parts.quantity, parts.description from categories inner join parts on categories.category_id = parts.category where parts.part_id in (${part_id});`;
       const { rows } = await pool.query(sql);
       return rows;

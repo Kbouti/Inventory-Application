@@ -102,8 +102,27 @@ exports.deletePart = async (req, res) => {
 
 exports.editPart = async (req, res) => {
   const part_id = req.params.part_id;
-
   console.log(`edit part route reached. part_id: ${part_id}`);
 
-  res.send(`edit part route reached. part_id: ${part_id}`);
+  const categories = await categoryQueries.getAllCategories();
+  const tags = await tagQueries.getAllTags();
+  const parts = await partQueries.getAllParts();
+  const partsTags = await partsTagsQueries.getPartTags();
+
+  const response = await partQueries.getPartsById(part_id);
+  const selectedPart = response[0];
+
+  res.render("../views/pages/editPart", {
+    links,
+    title,
+    categories,
+    tags,
+    parts,
+    partsTags,
+    part_id,
+    selectedPart,
+    subTitle: "Edit Part",
+  });
+
+  // res.send(`edit part route reached. part_id: ${part_id}`);
 };
