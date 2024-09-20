@@ -34,9 +34,11 @@ exports.partGet = async (req, res) => {
 
 async function addPartsTags(partId, tagIds) {
   console.log(`addPartsTags controller function called`);
-
   console.log(`adding part tag relations`);
-  if (tagIds.length > 1) {
+  if (tagIds == null) {
+    console.log(`no tagIds found`);
+  }
+  else if (tagIds.length > 1) {
     // Assigning several tags
     tagIds.forEach((tag) => {
       partsTagsQueries.newPartTag(partId, tag);
@@ -46,6 +48,7 @@ async function addPartsTags(partId, tagIds) {
     partsTagsQueries.newPartTag(partId, tagIds[0]);
   }
   console.log(`done adding partTag relations`);
+  return;
 }
 
 exports.partNewPost = async (req, res) => {

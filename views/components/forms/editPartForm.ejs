@@ -3,6 +3,9 @@
 <% const action = `part/${selectedPart.part_id}/edit`; %>
 
 <!-- We're getting the action destination all screwed up.  -->
+<% const startingName = selectedPart.part_name %>
+<% const startingQuantity = selectedPart.quantity %>
+<% const startingDescription = selectedPart.description %>
 
 
 <form class="editPartForm" action=<%= action %> method="post">
@@ -15,7 +18,7 @@
           required
           autocomplete="off"
           maxlength="30"
-          value=<%=selectedPart.part_name %>
+          value=<%=startingName %>
         />
       </li>
   
@@ -30,7 +33,7 @@
   
       <li>
         <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" required value=<%=selectedPart.quantity %> />
+        <input type="number" name="quantity" required value=<%=startingQuantity %> />
       </li>
   
       <li>
@@ -39,6 +42,7 @@
           name="description"
           id="description"
           placeholder="Optional description here"
+          value=<%=startingDescription %>
         ></textarea>
       </li>
   
