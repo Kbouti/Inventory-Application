@@ -61,6 +61,7 @@ const tagName = req.params.tag_name;
     tags,
     parts,
     partsTags,
-    subTitle: tagName,
+    tagId, 
+    tagName,
   });
 };

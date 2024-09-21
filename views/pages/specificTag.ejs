@@ -9,8 +9,8 @@
   <body>
     <h1><%= title %></h1>
     <%- include ('../components/header', {links: links}) %>
-    <h2><%= subTitle %></h2>
     <section class="componentContainer">
+        <%- include ('../components/displayModules/selectedTag') %>
         <%- include ('../components/displayModules/allParts', {parts, partsTags}) %>
     </section>
   </body>
