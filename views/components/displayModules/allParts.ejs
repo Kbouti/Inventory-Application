@@ -1,4 +1,5 @@
   <ul class="partsContainer">
+    <% if (parts) { %>
     <% parts.forEach((part) => { %>
 
 <% const linkRef = `/part/${part.part_id}`; %>
@@ -39,4 +40,5 @@
   </a> 
   
     <% }); %>
+    <% }; %>
   </ul>
