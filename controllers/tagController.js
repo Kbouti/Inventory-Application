@@ -65,5 +65,14 @@ exports.specificTagGet = async (req, res) => {
 exports.tagEditGet = async (req, res) => {
   console.log(`tagEditGet route reached. `);
 
-  res.send(`success`);
+  const tagId = req.params.tag_id;
+
+
+res.render("../views/pages/editTag", {
+  title,
+  links,
+  tagId, 
+  subTitle: "Edit Tag"
+})
+
 }
