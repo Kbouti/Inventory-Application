@@ -11,8 +11,7 @@
     <%- include ('../components/header', {links: links}) %>
     <h2><%= subTitle %></h2>
     <section class="componentContainer">
-        <%- include ('../components/forms/newTag') %>
-        <%- include ('../components/displayModules/allTags') %>
+        <%- include ('../components/displayModules/allParts', {parts, partsTags}) %>
     </section>
   </body>
 </html>
