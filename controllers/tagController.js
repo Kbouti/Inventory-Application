@@ -67,11 +67,13 @@ exports.tagEditGet = async (req, res) => {
 
   const tagId = req.params.tag_id;
 
+  const currentTagName = await tagQueries.findTagName(tagId);
 
 res.render("../views/pages/editTag", {
   title,
   links,
   tagId, 
+  currentTagName,
   subTitle: "Edit Tag"
 })
 
