@@ -188,3 +188,8 @@ button {
   flex-direction: row;
   justify-content: center;
 }
+
+.partLink :hover {
+  transform: scale(1.01);
+  background-color:rgb(249, 239, 226)
+}
