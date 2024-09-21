@@ -8,9 +8,8 @@ partRouter.get("/:part_id", partController.selectedPartGet);
 partRouter.get("/edit/:part_id", partController.editPartGet);
 
 // POST requests:
-
-partRouter.post("/:part_id/delete", partController.deletePart);
 partRouter.post("/new", partController.partNewPost);
 partRouter.post("/edit/:part_id", partController.editPartPost);
+partRouter.post("/:part_id/delete", partController.deletePart);
 
 module.exports = partRouter;
