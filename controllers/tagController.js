@@ -36,12 +36,13 @@ exports.tagNewPost = async (req, res) => {
   res.redirect(req.get("referer"));
 };
 
-exports.tag_name = async (req, res) => {
-  console.log(`tag_name controller function called`);
+exports.specificTagGet = async (req, res) => {
+  console.log(`specificTagGet controller function called`);
   // This route should display all the parts associated with a specific tag.
 
 // ************************************************************************************************************************
-const tagName = req.params.tag_name;
+const tagId = req.params.tag_id
+const tagName = await tagQueries.findTagName(tagId);
 // This should prbably be based on tag_id, not tag_name. 
 // We've created a new view for specificTag, we need to create a small form element to edit or delete the tag. 
 // ************************************************************************************************************************
@@ -49,7 +50,6 @@ const tagName = req.params.tag_name;
   const categories = await categoryQueries.getAllCategories();
   const tags = await tagQueries.getAllTags();
   const partsTags = await partsTagsQueries.getPartTags();
-  const tagId = await tagQueries.findTagId(tagName);
   const partIds = await partQueries.getPartIds(tagId);
   console.log(`tag_name route visited for ${tagName}. part_ids: ${partIds}`);
   const parts = await partQueries.getPartsById(partIds);

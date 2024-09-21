@@ -18,8 +18,6 @@ exports.getAllTags = async () => {
 
   exports.findTagId = async (tagName) => {
     console.log(`query findTagId triggered`);
-
-    console.log(`findTagId query activated`);
     const idQuery = `select * from tags where tag_name = '${tagName}';`;
     console.log(`idQuery: ${idQuery}`);
     const { rows } = await pool.query(idQuery);
@@ -27,3 +25,20 @@ exports.getAllTags = async () => {
     console.log(`targetTagId: ${targetId}`);
     return targetId;
   };
+
+
+  // Need find name by Id
+
+  exports.findTagName = async (tag_id) => {
+    console.log(`query findTagName triggered`);
+
+    const nameQuery = `select * from tags where tag_id = '${tag_id}';`;
+    console.log(`nameQuery: ${nameQuery}`);
+    const { rows } = await pool.query(nameQuery);
+    const targetName = rows[0].tag_name;
+    console.log(`targetName: ${targetName}`);
+    return targetName;
+
+
+
+  }
