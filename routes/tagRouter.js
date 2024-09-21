@@ -8,7 +8,7 @@ const tagController = require("../controllers/tagController");
 // GET requests:
 tagRouter.get("/", tagController.tagGet);
 tagRouter.get("/:tag_id", tagController.specificTagGet);
-// tagRouter.get("/:tag_id/edit", tagController.aaaaa);
+tagRouter.get("/:tag_id/edit", tagController.tagEditGet);
 
 
 // POST requests:

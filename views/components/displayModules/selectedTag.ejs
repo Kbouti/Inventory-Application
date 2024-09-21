@@ -1,7 +1,19 @@
 <section class="selectedTag">
   <h2>Tag Name: <%= tagName %></h2>
   <div class="buttonContainer">
+
+<% const action = `${tagId}/edit`; %>
+<form action=<%= action %> method="get">
     <button>Edit tag Name</button>
+</form>
+    
+    
+    
     <button>Delete tag</button>
+
+
+
+
+
   </div>
 </section>
