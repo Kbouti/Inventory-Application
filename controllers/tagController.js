@@ -61,20 +61,29 @@ exports.specificTagGet = async (req, res) => {
   });
 };
 
-
 exports.tagEditGet = async (req, res) => {
   console.log(`tagEditGet route reached. `);
-
   const tagId = req.params.tag_id;
-
   const currentTagName = await tagQueries.findTagName(tagId);
+  res.render("../views/pages/editTag", {
+    title,
+    links,
+    tagId,
+    currentTagName,
+    subTitle: "Edit Tag",
+  });
+};
 
-res.render("../views/pages/editTag", {
-  title,
-  links,
-  tagId, 
-  currentTagName,
-  subTitle: "Edit Tag"
-})
 
+exports.tagEditPost = async (req, res) => {
+  console.log(`tagEditPost route reached`)
+
+// Remember we'll need to update partsTags too..
+
+  res.send(`success!`);
+}
+
+exports.tagDeletePost = async (req, res) => {
+  console.log(`tagDeletePost route reached`);
+  res.send(`success!`);
 }

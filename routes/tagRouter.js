@@ -13,7 +13,7 @@ tagRouter.get("/:tag_id/edit", tagController.tagEditGet);
 
 // POST requests:
 tagRouter.post("/new", tagController.tagNewPost);
-// tagRouter.post("/:tag_id/edit", tagController.aaaa);
-// tagRouter.post("/:tag_id/delete", tagController.aaaaa);
+tagRouter.post("/:tag_id/edit", tagController.tagEditPost);
+tagRouter.post("/:tag_id/delete", tagController.tagDeletePost);
 
 module.exports = tagRouter;
