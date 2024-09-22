@@ -38,7 +38,12 @@ exports.getAllTags = async () => {
     const targetName = rows[0].tag_name;
     console.log(`targetName: ${targetName}`);
     return targetName;
+  }
 
 
-
+  exports.editTagName = async (tagId, newName) => {
+    console.log(`query editTagName triggered`);
+    const updateTagSql = `update tags set tag_name='${newName}' where tag_id='${tagId}';`;
+    const response = await pool.query(updateTagSql);
+    return response;
   }

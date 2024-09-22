@@ -74,16 +74,19 @@ exports.tagEditGet = async (req, res) => {
   });
 };
 
-
 exports.tagEditPost = async (req, res) => {
-  console.log(`tagEditPost route reached`)
+  console.log(`tagEditPost route reached`);
+  const newName = req.body.tag_name;
+  const tagId = req.params.tag_id;
 
-// Remember we'll need to update partsTags too..
+  const response = tagQueries.editTagName(tagId, newName);
 
-  res.send(`success!`);
-}
+// Success! Now we just need to render the correct page again
+
+  res.send(`success! post submitted for new tag name ${newName}`);
+};
 
 exports.tagDeletePost = async (req, res) => {
   console.log(`tagDeletePost route reached`);
   res.send(`success!`);
-}
+};
