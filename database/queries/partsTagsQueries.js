@@ -25,13 +25,17 @@ exports.deletePartsTags = async (part_id) => {
 
 exports.getTagsByPart = async (part_id) => {
   console.log(`query getTagsByPart triggered`);
-
   console.log(`getting all tags pertaining to part_id: ${part_id}`);
-
   const sql = `select tag from partstags where part=${part_id};`;
   const { rows } = await pool.query(sql);
   const tags = [];
   rows.forEach((row) => tags.push(row.tag));
-
   return tags;
 };
+
+exports.deleteTagRelations = async (tag_id) => {
+  console.log(`query deleteTagRelations triggered`);
+  const deleteSql = `delete from partstags where tag= ${tag_id};`;
+  const response = await pool.query(deleteSql);
+  return response;
+}

@@ -84,5 +84,9 @@ exports.tagEditPost = async (req, res) => {
 
 exports.tagDeletePost = async (req, res) => {
   console.log(`tagDeletePost route reached`);
-  res.send(`success!`);
+  const tagId = req.params.tag_id;
+  await partsTagsQueries.deleteTagRelations(tagId);
+  await tagQueries.deleteTag(tagId);
+  console.log(`redirecting`);
+  res.redirect("/tag");
 };

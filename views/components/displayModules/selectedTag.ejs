@@ -1,19 +1,16 @@
 <section class="selectedTag">
   <h2>Tag Name: <%= tagName %></h2>
   <div class="buttonContainer">
+    <% const getAction = `${tagId}/edit`; %>
+    <form action="<%= getAction %>"
+      method="get">
+      <button>Edit tag Name</button>
+    </form>
 
-<% const action = `${tagId}/edit`; %>
-<form action=<%= action %> method="get">
-    <button>Edit tag Name</button>
-</form>
-    
-    
-    
-    <button>Delete tag</button>
-
-
-
-
-
+    <% const postAction = `${tagId}/delete`; %>
+    <form action="<%= postAction %>"
+      method="post">
+      <button>Delete tag</button>
+    </form>
   </div>
 </section>
