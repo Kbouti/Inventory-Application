@@ -78,12 +78,8 @@ exports.tagEditPost = async (req, res) => {
   console.log(`tagEditPost route reached`);
   const newName = req.body.tag_name;
   const tagId = req.params.tag_id;
-
   const response = tagQueries.editTagName(tagId, newName);
-
-// Success! Now we just need to render the correct page again
-
-  res.send(`success! post submitted for new tag name ${newName}`);
+  res.redirect(`/tag/${tagId}`);
 };
 
 exports.tagDeletePost = async (req, res) => {
