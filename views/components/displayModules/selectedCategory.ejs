@@ -1,0 +1,17 @@
+<section class="selectedCategory">
+    <h2>Tag Name: <%= tagName %></h2>
+    <div class="buttonContainer">
+      <% const getAction = `${categoryId}/edit`; %>
+      <form action="<%= getAction %>"
+        method="get">
+        <button>Edit Category Name</button>
+      </form>
+  
+      <% const postAction = `${categoryId}/delete`; %>
+      <form action="<%= postAction %>"
+        method="post">
+        <button>Delete tag</button>
+      </form>
+    </div>
+  </section>
+  
