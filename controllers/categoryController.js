@@ -17,6 +17,7 @@ const validateCategory = [
   body("category").trim().isAlpha().withMessage("Must contain only letters"),
 ];
 // Our validation isn't working.... Still able to submit categories with numbers and spaces
+// Currently not even calling validation. 
 // ******************************************************************************************************
 
 exports.categoryGet = async (req, res) => {
@@ -44,25 +45,58 @@ exports.category_nameGet = async (req, res) => {
   const category_name = await categoryQueries.findCategoryName(category_id);
   const parts = await partQueries.getPartsByCategoryId(category_id);
 
-  res.render("../views/pages/categories", {
+  res.render("../views/pages/specificCategory", {
     links,
     title,
     categories,
+    category_name,
+    category_id,
     tags,
     parts,
     partsTags,
     subTitle: category_name,
   });
 };
-// ******************************************************************************************************
 
-exports.categoryNewPost = [
-  // console.log(`categoryNewPost controller function called`),
+// exports.categoryNewPost = [
+//   // console.log(`categoryNewPost controller function called`),
+//   validateCategory,
+//   async (req, res) => {
+//     const userInput = req.body.category;
+//     const response = await categoryQueries.newCategory(userInput);
+//     res.redirect("/category");
+//   },
+// ];
 
-  validateCategory,
-  async (req, res) => {
-    const userInput = req.body.category;
-    const response = await categoryQueries.newCategory(userInput);
-    res.redirect("/category");
-  },
-];
+exports.categoryNewPost = async (req, res) => {
+  console.log(`categoryNewPost controller function called`);
+  // validateCategory();
+  const userInput = req.body.category;
+  const response = await categoryQueries.newCategory(userInput);
+  res.redirect("/category");
+}
+
+exports.categoryEditGet = async (req, res) => {
+  console.log(`categoryEditGet controller function called`);
+// Oops, here we just need to render the form
+
+  const categoryId = req.params.category_id;
+
+
+  res.redirect("/category");
+}
+
+exports.categoryEditPost = async (req, res) => {
+  console.log(`categoryEditGet controller function called`);
+  const newName = req.body.name
+  const categoryId = req.params.category_id;
+  const response = await categoryQueries.editCategory(categoryId, newName)
+
+
+  res.redirect("/category");
+
+}
+
+exports.categoryDeletePost = async (req, res) => {
+
+}

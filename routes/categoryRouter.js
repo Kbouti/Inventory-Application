@@ -8,7 +8,7 @@ const categoryController = require("../controllers/categoryController");
 categoryRouter.get("/", categoryController.categoryGet);
 
 categoryRouter.get("/:category_id", categoryController.category_nameGet);
-// categoryRouter.get("/:category_id/edit", categoryController.categoryEditGet);
+categoryRouter.get("/:category_id/edit", categoryController.categoryEditGet);
 // categoryRouter.get("/:category_id/delete", categoryController.categoryDeleteGet);
 
 
