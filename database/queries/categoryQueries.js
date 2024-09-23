@@ -33,3 +33,10 @@ exports.getAllCategories = async () => {
     const targetId = rows[0].category_name;
     return targetId;
   };
+
+  exports.editCategory = async (categoryId, newName) => {
+    console.log(`query editCategory triggered`);
+    const sql = `update categories set category_name = '${newName}' where category_id = ${categoryId}`;
+    const response = await pool.query(sql);
+    return response;
+  }
