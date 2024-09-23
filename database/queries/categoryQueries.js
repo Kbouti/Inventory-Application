@@ -24,3 +24,12 @@ exports.getAllCategories = async () => {
     const targetId = rows[0].category_id;
     return targetId;
   };
+
+  exports.findCategoryName = async (categoryId) => {
+    console.log(`query findCategoryName triggered`);
+
+    const idQuery = `select category_name from categories where category_id = '${categoryId}';`;
+    const { rows } = await pool.query(idQuery);
+    const targetId = rows[0].category_name;
+    return targetId;
+  };

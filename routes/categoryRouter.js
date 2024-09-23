@@ -7,8 +7,7 @@ const categoryController = require("../controllers/categoryController");
 // GET requests:
 categoryRouter.get("/", categoryController.categoryGet);
 
-categoryRouter.get("/:category_name", categoryController.category_nameGet);
-// We should change this to category_id for consistency
+categoryRouter.get("/:category_id", categoryController.category_nameGet);
 // categoryRouter.get("/:category_id/edit", categoryController.categoryEditGet);
 // categoryRouter.get("/:category_id/delete", categoryController.categoryDeleteGet);
 

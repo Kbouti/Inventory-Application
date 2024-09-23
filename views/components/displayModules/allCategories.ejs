@@ -1,7 +1,7 @@
 <section class="displayModule">
     <ul>
         <% categories.forEach((category) => { %>
-            <% const linkRef = `/category/${category.category_name}`; %>
+            <% const linkRef = `/category/${category.category_id}`; %>
             <li>
                  <a href=<%=linkRef %>><%= category.category_name %></a> 
             </li>

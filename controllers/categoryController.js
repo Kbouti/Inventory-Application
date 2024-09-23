@@ -37,11 +37,11 @@ exports.categoryGet = async (req, res) => {
 exports.category_nameGet = async (req, res) => {
   console.log(`category_nameGet controller function called`);
 
-  const category_name = req.params.category_name;
+  const category_id = req.params.category_id;
   const categories = await categoryQueries.getAllCategories();
   const tags = await tagQueries.getAllTags();
   const partsTags = await partsTagsQueries.getPartTags();
-  const category_id = await categoryQueries.findCategoryId(category_name);
+  const category_name = await categoryQueries.findCategoryName(category_id);
   const parts = await partQueries.getPartsByCategoryId(category_id);
 
   res.render("../views/pages/categories", {
