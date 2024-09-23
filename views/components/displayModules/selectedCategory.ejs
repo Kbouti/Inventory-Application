@@ -1,16 +1,16 @@
 <section class="selectedCategory">
     <h2>Category Name: <%= category_name %></h2>
     <div class="buttonContainer">
-      <% const getAction = `${category_id}/edit`; %>
-      <form action="<%= getAction %>"
+      <% const editAction = `${category_id}/edit`; %>
+      <form action="<%= editAction %>"
         method="get">
         <button>Edit Category Name</button>
       </form>
   
-      <% const postAction = `${category_id}/delete`; %>
-      <form action="<%= postAction %>"
-        method="post">
-        <button>Delete tag</button>
+      <% const deleteAction = `${category_id}/delete`; %>
+      <form action="<%= deleteAction %>"
+        method="get">
+        <button>Delete Category</button>
       </form>
     </div>
   </section>

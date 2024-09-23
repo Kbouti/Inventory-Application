@@ -103,12 +103,21 @@ exports.categoryEditPost = async (req, res) => {
 exports.categoryDeleteGet = async (req, res) => {
   console.log(`categoryDeleteGet controller function called`);
   // We will create and display a page with a warning that deleting a category will delete all parts under that category
+  const categoryId = req.params.category_id;
+
+  res.render("../views/pages/deleteCategory", {
+    title,
+    links,
+    categoryId,
+    subTitle: "Delete Category",
+  });
 };
 
 exports.categoryDeletePost = async (req, res) => {
   console.log(`categoryDeletePost controller function called`);
+  const categoryId = req.params.category_id;
 
   // Need to delete the category and all related parts using queries
 
-  res.send("delete");
+  res.send("delete post route reached");
 };
