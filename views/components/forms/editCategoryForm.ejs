@@ -1,0 +1,9 @@
+<% const action = `/category/${categoryId}/edit`; %>
+
+
+
+<form action=<%= action %> class="editCategoryForm newForm" method="post">
+    <input type="text" name="name" value="<%= currentCategoryName %>">
+    <button type="submit">Change Category Name</button>
+
+</form>

@@ -81,22 +81,29 @@ exports.categoryEditGet = async (req, res) => {
 // Oops, here we just need to render the form
 
   const categoryId = req.params.category_id;
+const currentCategoryName = await categoryQueries.findCategoryName(categoryId);
 
-
-  res.redirect("/category");
+res.render("../views/pages/editCategory", {
+  title,
+  links,
+  categoryId,
+  currentCategoryName,
+  subTitle: "Edit Category"
+});
 }
 
 exports.categoryEditPost = async (req, res) => {
   console.log(`categoryEditGet controller function called`);
-  const newName = req.body.name
+  const newName = req.body.name;
   const categoryId = req.params.category_id;
   const response = await categoryQueries.editCategory(categoryId, newName)
-
-
-  res.redirect("/category");
-
+  res.redirect(`/category/${categoryId}`);
 }
 
 exports.categoryDeletePost = async (req, res) => {
+  console.log(`categoryEditGet controller function called`);
 
+// We still must determine deleting logic. 
+// If a category contains parts - can we delete? Or must we delete parts first. 
+  
 }
