@@ -3,8 +3,6 @@ const categoryQueries = require("../database/queries/categoryQueries");
 const partsTagsQueries = require("../database/queries/partsTagsQueries");
 const tagQueries = require("../database/queries/tagQueries");
 
-
-
 const { body, validationResult } = require("express-validator");
 // Still unsure of how to use this to validate
 
@@ -17,7 +15,7 @@ const validateCategory = [
   body("category").trim().isAlpha().withMessage("Must contain only letters"),
 ];
 // Our validation isn't working.... Still able to submit categories with numbers and spaces
-// Currently not even calling validation. 
+// Currently not even calling validation.
 // ******************************************************************************************************
 
 exports.categoryGet = async (req, res) => {
@@ -74,36 +72,43 @@ exports.categoryNewPost = async (req, res) => {
   const userInput = req.body.category;
   const response = await categoryQueries.newCategory(userInput);
   res.redirect("/category");
-}
+};
 
 exports.categoryEditGet = async (req, res) => {
   console.log(`categoryEditGet controller function called`);
-// Oops, here we just need to render the form
+  // Oops, here we just need to render the form
 
   const categoryId = req.params.category_id;
-const currentCategoryName = await categoryQueries.findCategoryName(categoryId);
+  const currentCategoryName = await categoryQueries.findCategoryName(
+    categoryId
+  );
 
-res.render("../views/pages/editCategory", {
-  title,
-  links,
-  categoryId,
-  currentCategoryName,
-  subTitle: "Edit Category"
-});
-}
+  res.render("../views/pages/editCategory", {
+    title,
+    links,
+    categoryId,
+    currentCategoryName,
+    subTitle: "Edit Category",
+  });
+};
 
 exports.categoryEditPost = async (req, res) => {
-  console.log(`categoryEditGet controller function called`);
+  console.log(`categoryEditPost controller function called`);
   const newName = req.body.name;
   const categoryId = req.params.category_id;
-  const response = await categoryQueries.editCategory(categoryId, newName)
+  const response = await categoryQueries.editCategory(categoryId, newName);
   res.redirect(`/category/${categoryId}`);
-}
+};
+
+exports.categoryDeleteGet = async (req, res) => {
+  console.log(`categoryDeleteGet controller function called`);
+  // We will create and display a page with a warning that deleting a category will delete all parts under that category
+};
 
 exports.categoryDeletePost = async (req, res) => {
-  console.log(`categoryEditGet controller function called`);
+  console.log(`categoryDeletePost controller function called`);
 
-// We still must determine deleting logic. 
-// If a category contains parts - can we delete? Or must we delete parts first. 
-  
-}
+  // Need to delete the category and all related parts using queries
+
+  res.send("delete");
+};
