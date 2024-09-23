@@ -105,10 +105,14 @@ exports.categoryDeleteGet = async (req, res) => {
   // We will create and display a page with a warning that deleting a category will delete all parts under that category
   const categoryId = req.params.category_id;
 
+const parts = await partQueries.getPartsByCategoryId(categoryId);
+
+
   res.render("../views/pages/deleteCategory", {
     title,
     links,
     categoryId,
+    parts,
     subTitle: "Delete Category",
   });
 };

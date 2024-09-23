@@ -193,3 +193,21 @@ button {
   transform: scale(1.01);
   background-color:rgb(249, 239, 226)
 }
+
+.warning {
+  color: red;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.deleteCategoryForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.partsCount {
+  color: red;
+  font-size: large;
+}
