@@ -2,6 +2,10 @@ const pool = require("../pool");
 
 exports.getAllCategories = async () => {
   console.log(`query getAllCategories triggered`);
+
+  // ****************************************************************************************
+// This is where our deployment fails. 
+  // ****************************************************************************************
   const { rows } = await pool.query(
     "select * from categories order by category_name;"
   );
