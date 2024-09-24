@@ -1,5 +1,7 @@
 const { Pool } = require("pg");
 
+console.log(`accessing env variables to gain db credentials`);
+
 const mode = process.env.MODE;
 const user = process.env.USER;
 const password = process.env.PASSWORD;
@@ -10,6 +12,9 @@ if (mode == "PRODUCTION") {
 } else {
   database = process.env.DEV_DB;
 };
+
+console.log(`received credentials`);
+console.log(`initializing pool`);
 
 module.exports = new Pool({
   host: "localhost", // or wherever the db is hosted

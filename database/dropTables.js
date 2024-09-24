@@ -2,9 +2,13 @@ const { Client } = require("pg");
 
 require("dotenv").config();
 
+
+console.log(`accessing env variables to gain db credentials`)
 const mode = process.env.MODE;
 const user = process.env.USER;
 const password = process.env.PASSWORD;
+console.log(`received credentials`)
+
 let database;
 if (mode == "PRODUCTION") {
   database = process.env.PROD_DB;

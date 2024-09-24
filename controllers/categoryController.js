@@ -11,11 +11,13 @@ let links = staticResources.links;
 let title = staticResources.title;
 
 // ******************************************************************************************************
+// ******************************************************************************************************
 const validateCategory = [
   body("category").trim().isAlpha().withMessage("Must contain only letters"),
 ];
 // Our validation isn't working.... Still able to submit categories with numbers and spaces
-// Currently not even calling validation.
+// Currently not even calling validation. We can come back and fix this. 
+// ******************************************************************************************************
 // ******************************************************************************************************
 
 exports.categoryGet = async (req, res) => {
