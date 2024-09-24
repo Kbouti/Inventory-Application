@@ -7,6 +7,7 @@
 //  -Clean up UI with CSS
 
 // ****************************************************************************************************************
+console.log(`populateDB file running`);
 
 const { Client } = require("pg");
 
