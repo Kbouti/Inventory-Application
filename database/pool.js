@@ -3,8 +3,7 @@ const { Pool } = require("pg");
 console.log(`accessing env variables to gain db credentials`);
 
 const mode = process.env.MODE;
-// const user = process.env.USER;
-// const password = process.env.PASSWORD;
+
 let database;
 let user;
 let password;
@@ -21,7 +20,6 @@ if (mode == "PRODUCTION") {
   user = process.env.DEV_USER;
   password = process.env.DEV_PASSWORD;
   host = process.env.DEV_HOST;
-
 };
 
 console.log(`received credentials`);

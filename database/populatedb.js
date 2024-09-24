@@ -1,29 +1,54 @@
-// ****************************************************************************************************************
-
-// We're now creating tags and categories in the database.
-// We need to:
-//  -Prevent duplicates from being submitted AKA sanitize and validate forms
-//  -Create functions to delete categories and tags (Maybe do that last..)
-//  -Clean up UI with CSS
-
-// ****************************************************************************************************************
-console.log(`populateDB file running`);
-
 const { Client } = require("pg");
 
 require("dotenv").config();
+console.log(`populateDB file running`);
+
+console.log(`accessing env variables to gain db credentials`)
 
 const mode = process.env.MODE;
-const user = process.env.USER;
-const password = process.env.PASSWORD;
+
 let database;
+let user;
+let password;
+let host;
+let connectionString;
+
 if (mode == "PRODUCTION") {
-  database = process.env.PROD_DB;
+  database = process.env.PGDATABASE;
+  user = process.env.PGUSER;
+  password = process.env.PGPASSWORD;
+  host = process.env.PGHOST;
+  connectionString = process.env.DATABASE_URL
+
 } else {
   database = process.env.DEV_DB;
-}
+  user = process.env.DEV_USER;
+  password = process.env.DEV_PASSWORD;
+  host = process.env.DEV_HOST;
+  connectionString = `postgresql://${user}:${password}@localhost:5432/${database}`;
+};
 
-const connectionString = `postgresql://${user}:${password}@localhost:5432/${database}`;
+
+
+
+// const mode = process.env.MODE;
+// const user = process.env.USER;
+// const password = process.env.PASSWORD;
+// let database;
+// if (mode == "PRODUCTION") {
+//   database = process.env.PROD_DB;
+// } else {
+//   database = process.env.DEV_DB;
+// }
+
+
+
+
+
+
+
+
+
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS categories (
@@ -86,7 +111,7 @@ VALUES
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: connectionString,
+    connectionString,
   });
   await client.connect();
   await client.query(SQL);
