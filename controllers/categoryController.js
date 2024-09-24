@@ -42,7 +42,6 @@ exports.category_nameGet = async (req, res) => {
   const partsTags = await partsTagsQueries.getPartTags();
   const category_name = await categoryQueries.findCategoryName(category_id);
   const parts = await partQueries.getPartsByCategoryId(category_id);
-
   res.render("../views/pages/specificCategory", {
     links,
     title,
@@ -102,11 +101,9 @@ exports.categoryEditPost = async (req, res) => {
 
 exports.categoryDeleteGet = async (req, res) => {
   console.log(`categoryDeleteGet controller function called`);
-  // We will create and display a page with a warning that deleting a category will delete all parts under that category
   const categoryId = req.params.category_id;
 
-const parts = await partQueries.getPartsByCategoryId(categoryId);
-
+  const parts = await partQueries.getPartsByCategoryId(categoryId);
 
   res.render("../views/pages/deleteCategory", {
     title,
@@ -121,11 +118,8 @@ exports.categoryDeletePost = async (req, res) => {
   console.log(`categoryDeletePost controller function called`);
   const categoryId = req.params.category_id;
 
-  // Need to delete the category and all related parts using queries
-
   const response1 = await partQueries.deletePartsByCategory(categoryId);
   const response2 = await categoryQueries.deleteCategory(categoryId);
-
 
   res.redirect("/category");
 };

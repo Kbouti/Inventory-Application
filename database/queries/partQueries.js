@@ -32,9 +32,11 @@ exports.getAllParts = async () => {
 
 exports.getPartsByCategoryId = async (category_id) => {
   console.log(`query getPartsByCategoryId triggered`);
-
-  console.log(`fetching parts by categoryId: ${category_id}`);
-  const sql = `select * from parts where category=${category_id};`;
+// ************************************************************************************
+// We need to fix this so that category name is returned as well as just part details, like the query above. 
+// ************************************************************************************
+const sql = `select parts.part_id, parts.part_name, categories.category_name, parts.quantity, parts.description from categories inner join parts on categories.category_id = parts.category where category=${category_id};`;
+// const sql = `select * from parts where category=${category_id};`;
   const { rows } = await pool.query(sql);
   return rows;
 };
