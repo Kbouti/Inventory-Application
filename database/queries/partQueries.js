@@ -95,10 +95,40 @@ exports.deletePart = async (part_id) => {
 };
 
 exports.editPartDetails = async (partId, newDetails) => {
-  console.log(`query editPart triggered`);
+  console.log(`query editPartDetails triggered`);
 
   const updatePartSql = `update parts set part_name='${newDetails.newName}', category=${newDetails.newCategory}, quantity =${newDetails.newQuantity}, description='${newDetails.newDescription}' where part_id=${partId};`;
   console.log(`updatePartSql: ${updatePartSql}`);
   const response = await pool.query(updatePartSql);
   return response;
+};
+
+exports.deletePartsByCategory = async (categoryId) => {
+  console.log(`query deletePartsByCategory triggered`);
+
+  // First we need to remove all partstags references where a part is in our category.
+  // That could be easier said than done...... Or rather, done in more than one ways..
+
+  const parts = await pool.query(
+    `select * from parts where category = ${categoryId};`
+  );
+
+  let partIds = "";
+  if (parts.length > 0) {
+    for (let i = 0; i < parts.length; i++) {
+      if (i == 0) {
+        partIds += parts[i].part_id;
+      } else {
+        partIds += `, ${parts[i].part_id}`;
+      }
+    }
+
+    const partsTagsSql = `delete from partstags where part in (${partIds});`;
+    const response1 = await pool.query(partsTagsSql);
+
+    const partsSql = `delete from parts where category = ${categoryId};`;
+    const response2 = await pool.query(partsSql);
+  }
+
+  return;
 };

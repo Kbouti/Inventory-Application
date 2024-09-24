@@ -123,5 +123,9 @@ exports.categoryDeletePost = async (req, res) => {
 
   // Need to delete the category and all related parts using queries
 
-  res.send("delete post route reached");
+  const response1 = await partQueries.deletePartsByCategory(categoryId);
+  const response2 = await categoryQueries.deleteCategory(categoryId);
+
+
+  res.redirect("/category");
 };

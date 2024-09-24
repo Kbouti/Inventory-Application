@@ -1,13 +1,16 @@
-<% const deleteAction = `${categoryId}/delete`; %>
 
 <!-- We should get partsList for this category, then we can conditionally render an error message if you are indeed deleting parts.  -->
 <% const partsCount = parts.length %>
+<% const deleteAction = `/category/${categoryId}/delete`; %>
+
 <form action="<%= deleteAction %>" class="deleteCategoryForm newForm" method="post">
     
    <% if (partsCount > 0) { %>
         <h3 class="warning">WARNING:</h3>
         <p>Deleting this category will delete all <span class="partsCount"><%=partsCount %></span> of the parts in this category</p>
-    <% } %>
+    <% } else { %>
+        <p>Are you sure you want to delete this category?</p>
+    <%  } %>
     <button type="submit">Delete Category</button>
     
 </form>
