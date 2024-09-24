@@ -108,25 +108,40 @@ exports.deletePartsByCategory = async (categoryId) => {
 
   // First we need to remove all partstags references where a part is in our category.
   // That could be easier said than done...... Or rather, done in more than one ways..
+  const partsSql = `select * from parts where category = ${categoryId};`;
+  console.log(`partsSql: ${partsSql}`);
+  const parts  = await pool.query(partsSql);
+const rows = parts.rows;
 
-  const parts = await pool.query(
-    `select * from parts where category = ${categoryId};`
-  );
+
+
+
+  // console.log(`parts.length: ${parts.length}`);
+console.log(`JSON.stringify(parts): ${JSON.stringify(parts)})`)
+  // parts.forEach((part) => {
+  //   console.log(`part: ${JSON.stringify(part)}`);
+  // });
+
+  console.log(`JSON.stringify(rows): ${JSON.stringify(rows)})`)
+
 
   let partIds = "";
-  if (parts.length > 0) {
-    for (let i = 0; i < parts.length; i++) {
+  if (rows.length > 0) {
+    for (let i = 0; i < rows.length; i++) {
       if (i == 0) {
-        partIds += parts[i].part_id;
+        partIds += rows[i].part_id;
       } else {
-        partIds += `, ${parts[i].part_id}`;
+        partIds += `, ${rows[i].part_id}`;
       }
     }
 
     const partsTagsSql = `delete from partstags where part in (${partIds});`;
     const response1 = await pool.query(partsTagsSql);
+    console.log(`deleted partstags relations for partIds: ${partIds}`);
 
     const partsSql = `delete from parts where category = ${categoryId};`;
+    console.log(`deleted parts where categoryId: ${categoryId}`);
+
     const response2 = await pool.query(partsSql);
   }
 
