@@ -3,7 +3,7 @@ const { Client } = require("pg");
 require("dotenv").config();
 console.log(`populateDB file running`);
 
-console.log(`accessing env variables to gain db credentials`)
+console.log(`accessing env variables to gain db credentials`);
 
 const mode = process.env.MODE;
 
@@ -18,39 +18,16 @@ if (mode == "PRODUCTION") {
   user = process.env.PGUSER;
   password = process.env.PGPASSWORD;
   host = process.env.PGHOST;
-  connectionString = process.env.DATABASE_URL
-
+  connectionString = process.env.DATABASE_URL;
 } else {
   database = process.env.DEV_DB;
   user = process.env.DEV_USER;
   password = process.env.DEV_PASSWORD;
   host = process.env.DEV_HOST;
   connectionString = `postgresql://${user}:${password}@localhost:5432/${database}`;
-};
+}
 
-
-
-
-// const mode = process.env.MODE;
-// const user = process.env.USER;
-// const password = process.env.PASSWORD;
-// let database;
-// if (mode == "PRODUCTION") {
-//   database = process.env.PROD_DB;
-// } else {
-//   database = process.env.DEV_DB;
-// }
-
-
-
-
-
-
-
-
-
-
-const SQL = `
+const populateTablesSQL = `
 CREATE TABLE IF NOT EXISTS categories (
   category_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   category_name VARCHAR ( 20 )
@@ -78,34 +55,6 @@ CREATE TABLE IF NOT EXISTS partsTags (
   foreign key (part) references parts(part_id),
   foreign key (tag) references tags(tag_id)
 );
-
-INSERT INTO categories (category_name) 
-VALUES
-  ('Bikes'),
-  ('tools'),
-  ('cars');
-
-INSERT INTO tags (tag_name) 
-VALUES
-  ('wrench'),
-  ('seatpost'),
-  ('tire'),
-  ('suspension'),
-  ('tire_lever'),
-  ('hardware'); 
-
-  INSERT INTO parts (part_name, category, quantity, description) 
-  VALUES
-    ('Rockshox Zeb', 1, 1, 'Rockshox enduro fork'),
-    ('265mm spoke', 1, 8, 'Spokes for 27.5 rear wheel'),
-    ('Spoke wrench', 2, 1, 'spoke wrench for bicycle wheels');
-
-    insert into partsTags (part, tag)
-    values 
-    (1, 4),
-    (2, 1),
-    (3, 1);
-
 `;
 
 async function main() {
@@ -114,7 +63,7 @@ async function main() {
     connectionString,
   });
   await client.connect();
-  await client.query(SQL);
+  await client.query(populateTablesSQL);
   await client.end();
   console.log("done");
 }
