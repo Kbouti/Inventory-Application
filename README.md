@@ -1,13 +1,16 @@
-Restarting project on 9/5/24 after curriculum updates
+Description: 
+This is my first full stack application. This project utilizes a PostgreSQL database to store data for individual parts, categories, and tags. During this project I learned to manage the various types of data relations needed to track complex data structures. 
 
+Technologies used:
+-Node.js
+-PostgreSQL
+-EJS
+-Javascript
+-HTML/CSS
+
+Project guidelines: 
 https://www.theodinproject.com/lessons/node-path-nodejs-inventory-application
 
-
-Project is deployed on railway: 
+Project deployed on railway: 
 https://inventoryapplication.up.railway.app/
 
-run app with the command: 
-node --watch app.js
-
-Or use script: 
-npm run start
